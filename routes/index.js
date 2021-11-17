@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-//DB CONNECTION HERE ---
+const myDB = require("../db/myDB.js");
 
 /* AUTH CONNECTION HERE */
 const auth = (req, res, next) => {
@@ -17,8 +17,17 @@ router.get("/", function(req, res) {
   res.status(200).json();
 })
 
-router.get("/user/data", function(req, res) {
-  res.status(200).json();
+router.get("/user/data", async function(req, res) {
+  try {
+    let email = "123@gmail.com"
+    const user = await myDB.getUser(email);
+    res.send({user: user});
+    console.log(user);
+  } catch(e) {
+    console.log("Error", e);
+    res.status(400).send({ err: e });
+  }
+  
 })
 
 router.get("/products", function(req, res) {
