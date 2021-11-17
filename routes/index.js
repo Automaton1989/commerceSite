@@ -17,6 +17,7 @@ router.get("/", function(req, res) {
   res.status(200).json();
 })
 
+/* GET USER DATA */
 router.get("/user/data", async function(req, res) {
   try {
     let email = "123@gmail.com"
@@ -40,18 +41,6 @@ router.get("/products", function(req, res) {
 module.exports = router;
 
 /* 
-
-Functions for getting data, use for when db is set up and ready:
-USER DATA
-router.get("/user/data", auth, async (req, res) => {
-  try {
-    const user = await myDB.getUser(req.session.email);
-    res.send({ user: user });
-  } catch (e) {
-    console.error("Error", e);
-    res.status(400).send({ err: e });
-  }
-});
 
 PRODUCTS
 router.get("/products", auth, async (req, res) => {
