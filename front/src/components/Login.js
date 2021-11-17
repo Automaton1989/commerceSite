@@ -22,12 +22,16 @@ function LoginForm() {
       body: JSON.stringify(data),
     }
 
-    console.log(data);
+    const rawData = await fetch("/api/login", options);
+    if (rawData.status === 200) {
+      navigate("/");
+    } else if (rawData.status === 409) {
+      const res = await rawData.json();
+      alert(res.login);
+    } else {
+      alert("Something's wrong, please try again!");
+    }
 
-    //const rawData = await fetch submitLogin("/login", options);
-    //HANDLE RESPONSE HERE FROM FETCH
-
-    navigate("/");
   }
 
   return <form onSubmit = {handleLogin}>

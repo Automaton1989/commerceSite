@@ -36,7 +36,24 @@ router.get("/products", function(req, res) {
 });
 
 /* POST ROUTES */
+router.post("/login", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const pwd = req.body.pwd;
 
+    const msg = await myDB.userLogin(email, pwd);
+    if( msg[0] === "success" ) {
+      req.session.email = email;
+      req.session.username = msg[1];
+      res.sendStatus(200);
+    } else {
+      res.status(409).send ({ login: msg[0] });
+    }
+  } catch(e) {
+    console.log("Error", e);
+    res.status(400).send( { err: e } );
+  }
+}); 
 
 module.exports = router;
 
@@ -87,25 +104,6 @@ router.post("/register", async (req, res) => {
     res.status(400).send ( { err: e} );
   }
 });
-
-router.post("/login", async (req, res) => {
-  try {
-    const email = req.body.email;
-    const pwd = req.body.pwd;
-
-    const msg = await myDB.login(email, pwd);
-    if( msg[0] === "success" ) {
-      req.session.email = email;
-      req.session.username = msg[1];
-      res.sendStatus(200);
-    } else {
-      res.status(409).send ({ login: msg[0] });
-    }
-  } catch(e) {
-    console.log("Error", e);
-    res.status(400).send( { err: e } );
-  }
-}); 
 
 router.post("/add/cart", async (req, res) => {
   //
