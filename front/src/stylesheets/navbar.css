@@ -1,0 +1,12 @@
+body {
+  font-family: 'Birthstone', cursive;
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.nav-dark {
+  --bs-bg-opacity: 1;
+  background-color: #2b3f5c;
+  background-image: var(--bs-gradient);
+}
+

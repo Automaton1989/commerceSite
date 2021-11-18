@@ -1,7 +1,9 @@
-import './App.css';
+import "./App.css";
+import React from "react";
 import Login from "./components/Login";
-import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 /* 
 USE THIS FOR NAVIGATION BASICS 
@@ -16,25 +18,28 @@ EX:
 
   return <button onSubmit={handleSubmit}>...</button>
 */
-function GoHome(){
+function GoHome() {
   let navigate = useNavigate();
   function handleLink() {
-    navigate("/")
+    navigate("/");
   }
-  return <button onClick={handleLink}> Go Home </button>
+  return <button onClick={handleLink}> Go Home </button>;
 }
 
 function App() {
   return (
     <Router>
-      <div className = "App">
-        <h1>HOME Here</h1>
-        < GoHome />
-        <Link to="/login">Login</Link>
-        <Routes>
-          <Route path="/login" element={<Login />}/>
-        </Routes>
-      </div>
+      <React.Fragment>
+        <Navbar />
+        <div className="App">
+          <h1>HOME Here</h1>
+          <GoHome />
+          <Link to="/login">Login</Link>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
+      </React.Fragment>
     </Router>
   );
 }
