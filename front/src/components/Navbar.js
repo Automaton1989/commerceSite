@@ -5,7 +5,7 @@ import "../stylesheets/navbar.css";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark nav-dark px-sm-3">
+    <nav className="navbar navbar-expand-sm navbar-dark px-sm-3">
       <div className="container-fluid">
         <Link to="/">
           <img
