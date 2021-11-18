@@ -1,6 +1,6 @@
 import '../App.css';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function LoginForm() {
   let navigate = useNavigate();
@@ -63,6 +63,7 @@ function LoginForm() {
     <button type = "submit" className = "btn btn-primary">
       Submit
     </button>
+    <Link to="/register">Don't have an account?</Link>
   </form>
 }
 

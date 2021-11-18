@@ -10,3 +10,6 @@ body {
   background-image: var(--bs-gradient);
 }
 
+.nav-link {
+  font-size: 1rem;
+}

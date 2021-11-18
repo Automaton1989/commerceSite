@@ -4,6 +4,9 @@ import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Products from "./components/Products";
+import Home from "./components/Home";
+import Register from "./components/Register"
 
 /* 
 USE THIS FOR NAVIGATION BASICS 
@@ -32,11 +35,11 @@ function App() {
       <React.Fragment>
         <Navbar />
         <div className="App">
-          <h1>HOME Here</h1>
-          <GoHome />
-          <Link to="/login">Login</Link>
           <Routes>
+            <Route exact path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />} />
+            <Route path="/products" element={<Products />}></Route>
+            <Route path="/register" element={<Register />}></Route>
           </Routes>
         </div>
       </React.Fragment>
