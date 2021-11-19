@@ -9,7 +9,7 @@ const client = new MongoClient(url, { useUnifiedTopology: true });
 const db = client.db("commercialSite"); 
 /* If you want to test from our user collecion, change above to "calendar" db */
 const users = db.collection("users");
-//const products = db.collection("products");
+const products = db.collection("products");
 //const carts = db.collection("carts");
 
 async function getUser(email) {
@@ -34,6 +34,8 @@ async function userLogin(email, pwd) {
     }
   } catch (e) {
     console.log({ Error: e });
+  } finally {
+    client.close();
   }
 }
 
@@ -62,8 +64,21 @@ async function registerUser(userInfo) {
   }
 }
 
+async function getProducts() {
+  await client.connect();
+  const res = await products.find().toArray();
+  try {
+    return res;
+  } catch(e) {
+    console.log(e)
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   getUser,
   userLogin,
   registerUser,
+  getProducts,
 };

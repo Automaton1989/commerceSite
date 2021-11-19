@@ -31,8 +31,14 @@ router.get("/user/data", async function(req, res) {
   
 })
 
-router.get("/products", function(req, res) {
-  res.status(200).json([1, 2, 3]);
+router.get("/products", async function(req, res) {
+  try {
+    const products = await myDB.getProducts();
+    res.send({data: products});
+  } catch (e) {
+    console.log("Error", e);
+    res.status(400).send({err: e});
+  }
 });
 
 /* POST ROUTES */
