@@ -37,7 +37,33 @@ async function userLogin(email, pwd) {
   }
 }
 
+/* REGISTER NEW USER INTO DB */
+async function registerUser(userInfo) {
+  await client.connect();
+  const user = await users.findOne({ email: userInfo.email });
+  if (user) {
+    return "The email exists, please use another email address";
+  }
+  try {
+    const hashedPassword = await bcrypt.hash(userInfo.pwd, 10);
+    const newData = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      userName: userInfo.userName,
+      email: userInfo.email,
+      pwd: hashedPassword,
+    };
+    await users.insertOne(newData);
+    return "success";
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   getUser,
   userLogin,
+  registerUser,
 };
