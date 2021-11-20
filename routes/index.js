@@ -64,11 +64,11 @@ router.post("/login", async (req, res) => {
 /* USER REGISTER */
 router.post("/register", async (req, res) => {
   try{
-    const msg = await myDb.register(req.body);
+    const msg = await myDB.registerUser(req.body);
     if(msg === "success") {
       res.sendStatus(200);
     } else {
-      res.status(409).send( { register: msg } );
+      res.status(409).send( { msg: msg } );
     }
   } catch (e) {
     res.status(400).send ( { err: e} );
