@@ -60,10 +60,10 @@ function LoginForm() {
         />
       </div>
     </div>
-    <button type = "submit" className = "btn btn-primary">
+    <button type = "submit" className = "btn btn-color btn-primary btn-block">
       Submit
     </button>
-    <Link to="/register">Don't have an account?</Link>
+    <Link className = "link" to="/register">Don't have an account?</Link>
   </form>
 }
 
@@ -72,7 +72,7 @@ function Login() {
     <div className = "container-fluid">
       <div className="row">
         <div className = "text-center col-12">
-          <h1>Login</h1>
+          <h1 className = "title">Login</h1>
           <div className = "col-md-4 offset-md-4">
             < LoginForm />
           </div>

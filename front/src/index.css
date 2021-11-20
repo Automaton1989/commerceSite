@@ -60,3 +60,19 @@ code {
   background-color: #cd7568;
   border-color: #cd7568;
 }
+.btn-block {
+  width: 100%;
+}
+.link {
+  text-decoration: none;
+  color: #FF9686;
+}
+
+.link:hover {
+  color: #cd7568; 
+}
+
+.title {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

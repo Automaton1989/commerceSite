@@ -21,7 +21,7 @@ function Products() {
 
   return (
     <div>
-      <h1>Our Products</h1>
+      <h1 className = "title">Our Products</h1>
       <div className = "row">
         {products.map(function(product, index) {
           return <div key = {index} className = "products col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
