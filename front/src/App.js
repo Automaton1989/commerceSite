@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import Home from "./components/Home";
-import Register from "./components/Register"
+import Register from "./components/Register";
+import SingleProduct from "./components/SingleProduct";
 
 /* 
 USE THIS FOR NAVIGATION BASICS 
@@ -40,6 +41,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/products" element={<Products />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/product/single" element={<SingleProduct />}></Route>
           </Routes>
         </div>
       </React.Fragment>

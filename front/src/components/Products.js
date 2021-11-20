@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Products() {
 
@@ -31,7 +31,7 @@ function Products() {
                 <h5 className="card-title">{product.name}</h5>
               </div>
               <p className="card-text">{product.price}</p>
-              <a href="#" className="btn btn-primary">View Product</a>
+              <Link to="/product/single" className="nav-link btn btn-primary text-light" aria-current="page">View Product</Link>
             </div>
           </div>
         })}
