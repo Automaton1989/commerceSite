@@ -52,3 +52,11 @@ code {
   background-color: #cd7568;
   border-color: #cd7568;
 }
+.btn-color {
+  background-color: #FF9686;
+  border-color: #FF9686;
+}
+.btn-color:hover {
+  background-color: #cd7568;
+  border-color: #cd7568;
+}
