@@ -76,3 +76,11 @@ code {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: DarkSalmon;
+  color: white;
+  display: block;
+}

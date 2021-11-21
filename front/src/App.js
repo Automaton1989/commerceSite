@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, {useState} from "react";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import Products from "./components/Products";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import SingleProduct from "./components/SingleProduct";
+import Cart from "./components/Cart";
 
 /* 
 USE THIS FOR NAVIGATION BASICS 
@@ -22,6 +23,7 @@ EX:
 
   return <button onSubmit={handleSubmit}>...</button>
 */
+/*
 function GoHome() {
   let navigate = useNavigate();
   function handleLink() {
@@ -29,19 +31,23 @@ function GoHome() {
   }
   return <button onClick={handleLink}> Go Home </button>;
 }
+*/
 
 function App() {
+  const [user, setUser] = useState();
+
   return (
     <Router>
       <React.Fragment>
-        <Navbar />
+        <Navbar value={{user}}/>
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setUser={setUser}/>} />
             <Route path="/products" element={<Products />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/product/single" element={<SingleProduct />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
           </Routes>
         </div>
       </React.Fragment>

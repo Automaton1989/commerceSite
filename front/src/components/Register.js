@@ -122,10 +122,10 @@ function RegisterForm() {
       <div className="form-group">
         <div className="mb-3">{error}</div>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary btn-color btn-block">
         Submit
       </button>
-      <Link to="/login">Already have an account?</Link>
+      <Link to="/login" className = "link">Already have an account?</Link>
     </form>
   );
 }

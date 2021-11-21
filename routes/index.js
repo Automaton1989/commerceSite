@@ -20,10 +20,9 @@ router.get("/", function(req, res) {
 /* GET USER DATA */
 router.get("/user/data", async function(req, res) {
   try {
-    let email = "123@gmail.com"
-    const user = await myDB.getUser(email);
-    res.send({user: user});
-    console.log(user);
+    const username = req.session.username;
+    console.log("username in index: ", username);
+    res.send({username: username});
   } catch(e) {
     console.log("Error", e);
     res.status(400).send({ err: e });

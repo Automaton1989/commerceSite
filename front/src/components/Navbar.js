@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/pet-food.png";
 import "../stylesheets/navbar.css";
+//import {UserContext} from "./Authentication";
 
-function Navbar() {
+function Navbar({user}) {
+  console.log("user in navbar: ", user);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3">
       <div className="container-fluid">
@@ -45,6 +47,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
+          <span>{user}</span>
           <form className="d-flex">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           </form>
