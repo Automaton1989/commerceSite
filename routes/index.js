@@ -74,6 +74,20 @@ router.post("/register", async (req, res) => {
   }
 });
 
+/* SINGLE PRODUCT */
+router.get("/product/data/:id", async (req, res) => {
+  try{
+    const productId = req.params.id;
+    const myProduct = await myDB.getProduct(productId);
+    if(myProduct.msg === "success") {
+      res.send({data: myProduct.product});
+    }
+  } catch (e) {
+    res.status(400).send({err : e});
+  }
+  
+});
+
 
 module.exports = router;
 
@@ -89,14 +103,6 @@ router.get("/products", auth, async (req, res) => {
     console.log("Error", e);
     res.status(400).send( { err: e } );
   }
-});
-
-SINGLE PRODUCT
-router.get("/product/data/:id", async (req, res) => {
-  const productId = req.params.id;
-  req.session.productId = productId;
-  const product = await myDB.getProduct(productId);
-  res.redirect("/product")
 });
 
 GET SHOPPING CART

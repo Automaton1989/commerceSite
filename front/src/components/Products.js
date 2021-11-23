@@ -31,7 +31,7 @@ function Products() {
                 <h5 className="card-title">{product.name}</h5>
               </div>
               <p className="card-text">{product.price}</p>
-              <Link to="/product/single" className="nav-link btn btn-primary text-light" aria-current="page">View Product</Link>
+              <Link to = {`/product/${product._id}`} className="nav-link btn btn-primary text-light" aria-current="page">View Product</Link>
             </div>
           </div>
         })}

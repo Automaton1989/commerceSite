@@ -76,9 +76,23 @@ async function getProducts() {
   }
 }
 
+async function getProduct(id) {
+  await client.connect();
+  try {
+    const product = await products.findOne({"_id": new ObjectId(id)});
+    console.log("Product in my db: ", product);
+    return {product: product, msg: "success"};
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   getUser,
   userLogin,
   registerUser,
   getProducts,
+  getProduct,
 };

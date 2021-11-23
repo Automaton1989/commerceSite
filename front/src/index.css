@@ -89,3 +89,7 @@ footer {
   padding-right: 15px;
   color: #e0e0e0;
 }
+
+.product-img img{
+  width: 100%;
+}
