@@ -1,6 +1,5 @@
 import '../App.css';
 //import PropTypes from "prop-types";
-//import {useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function LoginForm({setUser}) {
@@ -25,6 +24,10 @@ function LoginForm({setUser}) {
 
     const rawData = await fetch("/api/login", options);
     if (rawData.status === 200) {
+      const fetchData = await fetch("/api/user/data");
+      const res = await fetchData.json();
+      console.log("user in login:", res.username);
+      setUser(res.username);
       navigate("/");
     } else if (rawData.status === 409) {
       const res = await rawData.json();
@@ -67,18 +70,7 @@ function LoginForm({setUser}) {
     <Link className = "link" to="/register">Don't have an account?</Link>
   </form>
 }
-/*
-function GetUser({setUser}) {
-  useEffect(()=> async() => {
-          const user = await fetch("/api/user/data");
-          const res = await user.json();
-          console.log("username in login:", res.username)
-          setUser(res.username);
-        }
-      );
-  return null;
-}
-*/
+
 function Login({setUser}) {
   return (
     <div className = "container-fluid">
@@ -86,7 +78,7 @@ function Login({setUser}) {
         <div className = "text-center col-12">
           <h1 className = "title">Login</h1>
           <div className = "col-md-4 offset-md-4">
-            < LoginForm />
+            < LoginForm setUser={setUser} />
           </div>
         </div>
       </div>

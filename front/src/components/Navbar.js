@@ -5,7 +5,6 @@ import "../stylesheets/navbar.css";
 //import {UserContext} from "./Authentication";
 
 function Navbar({user}) {
-  console.log("user in navbar: ", user);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3">
       <div className="container-fluid">
@@ -47,7 +46,7 @@ function Navbar({user}) {
               </Link>
             </li>
           </ul>
-          <span>{user}</span>
+          <span className="text-white">Hello, {user}</span>
           <form className="d-flex">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           </form>

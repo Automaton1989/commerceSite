@@ -84,3 +84,8 @@ footer {
   color: white;
   display: block;
 }
+
+.text-white {
+  padding-right: 15px;
+  color: #e0e0e0;
+}

@@ -34,12 +34,12 @@ function GoHome() {
 */
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState("");
 
   return (
     <Router>
       <React.Fragment>
-        <Navbar value={{user}}/>
+        <Navbar user={user}/>
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
