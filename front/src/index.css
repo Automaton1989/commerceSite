@@ -90,6 +90,11 @@ footer {
   color: #e0e0e0;
 }
 
+.search-products {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .product-img img{
   width: 100%;
 }

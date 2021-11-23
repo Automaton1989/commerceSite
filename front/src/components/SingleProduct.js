@@ -23,6 +23,7 @@ function SingleProduct(props) {
 		fetchData();
 	}, []);
 
+
 	return (
 		<div>
 			<h1 className="title">{product.name}</h1>

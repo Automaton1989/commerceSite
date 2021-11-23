@@ -31,9 +31,21 @@ router.get("/user/data", async function(req, res) {
 })
 
 router.get("/products", async function(req, res) {
+    try {
+    const products = await myDB.getProducts();
+    res.send({data: products});
+  } catch (e) {
+    console.log("Error", e);
+    res.status(400).send({err: e});
+  }
+});
+
+router.get("/products/:query", async function(req, res) {
+  console.log("IN INDEX.JS")
   try {
     const products = await myDB.getProducts();
     res.send({data: products});
+    console.log("RETURNING FROM DB")
   } catch (e) {
     console.log("Error", e);
     res.status(400).send({err: e});
