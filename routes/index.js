@@ -3,14 +3,6 @@ const router = express.Router();
 
 const myDB = require("../db/myDB.js");
 
-/* AUTH CONNECTION HERE */
-const auth = (req, res, next) => {
-  if(!req.session.email) {
-    return res.redirect("index.html")
-  }
-  next();
-}
-
 
 /* GET ROUTES */
 router.get("/", function(req, res) {
@@ -27,7 +19,22 @@ router.get("/user/data", async function(req, res) {
     console.log("Error", e);
     res.status(400).send({ err: e });
   }
-  
+})
+
+router.get("/user/data/info", async function(req, res) {
+  try {
+    let user = null;
+    if(req.session.username) {
+      console.log("USER FOUND");
+      user = await myDB.getUser(req.session.username);
+      console.log("USER DATA: ", user)
+      res.send({data : user});
+    } else {
+      res.send({data: null});
+    }
+  } catch(e) {
+      console.log("Error", e);
+  }
 })
 
 router.get("/products", async function(req, res) {
@@ -43,7 +50,8 @@ router.get("/products", async function(req, res) {
 router.get("/products/:query", async function(req, res) {
   console.log("IN INDEX.JS")
   try {
-    const products = await myDB.getProducts();
+    const newQuery = req.params.query;
+    const products = await myDB.getProductsQuery(newQuery);
     res.send({data: products});
     console.log("RETURNING FROM DB")
   } catch (e) {

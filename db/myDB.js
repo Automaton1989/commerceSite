@@ -12,11 +12,17 @@ const users = db.collection("users");
 const products = db.collection("products");
 //const carts = db.collection("carts");
 
-async function getUser(email) {
+async function getUser(username) {
   await client.connect();
-  const user = await users.find({email:email}).toArray();
-  return user;
-  client.close();
+  try {
+    console.log(username);
+    const user = await users.findOne({ userName : username });
+    return user;
+  } catch(e) {
+    console.log(e)
+  } finally {
+    client.close();
+  }
 }
 
 async function userLogin(email, pwd) {
@@ -76,6 +82,20 @@ async function getProducts() {
   }
 }
 
+async function getProductsQuery(query) {
+  await client.connect();
+  console.log("USING QUERY -> QUERY TO DB: ", query);
+  const res = await products.find({name: {$regex: query, $options: "$i"}}).toArray();
+  console.log(res);
+  try {
+    return res;
+  } catch(e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 async function getProduct(id) {
   await client.connect();
   try {
@@ -95,4 +115,5 @@ module.exports = {
   registerUser,
   getProducts,
   getProduct,
+  getProductsQuery,
 };

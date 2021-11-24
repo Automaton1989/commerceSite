@@ -8,12 +8,14 @@ function SingleProduct(props) {
 
 	console.log(id)
 	const [product, setState] = useState([]);
+	const [user, setUserState] = useState([]);
+
 	useEffect(() => {
 		const fetchData = async() => {
 			try {
 				const response = await fetch (`/api/product/data/${id}`);
 				const json = await response.json();
-				console.log(json);
+				console.log("PRODUCT: ", json);
 				setState(json.data)
 			} catch (e) {
 				console.log("Error", e);
@@ -22,6 +24,29 @@ function SingleProduct(props) {
 
 		fetchData();
 	}, []);
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			try {
+				const response  = await fetch("/api/user/data/info");
+				const json = await response.json();
+				if(json.data == null) {
+					console.log("USER WAS NULL");
+				} else {
+					console.log("USER: ", json.data);
+					setUserState(json.data);
+				}
+			} catch(e) {
+				console.log("Error", e);
+			}
+		};
+
+		fetchUserData();
+	}, []);
+
+	async function addToCart(event) {
+		event.preventDefault();
+	}
 
 
 	return (
@@ -34,7 +59,10 @@ function SingleProduct(props) {
 				<div className="col-6">
 					<h3>{product.price}</h3>
 					<p>Product Description?</p>
-					<button className="btn btn-primary btn-color">Add To Cart</button>
+					<form onSubmit = {addToCart}>
+						<input type = "hidden" name = "_id" value = {product._id} />
+						<button className="btn btn-primary btn-color">Add To Cart</button>
+					</form>
 				</div>
 			</div>
 		</div>

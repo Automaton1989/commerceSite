@@ -35,11 +35,13 @@ function Products() {
         console.log("UPDATING PRODUCTS");
         console.log("QUERY: ", {query});
         if(query === "") {
+          console.log("NO QUERY")
           const response = await fetch(`/api/products`);
           const json = await response.json();
           console.log(json);
           setState(json.data)
         } else {
+          console.log("QUERY FOUND!")
           const response = await fetch(`/api/products/${query}`);
           const json = await response.json();
           console.log(json);
