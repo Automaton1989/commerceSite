@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 
 /* 
 USE THIS FOR NAVIGATION BASICS 
@@ -39,7 +40,7 @@ function App() {
   return (
     <Router>
       <React.Fragment>
-        <Navbar user={user}/>
+        <Navbar user={user} setUser={setUser} />
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
@@ -49,6 +50,7 @@ function App() {
             <Route path="/product/:id" exact element={<SingleProduct />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
           </Routes>
+          <Footer />
         </div>
       </React.Fragment>
     </Router>

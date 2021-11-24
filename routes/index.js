@@ -52,6 +52,16 @@ router.get("/products/:query", async function(req, res) {
   }
 });
 
+router.get("/userLogout", async function(req, res) {
+  try {
+    req.session.destroy();
+    res.send({logout: "success"});
+  } catch (e) {
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+})
+
 /* POST ROUTES */
 router.post("/login", async (req, res) => {
   try {

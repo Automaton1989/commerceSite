@@ -1,10 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
 import "../stylesheets/navbar.css";
 //import {UserContext} from "./Authentication";
 
-function Navbar({user}) {
+function Navbar({user, setUser}) {
+  let navigate = useNavigate();
+
+  const handleLogout = async() => {
+    const resRaw = await fetch("api/userLogout");
+    const res = await resRaw.json();
+    if (res.logout === "success") {
+      setUser("");
+      navigate("/");
+    }
+  }
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3">
       <div className="container-fluid">
@@ -40,13 +51,21 @@ function Navbar({user}) {
                 All Products
               </Link>
             </li>
-            <li className="nav-item">
+            {!user && <li className="nav-item">
               <Link to="/login" className="nav-link">
                 Sign in
               </Link>
             </li>
+            }
           </ul>
-          <span className="text-white">Hello, {user}</span>
+          {user && (
+            <>
+              <span className="text-white">
+                Hello, <strong>{user}</strong>
+              </span>
+              <i className="fa fa-sign-out logout" aria-hidden="true" onClick={handleLogout}></i>
+            </>
+          )}
           <form className="d-flex">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           </form>

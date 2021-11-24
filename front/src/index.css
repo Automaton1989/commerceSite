@@ -80,14 +80,24 @@ code {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
-  color: white;
+  /*background-color: DarkSalmon;*/
+  color: Black;
   display: block;
 }
 
 .text-white {
+  padding-right: 10px;
+  color: #dddddd;
+  align-items: center;
+}
+
+.logout {
   padding-right: 15px;
-  color: #e0e0e0;
+  color: #dddddd;
+  align-items: center;
+}
+.logout:hover{
+  color: #cd7568;
 }
 
 .search-products {
