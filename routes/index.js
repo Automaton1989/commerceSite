@@ -133,6 +133,17 @@ router.get("/product/data/:id", async (req, res) => {
   
 });
 
+/* ADD TO CART GOES HERE
+
+LOGIC -> 
+1. Grab user session information, data from req.body (product._id)
+2. Go to DB, check if a cart exists based on req.session.username ->
+   If return value of find is null, create new cart in db, with user -> userName, products: []
+   else if there is a cart -> cart.products.push new product
+3. return success if it worked
+4, render message to frontend 
+
+*/
 
 module.exports = router;
 

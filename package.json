@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./node_modules/nodemon/bin/nodemon.js ./bin/www"
+    "start": "node ./bin/www",
+    "install": "cd front && yarn",
+    "build": "cd front && yarn build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
