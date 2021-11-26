@@ -21,6 +21,7 @@ router.get("/user/data", async function(req, res) {
   }
 })
 
+
 router.get("/user/data/info", async function(req, res) {
   try {
     let user = null;
@@ -60,10 +61,24 @@ router.get("/products/:query", async function(req, res) {
   }
 });
 
+/*
+Logout function.  Kills session.
+*/
 router.get("/userLogout", async function(req, res) {
   try {
     req.session.destroy();
     res.send({logout: "success"});
+  } catch (e) {
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+})
+
+router.get("/user/cart", async function(req, res) {
+  try {
+    const userCart = await myDB.userCart(req.session.username);
+    console.log("userCart in index:", userCart);
+    res.send({userCart: userCart});
   } catch (e) {
     console.error("Error", e);
     res.status(400).send({ err: e });

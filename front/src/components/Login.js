@@ -15,14 +15,14 @@ function LoginForm({setUser}) {
       pwd: pwd.value,
     };
 
-    const options = {
+    const getInputUser = {
       method: "post",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     }
 
-    const rawData = await fetch("/api/login", options);
+    const rawData = await fetch("/api/login", getInputUser);
     if (rawData.status === 200) {
       const fetchData = await fetch("/api/user/data");
       const res = await fetchData.json();

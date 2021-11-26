@@ -10,7 +10,7 @@ const db = client.db("commercialSite");
 /* If you want to test from our user collecion, change above to "calendar" db */
 const users = db.collection("users");
 const products = db.collection("products");
-//const carts = db.collection("carts");
+const carts = db.collection("carts");
 
 async function getUser(username) {
   await client.connect();
@@ -109,6 +109,20 @@ async function getProduct(id) {
   }
 }
 
+async function userCart(username) {
+  if (!username) {return [];}
+  await client.connect();
+  try {
+    const userCart = await carts.find({"userName": username}).toArray();
+    console.log("cart in db:", userCart);
+    return userCart;
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   getUser,
   userLogin,
@@ -116,4 +130,5 @@ module.exports = {
   getProducts,
   getProduct,
   getProductsQuery,
+  userCart,
 };
