@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Carts() {
   const [carts, setCarts] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [sum, setSum] = useState({subtotal:0, tax:0, total:0});
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -16,10 +16,18 @@ export default function Carts() {
     fetchCartData();
   }, []);
 
+  useEffect(() => {
+    let subtotal = 0;
+    carts.map(item => (subtotal += item.number*item.price));
+    const tax = parseFloat((subtotal * 0.09).toFixed(2));
+    const total = tax + subtotal;
+    setSum({...sum, subtotal: subtotal, tax:tax, total: total.toFixed(2)});
+  }, []);
+
   return (
     <div>
       {carts.length === 0 && <EmptyCart />}
-      {carts.length !== 0 && <CartContents carts={carts} total={total} />}
+      {carts.length !== 0 && <CartContents carts={carts} sum={sum} />}
     </div>
   );
 }
@@ -41,7 +49,7 @@ function EmptyCart() {
   );
 }
 
-function CartContents({ carts, total }) {
+function CartContents({ carts, sum }) {
   return (
     <>
       <div className="container">
@@ -94,7 +102,12 @@ function CartContents({ carts, total }) {
         }
         )}
         <div className="col-10 mx-auto col-lg-2">
-          <strong>Total Price: {total}</strong>
+          <strong>Subtotal: {sum.subtotal}</strong>
+        </div><div className="col-10 mx-auto col-lg-2">
+          <strong>Tax: {sum.tax}</strong>
+        </div>
+        <div className="col-10 mx-auto col-lg-2">
+          <strong>Total Price: {sum.total}</strong>
         </div>
       </div>
     </>

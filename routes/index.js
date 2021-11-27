@@ -77,7 +77,7 @@ router.get("/userLogout", async function(req, res) {
 router.get("/user/cart", async function(req, res) {
   try {
     const userCart = await myDB.userCart(req.session.username);
-    console.log("userCart in index:", userCart);
+    console.log("username in index:", req.session.username);
     res.send({userCart: userCart});
   } catch (e) {
     console.error("Error", e);
