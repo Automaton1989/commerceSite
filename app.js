@@ -16,15 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-if(process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "front", "build")));
-
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
-	})
-}
-app.use(express.static(path.join(__dirname, "front/build")));
-
 app.use(
 	session({
 		secret: "info for commerceSite project",
@@ -33,6 +24,12 @@ app.use(
 	})
 );
 
+app.use(express.static(path.join(__dirname, "front/build")));
+
 app.use("/api", indexRouter);
+
+app.get("/*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
+})
 
 module.exports = app;

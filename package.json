@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "install": "cd front && yarn",
-    "build": "cd front && yarn build",
+    "build": "cd front && yarn install && yarn run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

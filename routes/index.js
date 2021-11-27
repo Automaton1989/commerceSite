@@ -3,6 +3,13 @@ const router = express.Router();
 
 const myDB = require("../db/myDB.js");
 
+const auth = (req, res, next) => {
+  if (!req.session.username) {
+    return res.redirect("/");
+  }
+  next();
+};
+
 
 /* GET ROUTES */
 router.get("/", function(req, res) {
@@ -93,7 +100,6 @@ router.post("/login", async (req, res) => {
 
     const msg = await myDB.userLogin(email, pwd);
     if( msg[0] === "success" ) {
-      req.session.email = email;
       req.session.username = msg[1];
       res.sendStatus(200);
     } else {
