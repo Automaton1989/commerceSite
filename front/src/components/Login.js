@@ -1,5 +1,4 @@
 import '../App.css';
-//import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
 
 function LoginForm({setUser}) {

@@ -12,6 +12,12 @@ Authors: Shujun Xiao (Jennifer) and Matthew Vargas
 The objective of this project was to integrate React in addition to using Node.js, Express.js, and MongoDB, creating a complete, full stack, application.  
 We decided to build a commerce website, where users can find products to purchase, add them to their cart, and checkout.
 
+## Project Work Distribution:
+
+Matthew: Setup the project. Login, all product, and product detail page and their related logic. Deploy the website to the heroku.
+
+Jennifer: Setup the database. Home page, registration page and the cart page implementation and their related logic.
+
 ## Project Slides:
 
 https://docs.google.com/presentation/d/1laU7D9sQL5PTo2f-28m8OLZW-JyDFms_SpUIWAIev78/edit?usp=sharing
