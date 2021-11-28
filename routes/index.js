@@ -157,7 +157,6 @@ router.post("/product/cart", async(req, res) => {
       res.send({msg: "THERE IS NO SESSION"});
     }
     else {
-      console.log(req.session.username);
       const res = await myDB.addProductToCart(req.body, req.session.username);
       if(res.msg === "success") {
         res.send({msg: "ADDED OR UPDATED ITEM TO CART"});
