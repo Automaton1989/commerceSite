@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {
-  useParams
+  useParams, useNavigate
 } from "react-router-dom";
 
-function SingleProduct(props) {
+function SingleProduct() {
 	const {id} = useParams();
+
+	const navigate = useNavigate();
+
+	const goBack = () => {
+		navigate("/products")
+	}
 
 	console.log(id)
 	const [product, setState] = useState([]);
@@ -63,6 +69,7 @@ function SingleProduct(props) {
 					<form onSubmit = {addToCart}>
 						<button className="btn btn-primary btn-color">Add To Cart</button>
 					</form>
+					<button type = "button" className = "btn btn-primary btn-color go-back" onClick={goBack}>Go Back</button>
 				</div>
 			</div>
 		</div>

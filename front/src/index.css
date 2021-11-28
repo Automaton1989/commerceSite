@@ -156,6 +156,10 @@ code {
   padding-bottom: 80px;
 }
 
+.go-back {
+  margin: 1rem;
+}
+
 /* footer setting  */
 footer {
   text-align: center;
