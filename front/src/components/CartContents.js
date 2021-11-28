@@ -7,13 +7,13 @@ export default function CartContents({ carts, setCarts }) {
   useEffect(() => {
     const calculatePrice = () => {
     let subtotal = 0;
-    console.log("carts,", carts);
     carts.map(item => (subtotal += item.number*item.price));
     const tax = parseFloat((subtotal * 0.09).toFixed(2));
     const total = tax + subtotal;
     setSum({...sum, subtotal: subtotal.toFixed(2), tax:tax, total: total.toFixed(2)});
     }
     calculatePrice()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function deleteProduct({item}) {

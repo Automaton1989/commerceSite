@@ -10,13 +10,13 @@ function Home() {
     <div>
       <Carousel>
         <Carousel.Item>
-          <img src={petStuff2} alt="" className="d-block w-100" />
+          <img src={petStuff2} alt="Two dogs with their foods" className="d-block w-100" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={petStuff3} alt="" className="d-block w-100" />
+          <img src={petStuff3} alt="Aninals with their foods" className="d-block w-100" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={petStuff1} alt="" className="d-block w-100" />
+          <img src={petStuff1} alt="A lot of pets' toys" className="d-block w-100" />
         </Carousel.Item>
       </Carousel>
       <div className="col align-self-center carts">
