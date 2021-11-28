@@ -42,7 +42,7 @@ function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleRegister}>
+    <form onSubmit={handleRegister} className="font-setting">
       <div className="form-group">
         <div className="mb-3">
           <label htmlFor="Input-FirstName"> First Name </label>
@@ -119,10 +119,10 @@ function RegisterForm() {
           />
         </div>
       </div>
-      <div className="form-group">
+      <div className="form-group register-margin headup">
         <div className="mb-3">{error}</div>
       </div>
-      <button type="submit" className="btn btn-primary btn-color btn-block">
+      <button type="submit" className="btn btn-color btn-block">
         Submit
       </button>
       <Link to="/login" className = "link">Already have an account?</Link>
@@ -134,7 +134,7 @@ function Register() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="text-center col-12">
+        <div className="text-center col-12 carts">
           <h1>Register</h1>
           <div className="col-md-4 offset-md-4">
             <RegisterForm />

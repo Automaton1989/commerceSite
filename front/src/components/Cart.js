@@ -27,10 +27,10 @@ function EmptyCart() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-10 mx-auto text-center">
+        <div className="col-10 mx-auto text-center carts">
           <h1>Your cart is currently empty</h1>
           <Link to="/products">
-            <button type="button" className="btn btn-primary btn-color btn-lg">
+            <button type="button" className="btn btn-color btn-lg">
               Explore Products
             </button>
           </Link>

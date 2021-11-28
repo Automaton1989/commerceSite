@@ -46,19 +46,23 @@ code {
   background-color: #FF9686;
   border-color: #FF9686;
   border-radius: 0px;
+  color: #fcf0e5;
 }
 
 .card .btn:hover {
   background-color: #cd7568;
   border-color: #cd7568;
+  color: #fcf0e5;
 }
 .btn-color {
   background-color: #FF9686;
   border-color: #FF9686;
+  color: #fcf0e5;
 }
 .btn-color:hover {
   background-color: #cd7568;
   border-color: #cd7568;
+  color: #fcf0e5;
 }
 .btn-block {
   width: 100%;
@@ -75,14 +79,6 @@ code {
 .title {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-footer {
-  text-align: center;
-  padding: 3px;
-  /*background-color: DarkSalmon;*/
-  color: Black;
-  display: block;
 }
 
 .text-white {
@@ -107,4 +103,65 @@ footer {
 
 .product-img img{
   width: 100%;
+}
+
+/* Register page  */
+.register-margin {
+  padding-bottom: 10px;
+}
+
+.font-setting {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.headup {
+  color: #879ba3;
+  font-style: italic;
+}
+
+/* Carts page */
+.carts h1 {
+  font-family: 'Ubuntu', sans-serif;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-style: italic;
+}
+
+.carts p {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 25px;
+  color: #FF9686;
+}
+
+.cart-item {
+  font-family: 'Ubuntu', sans-serif;
+  padding: 10px 0px;
+}
+
+.remove {
+  color: #ffa62b;
+}
+
+.remove:hover {
+  color: #e59368;
+}
+
+.total {
+  font-family: 'Ubuntu', sans-serif;
+  text-align: right;
+  font-size: 20px;
+  color: #0089bb;
+}
+.carts-bottom {
+  padding-bottom: 80px;
+}
+
+/* footer setting  */
+footer {
+  text-align: center;
+  padding: 3px;
+  color: #474c55;
+  display: block;
+  font-family: 'Ubuntu', sans-serif;
+  padding-top: 20px;
 }

@@ -11,7 +11,7 @@ export default function CartContents({ carts, setCarts }) {
     carts.map(item => (subtotal += item.number*item.price));
     const tax = parseFloat((subtotal * 0.09).toFixed(2));
     const total = tax + subtotal;
-    setSum({...sum, subtotal: subtotal, tax:tax, total: total.toFixed(2)});
+    setSum({...sum, subtotal: subtotal.toFixed(2), tax:tax, total: total.toFixed(2)});
     }
     calculatePrice()
   }, []);
@@ -31,13 +31,13 @@ export default function CartContents({ carts, setCarts }) {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-10 mx-auto text-center">
+          <div className="col-10 mx-auto text-center carts">
             <h1>Your Cart</h1>
           </div>
         </div>
       </div>
-      <div className="container-fluid">
-        <div className="text-center d-none d-lg-block">
+      <div className="container-fluid carts-bottom">
+        <div className="text-center d-none d-lg-block carts">
           <div className="row">
             <div className="col-10 mx-auto col-lg-2">
               <p>Product Name</p>
@@ -58,32 +58,32 @@ export default function CartContents({ carts, setCarts }) {
         </div>
         {carts.map(function (item) {
           return (
-            <div key={item._id} className="row text-center">
-              <div className="col-10 mx-auto col-lg-2">
+            <div key={item._id} className="row text-center cart-item">
+              <div className="col-10 mx-auto col-lg-2 cart-item">
                 {item.name}
               </div>
-              <div className="col-10 mx-auto col-lg-2">
+              <div className="col-10 mx-auto col-lg-2 cart-item">
                 {item.price}
               </div>
-              <div className="col-10 mx-auto col-lg-2">
+              <div className="col-10 mx-auto col-lg-2 cart-item">
                 {item.number}
               </div>
-              <div className="col-10 mx-auto col-lg-2">
-                <i className="fas fa-trash" onClick={()=>deleteProduct({item})}></i>
+              <div className="col-10 mx-auto col-lg-2 cart-item">
+                <i className="fas fa-trash remove" onClick={()=>deleteProduct({item})}></i>
               </div>
-              <div className="col-10 mx-auto col-lg-2">
+              <div className="col-10 mx-auto col-lg-2 cart-item">
                 {(item.price * item.number).toFixed(2)}
               </div>
             </div>
           )
         }
         )}
-        <div className="col-10 mx-auto col-lg-2">
+        <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Subtotal: {sum.subtotal}</strong>
-        </div><div className="col-10 mx-auto col-lg-2">
+        </div><div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Tax: {sum.tax}</strong>
         </div>
-        <div className="col-10 mx-auto col-lg-2">
+        <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Total: {sum.total}</strong>
         </div>
       </div>

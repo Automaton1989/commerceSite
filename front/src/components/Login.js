@@ -64,7 +64,7 @@ function LoginForm({setUser}) {
         />
       </div>
     </div>
-    <button type = "submit" className = "btn btn-color btn-primary btn-block">
+    <button type = "submit" className = "btn btn-color btn-block">
       Submit
     </button>
     <Link className = "link" to="/register">Don't have an account?</Link>
