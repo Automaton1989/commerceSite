@@ -28,7 +28,7 @@ function LoginForm({setUser}) {
       const res = await fetchData.json();
       console.log("user in login:", res.username);
       setUser(res.username);
-      navigate("/");
+      navigate("/products");
     } else if (rawData.status === 409) {
       const res = await rawData.json();
       alert(res.login);

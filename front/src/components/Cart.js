@@ -4,7 +4,8 @@ import CartContents from "./CartContents";
 
 export default function Carts() {
   const [carts, setCarts] = useState([]);
-
+  
+  /* GET THIS USER'S CART INFO */
   useEffect(() => {
     const fetchCartData = async () => {
       const rawData = await fetch("/api/user/cart");

@@ -146,6 +146,7 @@ async function addProductToCart(productInfo, user) {
   }
 }
 
+/* GET USER CART INFO */
 async function userCart(username) {
   if (!username) {return [];}
   await client.connect();
@@ -160,6 +161,7 @@ async function userCart(username) {
   }
 }
 
+/* DELETE PRODUCT FROM THE CART */
 async function deleteProduct(id) {
   await client.connect();
   try {

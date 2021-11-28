@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
   res.status(200).json();
 })
 
-/* GET USER DATA */
+/* PASS USERNAME TO FRONTEND */
 router.get("/user/data", async function(req, res) {
   try {
     const username = req.session.username;
@@ -81,6 +81,7 @@ router.get("/userLogout", async function(req, res) {
   }
 })
 
+/* GET THIS USER'S SHOPPING CART INFO */
 router.get("/user/cart", async function(req, res) {
   try {
     const userCart = await myDB.userCart(req.session.username);
@@ -92,6 +93,7 @@ router.get("/user/cart", async function(req, res) {
   }
 })
 
+/* DELETE PRODUCT FROM THE CART */
 router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   const id = req.params.id;
   console.log("id in index:", id);
