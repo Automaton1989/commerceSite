@@ -109,6 +109,43 @@ async function getProduct(id) {
   }
 }
 
+async function addProductToCart(productInfo, user) {
+  await client.connect();
+  try {
+    console.log(productInfo);
+    const product = await products.findOne({"_id": new ObjectId(productInfo.id)});
+    if(product == null) {
+      console.log("PROBLEM")
+      return {msg: "Fail"};
+    }
+    else {
+      console.log("CHECKING CART")
+      let checkCart = await carts.findOne({"product": product._id});
+      if(checkCart == null) {
+        console.log("NO CART")
+        const newUser = await users.findOne({"userName": user});
+        const newData = {
+          product: product._id,
+          userName: newUser.userName,
+          price: product.price,
+          name: product.name,
+          number: 1
+        }
+        await carts.insertOne(newData);
+      } else {
+        console.log("CART FOUND")
+        newVal = checkCart.number + 1;
+        await carts.updateOne({"_id": checkCart._id}, {$set: {"number": newVal}});
+      }
+      return {msg : "success"}
+    }
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 async function userCart(username) {
   if (!username) {return [];}
   await client.connect();
@@ -143,4 +180,5 @@ module.exports = {
   getProductsQuery,
   userCart,
   deleteProduct,
+  addProductToCart,
 };

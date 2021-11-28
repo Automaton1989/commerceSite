@@ -8,7 +8,6 @@ function SingleProduct(props) {
 
 	console.log(id)
 	const [product, setState] = useState([]);
-	const [user, setUserState] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async() => {
@@ -25,42 +24,26 @@ function SingleProduct(props) {
 		fetchData();
 	}, []);
 
-	useEffect(() => {
-		const fetchUserData = async () => {
-			try {
-				const response  = await fetch("/api/user/data/info");
-				const json = await response.json();
-				if(json.data == null) {
-					console.log("USER WAS NULL");
-				} else {
-					console.log("USER: ", json.data);
-					setUserState(json.data);
-				}
-			} catch(e) {
-				console.log("Error", e);
-			}
-		};
-
-		fetchUserData();
-	}, []);
-
 	async function addToCart(event) {
 		event.preventDefault();
-		const id = document.getElementById("productId");
+
 		const data = {
-			id : id.value
+			id : product._id,
 		};
 
 		const options = {
-			method: "post",
-			credentials: "include",
-			headers: {"Content-Type": "application.json"},
-			body: JSON.stringify(data),
-		}
-
+      method: "post",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }
+    
 		console.log("POSTING DATA: ", options);
 		console.log("DATA POSING: ", data);
-		document.getElementById("result").innerHTML = "SUCCESS";
+
+		const cartData = await fetch("/api/product/cart", options);
+		const cartJson = await cartData.json()
+		document.getElementById("result").innerHTML = cartJson.msg;
 	}
 
 
@@ -78,7 +61,6 @@ function SingleProduct(props) {
 					<h3>{product.price}</h3>
 					<p>Product Description?</p>
 					<form onSubmit = {addToCart}>
-						<input type = "hidden" name = "_id" value = {product._id} id = "productId" />
 						<button className="btn btn-primary btn-color">Add To Cart</button>
 					</form>
 				</div>

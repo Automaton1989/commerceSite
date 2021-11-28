@@ -151,6 +151,25 @@ router.get("/product/data/:id", async (req, res) => {
   
 });
 
+router.post("/product/cart", async(req, res) => {
+  try {
+    if(!req.session.username) {
+      res.send({msg: "THERE IS NO SESSION"});
+    }
+    else {
+      console.log(req.session.username);
+      const res = await myDB.addProductToCart(req.body, req.session.username);
+      if(res.msg === "success") {
+        res.send({msg: "ADDED OR UPDATED ITEM TO CART"});
+      } else {
+        res.send({msg: "THERE WAS A PROBLEM WITH FINDING THE PRODUCT"})
+      }
+    }
+  } catch(e) {
+    res.send({msg: e});
+  }
+})
+
 /* ADD TO CART GOES HERE
 
 LOGIC -> 
