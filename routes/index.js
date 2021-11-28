@@ -92,6 +92,18 @@ router.get("/user/cart", async function(req, res) {
   }
 })
 
+router.get("/user/cart/deleteProduct/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log("id in index:", id);
+  try {
+    const deleteProduct = await myDB.deleteProduct(id);
+    res.send({delete: "success"});
+  } catch (e){
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+})
+
 /* POST ROUTES */
 router.post("/login", async (req, res) => {
   try {

@@ -123,6 +123,17 @@ async function userCart(username) {
   }
 }
 
+async function deleteProduct(id) {
+  await client.connect();
+  try {
+    const product = await carts.remove({_id: ObjectId(id)}, true); //set the justOne parameter to true
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   getUser,
   userLogin,
@@ -131,4 +142,5 @@ module.exports = {
   getProduct,
   getProductsQuery,
   userCart,
+  deleteProduct,
 };
