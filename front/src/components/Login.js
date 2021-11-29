@@ -3,6 +3,7 @@ import '../App.css';
 import { useNavigate, Link } from "react-router-dom";
 
 function LoginForm({setUser}) {
+
   let navigate = useNavigate();
 
   async function handleLogin(event) {
@@ -48,6 +49,7 @@ function LoginForm({setUser}) {
           id = "Input-Email-Login"
           aria-describedby = "emailHelp"
           name = "email"
+          required
         />
       </div>
     </div>
@@ -61,6 +63,9 @@ function LoginForm({setUser}) {
           className = "form-control"
           id = "Input-Password-Login"
           name = "pwd"
+          minlength = "5"
+          maxlength = "25"
+          required
         />
       </div>
     </div>

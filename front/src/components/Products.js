@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { Link } from "react-router-dom";
 
 function Products() {
 
   const [query, setQuery] = useState("");
   const [products, setState] = useState([]);
+  const inputRef = useRef();
+
+  const throttling = useRef(false);
 
   const onChangeQuery = (evt) => {
     console.log("query: ", evt.target.value);
-    
     setQuery(evt.target.value);
   }
 /*
@@ -31,29 +33,34 @@ function Products() {
 
   useEffect(() => {
     const fetchData = async() => {
+      if(throttling.current) {
+        return
+      }
+      throttling.current = true;
       try {
-        console.log("UPDATING PRODUCTS");
-        console.log("QUERY: ", {query});
         if(query === "") {
-          console.log("NO QUERY")
-          const response = await fetch(`/api/products`);
-          const json = await response.json();
-          console.log(json);
-          setState(json.data)
+          setTimeout( async() => {
+            throttling.current = false;
+            const response = await fetch(`/api/products`);
+            const json = await response.json();
+            setState(json.data)
+          }, 300)
         } else {
-          console.log("QUERY FOUND!")
-          const response = await fetch(`/api/products/${query}`);
-          const json = await response.json();
-          console.log(json);
-          setState(json.data)
+          setTimeout( async() => {
+            throttling.current = false;
+            const response = await fetch(`/api/products/${query}`);
+            const json = await response.json();
+            setState(json.data)
+          }, 300)
         }
       } catch(e) {
         console.log("Error: ", e);
       }
     };
-
     fetchData();
+
   }, [query])
+
 
   return (
     <div>
@@ -66,7 +73,9 @@ function Products() {
             className = "form-control" 
             id = "search" 
             placeholder = "search..." 
-            onChange={onChangeQuery} value = {query}
+            ref={inputRef}
+            onChange={onChangeQuery} 
+            value = {query}
           />
         </div>
       </div>

@@ -120,7 +120,7 @@ async function addProductToCart(productInfo, user) {
     }
     else {
       console.log("CHECKING CART")
-      let checkCart = await carts.findOne({"product": product._id});
+      let checkCart = await carts.findOne({"product": product._id, "userName": user});
       if(checkCart == null) {
         console.log("NO CART")
         const newUser = await users.findOne({"userName": user});
@@ -133,7 +133,7 @@ async function addProductToCart(productInfo, user) {
         }
         await carts.insertOne(newData);
       } else {
-        console.log("CART FOUND")
+        console.log("CART FOUND", checkCart);
         newVal = checkCart.number + 1;
         await carts.updateOne({"_id": checkCart._id}, {$set: {"number": newVal}});
       }
