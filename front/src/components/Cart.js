@@ -10,7 +10,7 @@ import CartContents from "./CartContents";
 
 export default function Carts() {
   const [carts, setCarts] = useState([]);
-  
+
   /* GET THIS USER'S CART INFO */
   useEffect(() => {
     const fetchCartData = async () => {
@@ -20,7 +20,6 @@ export default function Carts() {
     };
     fetchCartData();
   }, []);
-  
 
   return (
     <div>
@@ -46,4 +45,3 @@ function EmptyCart() {
     </div>
   );
 }
-

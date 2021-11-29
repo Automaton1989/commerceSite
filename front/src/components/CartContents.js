@@ -4,25 +4,32 @@ PAGE BUILT BY: JENNIFER
 
 */
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CartContents({ carts, setCarts }) {
-  const [sum, setSum] = useState({subtotal:0, tax:0, total:0});
+  const [sum, setSum] = useState({ subtotal: 0, tax: 0, total: 0 });
 
   useEffect(() => {
     const calculatePrice = () => {
-    let subtotal = 0;
-    carts.map(item => (subtotal += item.number*item.price));
-    const tax = parseFloat((subtotal * 0.09).toFixed(2));
-    const total = tax + subtotal;
-    setSum({...sum, subtotal: subtotal.toFixed(2), tax:tax, total: total.toFixed(2)});
-    }
-    calculatePrice()
+      let subtotal = 0;
+      carts.map((item) => (subtotal += item.number * item.price));
+      const tax = parseFloat((subtotal * 0.09).toFixed(2));
+      const total = tax + subtotal;
+      setSum({
+        ...sum,
+        subtotal: subtotal.toFixed(2),
+        tax: tax,
+        total: total.toFixed(2),
+      });
+    };
+    calculatePrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carts]);
 
-  async function deleteProduct({item}) {
-    const rawData = await (await fetch(`/api/user/cart/deleteProduct/${item._id}`)).json();
+  async function deleteProduct({ item }) {
+    const rawData = await (
+      await fetch(`/api/user/cart/deleteProduct/${item._id}`)
+    ).json();
     if (rawData.delete === "success") {
       const fetchUserData = await fetch("/api/user/cart");
       const userData = await fetchUserData.json();
@@ -74,18 +81,21 @@ export default function CartContents({ carts, setCarts }) {
                 {item.number}
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
-                <i className="fas fa-trash remove" onClick={()=>deleteProduct({item})}></i>
+                <i
+                  className="fas fa-trash remove"
+                  onClick={() => deleteProduct({ item })}
+                ></i>
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
                 {(item.price * item.number).toFixed(2)}
               </div>
             </div>
-          )
-        }
-        )}
+          );
+        })}
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Subtotal: {sum.subtotal}</strong>
-        </div><div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
+        </div>
+        <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Tax: {sum.tax}</strong>
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">

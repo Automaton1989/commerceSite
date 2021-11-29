@@ -6,7 +6,7 @@ PAGE BUILT BY: JENNIFER
 
 import React from "react";
 import { Link } from "react-router-dom";
-import {Carousel} from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import petStuff1 from "../images/pet-stuff.jpg";
 import petStuff2 from "../images/pet-stuff2.jpg";
 import petStuff3 from "../images/pet-stuff3.jpg";
@@ -16,19 +16,35 @@ function Home() {
     <div>
       <Carousel>
         <Carousel.Item>
-          <img src={petStuff2} alt="Two dogs with their foods" className="d-block w-100" />
+          <img
+            src={petStuff2}
+            alt="Two dogs with their foods"
+            className="d-block w-100"
+          />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={petStuff3} alt="Aninals with their foods" className="d-block w-100" />
+          <img
+            src={petStuff3}
+            alt="Aninals with their foods"
+            className="d-block w-100"
+          />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={petStuff1} alt="A lot of pets' toys" className="d-block w-100" />
+          <img
+            src={petStuff1}
+            alt="A lot of pets' toys"
+            className="d-block w-100"
+          />
         </Carousel.Item>
       </Carousel>
       <div className="col align-self-center carts">
-        <h1 className = "title">Welcome to the Store!</h1>
+        <h1 className="title">Welcome to the Store!</h1>
         <p>You can find everything you need here for your pets!</p>
-        <Link to="/login"><button type="button" className="btn btn-color btn-primary btn-lg">Start Shooping</button></Link>
+        <Link to="/login">
+          <button type="button" className="btn btn-color btn-primary btn-lg">
+            Start Shooping
+          </button>
+        </Link>
       </div>
     </div>
   );

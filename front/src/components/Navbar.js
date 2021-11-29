@@ -7,13 +7,11 @@ PAGE BUILT BY: JENNIFER
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
-//import "../stylesheets/navbar.css";
-//import {UserContext} from "./Authentication";
 
-function Navbar({user, setUser}) {
+function Navbar({ user, setUser }) {
   let navigate = useNavigate();
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     const resRaw = await fetch("api/userLogout");
     const res = await resRaw.json();
     if (res.logout === "success") {
@@ -21,7 +19,7 @@ function Navbar({user, setUser}) {
       alert("You've successfully logged out");
       navigate("/");
     }
-  }
+  };
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
@@ -58,23 +56,33 @@ function Navbar({user, setUser}) {
                 All Products
               </Link>
             </li>
-            {!user && <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Sign in
-              </Link>
-            </li>
-            }
+            {!user && (
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Sign in
+                </Link>
+              </li>
+            )}
           </ul>
           {user && (
             <>
               <span className="text-white">
                 Hello, <strong>{user}</strong>
               </span>
-              <i className="fa fa-sign-out logout" aria-hidden="true" onClick={handleLogout}></i>
+              <i
+                className="fa fa-sign-out logout"
+                aria-hidden="true"
+                onClick={handleLogout}
+              ></i>
             </>
           )}
           <form className="d-flex">
-          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
           </form>
           <Link to="/cart" className="ml-auto">
             <button type="button" className="btn btn-light">

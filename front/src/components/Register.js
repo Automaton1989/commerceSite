@@ -42,7 +42,7 @@ function RegisterForm() {
       navigate("/login");
     } else {
       const res = await rawData.json();
-      console.log("rawdata msg:", res.msg)
+      console.log("rawdata msg:", res.msg);
       setError(res.msg || "Something's went wrong, please try again");
     }
   }
@@ -131,7 +131,9 @@ function RegisterForm() {
       <button type="submit" className="btn btn-color btn-block">
         Submit
       </button>
-      <Link to="/login" className = "link">Already have an account?</Link>
+      <Link to="/login" className="link">
+        Already have an account?
+      </Link>
     </form>
   );
 }

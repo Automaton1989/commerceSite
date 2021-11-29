@@ -1,5 +1,5 @@
 import "./App.css";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -43,10 +43,14 @@ function App() {
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
-            <Route path="/login" element={<Login setUser={setUser}/>} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/products" element={<Products />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/product/:id" exact element={<SingleProduct />}></Route>
+            <Route
+              path="/product/:id"
+              exact
+              element={<SingleProduct />}
+            ></Route>
             <Route path="/cart" element={<Cart />}></Route>
           </Routes>
           <Footer />
