@@ -151,7 +151,6 @@ FUNCTION BUILT BY: MATTHEW
 async function addProductToCart(productInfo, user) {
   await client.connect();
   try {
-    console.log(productInfo);
     const product = await products.findOne({"_id": new ObjectId(productInfo.id)});
     if(product === null) {
       return {msg: "Fail"};
