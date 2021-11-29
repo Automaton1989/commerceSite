@@ -26,6 +26,8 @@ https://docs.google.com/presentation/d/1laU7D9sQL5PTo2f-28m8OLZW-JyDFms_SpUIWAIe
 
 ## Project Images:
 
+[Google Drive to Screenshots](https://drive.google.com/drive/folders/1UIXPuGQu_cVtf6Wzg47tmHkTapqhFsZL?usp=sharing)
+
 ## Build Dependencies and Instructions
 
 * Yarn -> project build with [Express generator](https://expressjs.com/en/starter/generator.html) as well as using the [React build app](https://reactjs.org/docs/create-a-new-react-app.html) instructions
