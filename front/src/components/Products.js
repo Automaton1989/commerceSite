@@ -89,9 +89,9 @@ function Products() {
         {products.map(function(product, index) {
           return <div key = {index} className = "products col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
             <div className="card">
-              <img className="card-img-top" src={product.src} alt="Card image cap" />
+              <img className="card-img-top" src={product.src} alt={`${product.name}`} />
               <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
+                <h2 className="card-title">{product.name}</h2>
               </div>
               <p className="card-text">{product.price}</p>
               <Link to = {`/product/${product._id}`} className="nav-link btn text-light" aria-current="page">View Product</Link>

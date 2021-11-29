@@ -6,7 +6,6 @@ PAGE BUILT BY: JENNIFER
 
 import React, {useEffect, useState} from "react";
 
-
 export default function CartContents({ carts, setCarts }) {
   const [sum, setSum] = useState({subtotal:0, tax:0, total:0});
 
@@ -20,7 +19,7 @@ export default function CartContents({ carts, setCarts }) {
     }
     calculatePrice()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [carts]);
 
   async function deleteProduct({item}) {
     const rawData = await (await fetch(`/api/user/cart/deleteProduct/${item._id}`)).json();

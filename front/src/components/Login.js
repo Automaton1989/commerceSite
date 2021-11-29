@@ -76,6 +76,9 @@ function LoginForm({setUser}) {
           onChange={(e) => {
             setUserInfo({ ...userInfo, pwd: e.target.value });
           }}
+          minLength = "5"
+          maxLength = "25"
+          required
         />
       </div>
     </div>

@@ -31,6 +31,10 @@ code {
   height: 350px;
 }
 
+.card h2 {
+  font-size: 18px;
+}
+
 .card .card-body {
   height: 80px;
   text-align: left;
