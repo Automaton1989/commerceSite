@@ -15,7 +15,6 @@ function SingleProduct() {
 		navigate("/products");
 	};
 
-	console.log(id);
 	const [product, setState] = useState([]);
 
 	useEffect(() => {
@@ -49,6 +48,7 @@ function SingleProduct() {
 
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
+		alert("Successful add to the cart" || cartJson.msg);
 	}
 
 	return (
@@ -79,5 +79,6 @@ function SingleProduct() {
 		</div>
 	);
 }
+
 
 export default SingleProduct;

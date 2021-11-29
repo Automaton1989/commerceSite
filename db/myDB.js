@@ -21,7 +21,6 @@ FUNCTION BUILT BY: MATTHEW
 async function getUser(username) {
   await client.connect();
   try {
-    console.log(username);
     const user = await users.findOne({ userName : username });
     return user;
   } catch(e) {
@@ -154,12 +153,12 @@ async function addProductToCart(productInfo, user) {
   try {
     console.log(productInfo);
     const product = await products.findOne({"_id": new ObjectId(productInfo.id)});
-    if(product == null) {
+    if(product === null) {
       return {msg: "Fail"};
     }
     else {
       let checkCart = await carts.findOne({"product": product._id, "userName": user});
-      if(checkCart == null) {
+      if(checkCart === null) {
         const newUser = await users.findOne({"userName": user});
         const newData = {
           product: product._id,

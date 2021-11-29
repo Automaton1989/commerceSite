@@ -41,4 +41,4 @@ The images and product information used in the project are all from the commerci
 Other images sources are as followed:
 * [pet-stuff](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pet18.com%2FUploadFiles%2F[…]0n&fmt=jpeg?sec=1639959896&t=0d7894769492fd9e5df1b7c6f347c9b1)
 * [pet-stuff2](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639964254&t=856f11c764c16ae1bfef3965f5efcd9f)
-* [pet-stuff2](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639968713&t=4162b0dd9136e2fd2db18d98dda6afee)
+* [pet-stuff3](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639968713&t=4162b0dd9136e2fd2db18d98dda6afee)
