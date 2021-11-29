@@ -1,40 +1,49 @@
+/* 
+
+PAGE BUILT BY: MATTHEW
+
+*/
+
 import '../App.css';
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function LoginForm({setUser}) {
 
   let navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({});
+  const [error, setError] = useState("")
 
   async function handleLogin(event) {
     event.preventDefault();
-    const email = document.getElementById("Input-Email-Login");
-    const pwd = document.getElementById("Input-Password-Login");
+    setError("");
 
-    const data = {
-      email: email.value,
-      pwd: pwd.value,
-    };
+    if(!userInfo.email) {
+      setError("Please input an email address!");
+      return;
+    }
+    if(!userInfo.pwd || userInfo.pwd.length < 6) {
+      setError("Password should not be less than 6 characters!");
+      return;
+    }
 
     const getInputUser = {
       method: "post",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userInfo),
     }
 
     const rawData = await fetch("/api/login", getInputUser);
     if (rawData.status === 200) {
       const fetchData = await fetch("/api/user/data");
       const res = await fetchData.json();
-      console.log("user in login:", res.username);
       setUser(res.username);
       navigate("/products");
-    } else if (rawData.status === 409) {
-      const res = await rawData.json();
-      alert(res.login);
     } else {
-      alert("Something's wrong, please try again!");
-    }
+      const res = await rawData.json();
+      setError(res.msg || "Something went wrong, please try again!");
+      }
 
   }
 
@@ -48,7 +57,9 @@ function LoginForm({setUser}) {
           id = "Input-Email-Login"
           aria-describedby = "emailHelp"
           name = "email"
-          required
+          onChange={(e) => {
+            setUserInfo({ ...userInfo, email: e.target.value });
+          }}
         />
       </div>
     </div>
@@ -62,11 +73,14 @@ function LoginForm({setUser}) {
           className = "form-control"
           id = "Input-Password-Login"
           name = "pwd"
-          minlength = "5"
-          maxlength = "25"
-          required
+          onChange={(e) => {
+            setUserInfo({ ...userInfo, pwd: e.target.value });
+          }}
         />
       </div>
+    </div>
+    <div className="form-group register-margin headup">
+      <div className="mb-3">{error}</div>
     </div>
     <button type = "submit" className = "btn btn-color btn-block">
       Submit

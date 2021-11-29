@@ -10,66 +10,18 @@ const auth = (req, res, next) => {
   next();
 };
 
-
+/*            */
 /* GET ROUTES */
+/*            */
+
 router.get("/", function(req, res) {
   res.status(200).json();
 })
 
-/* PASS USERNAME TO FRONTEND */
-router.get("/user/data", async function(req, res) {
-  try {
-    const username = req.session.username;
-    console.log("username in index: ", username);
-    res.send({username: username});
-  } catch(e) {
-    console.log("Error", e);
-    res.status(400).send({ err: e });
-  }
-})
+/* 
 
-
-router.get("/user/data/info", async function(req, res) {
-  try {
-    let user = null;
-    if(req.session.username) {
-      console.log("USER FOUND");
-      user = await myDB.getUser(req.session.username);
-      console.log("USER DATA: ", user)
-      res.send({data : user});
-    } else {
-      res.send({data: null});
-    }
-  } catch(e) {
-      console.log("Error", e);
-  }
-})
-
-router.get("/products", async function(req, res) {
-    try {
-    const products = await myDB.getProducts();
-    res.send({data: products});
-  } catch (e) {
-    console.log("Error", e);
-    res.status(400).send({err: e});
-  }
-});
-
-router.get("/products/:query", async function(req, res) {
-  console.log("IN INDEX.JS")
-  try {
-    const newQuery = req.params.query;
-    const products = await myDB.getProductsQuery(newQuery);
-    res.send({data: products});
-    console.log("RETURNING FROM DB")
-  } catch (e) {
-    console.log("Error", e);
-    res.status(400).send({err: e});
-  }
-});
-
-/*
-Logout function.  Kills session.
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> LOG USER OUT
 */
 router.get("/userLogout", async function(req, res) {
   try {
@@ -81,7 +33,96 @@ router.get("/userLogout", async function(req, res) {
   }
 })
 
-/* GET THIS USER'S SHOPPING CART INFO */
+/* 
+
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> GRAB USER DATA IN SESSION
+*/
+router.get("/user/data", async function(req, res) {
+  try {
+    const username = req.session.username;
+    res.send({username: username});
+  } catch(e) {
+    console.log("Error", e);
+    res.status(400).send({ err: e });
+  }
+})
+
+/* 
+
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> GRAB USER DATA IN DB AND PASS TO REACT
+*/
+router.get("/user/data/info", async function(req, res) {
+  try {
+    let user = null;
+    if(req.session.username) {
+      user = await myDB.getUser(req.session.username);
+      res.send({data : user});
+    } else {
+      res.send({data: null});
+    }
+  } catch(e) {
+      console.log("Error", e);
+  }
+})
+
+/* 
+
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> GRAB ALL PRODUCTS DATA FROM DB
+*/
+
+router.get("/products", async function(req, res) {
+    try {
+    const products = await myDB.getProducts();
+    res.send({data: products});
+  } catch (e) {
+    console.log("Error", e);
+    res.status(400).send({err: e});
+  }
+});
+
+
+/* 
+
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> GRAB QUERY FROM REACT AND ADJUST PRODUCTS
+*/
+router.get("/products/:query", async function(req, res) {
+  try {
+    const newQuery = req.params.query;
+    const products = await myDB.getProductsQuery(newQuery);
+    res.send({data: products});
+  } catch (e) {
+    console.log("Error", e);
+    res.status(400).send({err: e});
+  }
+});
+
+/* 
+
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> GRAB SINGLE PRODUCT BASED ON ID
+*/
+router.get("/product/data/:id", async (req, res) => {
+  try{
+    const productId = req.params.id;
+    const myProduct = await myDB.getProduct(productId);
+    if(myProduct.msg === "success") {
+      res.send({data: myProduct.product});
+    }
+  } catch (e) {
+    res.status(400).send({err : e});
+  }
+  
+});
+
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> GRAB CART FOR USER
+*/
 router.get("/user/cart", async function(req, res) {
   try {
     const userCart = await myDB.userCart(req.session.username);
@@ -93,7 +134,11 @@ router.get("/user/cart", async function(req, res) {
   }
 })
 
-/* DELETE PRODUCT FROM THE CART */
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> DELETE PRODUCT FROM CART
+*/
 router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   const id = req.params.id;
   console.log("id in index:", id);
@@ -106,7 +151,21 @@ router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   }
 })
 
+/*                */ 
+/* END GET ROUTES */
+/*                */
+
+/**************************************************************/
+
+/*             */
 /* POST ROUTES */
+/*             */
+
+/* 
+
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> LOG IN USER
+*/
 router.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
@@ -125,7 +184,11 @@ router.post("/login", async (req, res) => {
   }
 }); 
 
-/* USER REGISTER */
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> REGISTER A NEW USER
+*/
 router.post("/register", async (req, res) => {
   try{
     const msg = await myDB.registerUser(req.body);
@@ -139,20 +202,11 @@ router.post("/register", async (req, res) => {
   }
 });
 
-/* SINGLE PRODUCT */
-router.get("/product/data/:id", async (req, res) => {
-  try{
-    const productId = req.params.id;
-    const myProduct = await myDB.getProduct(productId);
-    if(myProduct.msg === "success") {
-      res.send({data: myProduct.product});
-    }
-  } catch (e) {
-    res.status(400).send({err : e});
-  }
-  
-});
+/* 
 
+FUNCTION MADE BY: MATTHEW
+PURPOSE -> ADD PRODUCT TO CART
+*/
 router.post("/product/cart", async(req, res) => {
   try {
     if(!req.session.username) {
@@ -171,75 +225,8 @@ router.post("/product/cart", async(req, res) => {
   }
 })
 
-/* ADD TO CART GOES HERE
-
-LOGIC -> 
-1. Grab user session information, data from req.body (product._id)
-2. Go to DB, check if a cart exists based on req.session.username ->
-   If return value of find is null, create new cart in db, with user -> userName, products: []
-   else if there is a cart -> cart.products.push new product
-3. return success if it worked
-4, render message to frontend 
-
-*/
+/*                */ 
+/* END POST ROUTES */
+/*                */
 
 module.exports = router;
-
-/* 
-
-PRODUCTS
-router.get("/products", auth, async (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  try {
-    const products = await myDB.getProductsList(req.session.email);
-    res.send( {products: products} );
-  } catch (e) {
-    console.log("Error", e);
-    res.status(400).send( { err: e } );
-  }
-});
-
-GET SHOPPING CART
-router.get("/view/cart", auth, async (req, res) => {
-  try {
-    const cart = await myDB.getCart(req.session.email);
-    res.send( { cart: cart } )
-  } catch(e) {
-    console.log("Error", e);
-    res.status(400).send( { err: e } );
-  }
-});
-
-POST ROUTES SETUP
-
-router.post("/register", async (req, res) => {
-  try{
-    const msg = await myDb.register(req.body);
-    if(msg === "success") {
-      res.sendStatus(200);
-    } else {
-      res.status(409).send( { register: msg } );
-    }
-  } catch (e) {
-    res.status(400).send ( { err: e} );
-  }
-});
-
-router.post("/add/cart", async (req, res) => {
-  //
-})
-
-router.post("/add/product", async (req, res) => {
-  try {
-    const msg = await myDB.createProduct(req.body);
-    if (msg === "success") {
-      res.sendStatus(200);
-    } else {
-      res.status(409).send( { product: msg } );
-    }
-  } catch(e) {
-    res.status(400).send( { err: e } );
-  }
-});
-
-*/

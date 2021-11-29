@@ -183,12 +183,3 @@ footer {
   padding-top: 20px;
 }
 
-/* Form validation CSS */
-#Input-Email-Login:invalid, #Input-Password-Login:invalid {
-  border:  2px dashed red;
-}
-
-#Input-Email-Login:valid, #Input-Password-Login:valid {
-  border:  2px solid green;
-}
-

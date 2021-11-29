@@ -1,3 +1,9 @@
+/* 
+
+PAGE BUILT BY: MATTHEW
+
+*/
+
 import React, {useEffect, useState} from "react";
 import {
   useParams, useNavigate
@@ -43,13 +49,9 @@ function SingleProduct() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     }
-    
-		console.log("POSTING DATA: ", options);
-		console.log("DATA POSING: ", data);
 
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json()
-		document.getElementById("result").innerHTML = cartJson.msg;
 	}
 
 
@@ -57,9 +59,6 @@ function SingleProduct() {
 		<div className="font-setting single-product">
 			<h1 className="title">{product.name}</h1>
 			<div className="row">
-				<div className = "col-12">
-					<h3 id = "result"></h3>
-				</div>
 				<div className="product-img col-6">
 					<img src={product.src} alt="Product image" />
 				</div>

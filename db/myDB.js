@@ -12,6 +12,12 @@ const users = db.collection("users");
 const products = db.collection("products");
 const carts = db.collection("carts");
 
+/* 
+
+FUNCTION BUILT BY: MATTHEW
+
+*/
+
 async function getUser(username) {
   await client.connect();
   try {
@@ -25,6 +31,12 @@ async function getUser(username) {
   }
 }
 
+/* 
+
+FUNCTION BUILT BY: MATTHEW
+
+*/
+
 async function userLogin(email, pwd) {
   await client.connect();
   const user = await users.findOne({ email: email });
@@ -33,7 +45,6 @@ async function userLogin(email, pwd) {
   }
   try {
     if (await bcrypt.compare(pwd, user.pwd)) {
-      console.log(user);
       return ["success", user.userName];
     } else {
       return ["Wrong password or email address, please try again"];
@@ -45,7 +56,11 @@ async function userLogin(email, pwd) {
   }
 }
 
-/* REGISTER NEW USER INTO DB */
+/* 
+
+FUNCTION BUILT BY: JENNIFER
+
+*/
 async function registerUser(userInfo) {
   await client.connect();
   const userEmail = await users.findOne({ email: userInfo.email });
@@ -53,7 +68,6 @@ async function registerUser(userInfo) {
     return "The email exists, please use another email address";
   }
   const username = await users.findOne({userName: userInfo.userName});
-  console.log("username in db: ", username);
   if (username) {
     return "The user name exists, please use another user name";
   }
@@ -75,6 +89,12 @@ async function registerUser(userInfo) {
   }
 }
 
+/* 
+
+FUNCTION BUILT BY: MATTHEW
+
+*/
+
 async function getProducts() {
   await client.connect();
   const res = await products.find().toArray();
@@ -87,11 +107,15 @@ async function getProducts() {
   }
 }
 
+/* 
+
+FUNCTION BUILT BY: MATTHEW
+
+*/
+
 async function getProductsQuery(query) {
   await client.connect();
-  console.log("USING QUERY -> QUERY TO DB: ", query);
   const res = await products.find({name: {$regex: query, $options: "$i"}}).toArray();
-  console.log(res);
   try {
     return res;
   } catch(e) {
@@ -101,11 +125,16 @@ async function getProductsQuery(query) {
   }
 }
 
+/* 
+
+FUNCTION BUILT BY: MATTHEW
+
+*/
+
 async function getProduct(id) {
   await client.connect();
   try {
     const product = await products.findOne({"_id": new ObjectId(id)});
-    console.log("Product in my db: ", product);
     return {product: product, msg: "success"};
   } catch (e) {
     console.log(e);
@@ -114,20 +143,23 @@ async function getProduct(id) {
   }
 }
 
+/* 
+
+FUNCTION BUILT BY: MATTHEW
+
+*/
+
 async function addProductToCart(productInfo, user) {
   await client.connect();
   try {
     console.log(productInfo);
     const product = await products.findOne({"_id": new ObjectId(productInfo.id)});
     if(product == null) {
-      console.log("PROBLEM")
       return {msg: "Fail"};
     }
     else {
-      console.log("CHECKING CART")
       let checkCart = await carts.findOne({"product": product._id, "userName": user});
       if(checkCart == null) {
-        console.log("NO CART")
         const newUser = await users.findOne({"userName": user});
         const newData = {
           product: product._id,
@@ -138,7 +170,6 @@ async function addProductToCart(productInfo, user) {
         }
         await carts.insertOne(newData);
       } else {
-        console.log("CART FOUND", checkCart);
         newVal = checkCart.number + 1;
         await carts.updateOne({"_id": checkCart._id}, {$set: {"number": newVal}});
       }
@@ -151,7 +182,12 @@ async function addProductToCart(productInfo, user) {
   }
 }
 
-/* GET USER CART INFO */
+/* 
+
+FUNCTION BUILT BY: JENNIFER
+
+*/
+
 async function userCart(username) {
   if (!username) {return [];}
   await client.connect();
@@ -165,6 +201,12 @@ async function userCart(username) {
     client.close();
   }
 }
+
+/* 
+
+FUNCTION BUILT BY: JENNIFER
+
+*/
 
 /* DELETE PRODUCT FROM THE CART */
 async function deleteProduct(id) {
