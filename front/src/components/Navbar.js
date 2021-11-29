@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
-import "../stylesheets/navbar.css";
+//import "../stylesheets/navbar.css";
 //import {UserContext} from "./Authentication";
 
 function Navbar({user, setUser}) {
