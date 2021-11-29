@@ -18,7 +18,7 @@ function Navbar({user, setUser}) {
   }
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark px-sm-3">
+    <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
       <div className="container-fluid">
         <Link to="/">
           <img
@@ -30,7 +30,7 @@ function Navbar({user, setUser}) {
           />
         </Link>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
