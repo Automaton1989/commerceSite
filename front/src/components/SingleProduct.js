@@ -54,22 +54,22 @@ function SingleProduct() {
 
 
 	return (
-		<div>
+		<div className="font-setting single-product">
 			<h1 className="title">{product.name}</h1>
 			<div className="row">
 				<div className = "col-12">
 					<h3 id = "result"></h3>
 				</div>
 				<div className="product-img col-6">
-					<img src={product.src} alt="Image here" />
+					<img src={product.src} alt="Product image" />
 				</div>
 				<div className="col-6">
-					<h3>{product.price}</h3>
-					<p>Product Description?</p>
+					<h3>Price: ${product.price}</h3>
+					<p><strong>Description: </strong>{product.description}</p>
 					<form onSubmit = {addToCart}>
-						<button className="btn btn-primary btn-color">Add To Cart</button>
+						<button className="btn btn-color">Add To Cart</button>
 					</form>
-					<button type = "button" className = "btn btn-primary btn-color go-back" onClick={goBack}>Go Back</button>
+					<button type = "button" className = "btn btn-color go-back" onClick={goBack}>Go Back</button>
 				</div>
 			</div>
 		</div>

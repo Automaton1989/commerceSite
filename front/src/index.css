@@ -119,6 +119,19 @@ code {
   font-style: italic;
 }
 
+/* Single product page */
+.single-product h3 {
+  padding-bottom: 30px;
+  color: #0089bb;
+}
+
+.single-product p {
+  text-align: left;
+  word-spacing: 10px;
+  line-height: 30px;
+  padding-bottom: 30px;
+}
+
 /* Carts page */
 .carts h1 {
   font-family: 'Ubuntu', sans-serif;
