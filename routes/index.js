@@ -3,6 +3,7 @@ const router = express.Router();
 
 const myDB = require("../db/myDB.js");
 
+/* AUTHENTICATE USER */
 const auth = (req, res, next) => {
   if (!req.session.username) {
     return res.redirect("/");
@@ -124,7 +125,6 @@ PURPOSE -> GRAB CART FOR USER
 router.get("/user/cart", async function (req, res) {
   try {
     const userCart = await myDB.userCart(req.session.username);
-    console.log("username in index:", req.session.username);
     res.send({ userCart: userCart });
   } catch (e) {
     console.error("Error", e);
@@ -139,7 +139,6 @@ PURPOSE -> DELETE PRODUCT FROM CART
 */
 router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   const id = req.params.id;
-  console.log("id in index:", id);
   try {
     const deleteProduct = await myDB.deleteProduct(id);
     res.send({ delete: "success" });

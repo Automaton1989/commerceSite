@@ -193,7 +193,6 @@ async function userCart(username) {
   await client.connect();
   try {
     const userCart = await carts.find({userName: username}).toArray();
-    console.log("cart in db:", userCart);
     return userCart;
   } catch (e) {
     console.log(e);

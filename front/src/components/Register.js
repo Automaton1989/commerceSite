@@ -42,7 +42,6 @@ function RegisterForm() {
       navigate("/login");
     } else {
       const res = await rawData.json();
-      console.log("rawdata msg:", res.msg);
       setError(res.msg || "Something's went wrong, please try again");
     }
   }
