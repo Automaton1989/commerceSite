@@ -48,9 +48,14 @@ async function userLogin(email, pwd) {
 /* REGISTER NEW USER INTO DB */
 async function registerUser(userInfo) {
   await client.connect();
-  const user = await users.findOne({ email: userInfo.email });
-  if (user) {
+  const userEmail = await users.findOne({ email: userInfo.email });
+  if (userEmail) {
     return "The email exists, please use another email address";
+  }
+  const username = await users.findOne({userName: userInfo.userName});
+  console.log("username in db: ", username);
+  if (username) {
+    return "The user name exists, please use another user name";
   }
   try {
     const hashedPassword = await bcrypt.hash(userInfo.pwd, 10);

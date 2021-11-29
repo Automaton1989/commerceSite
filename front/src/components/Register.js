@@ -22,7 +22,7 @@ function RegisterForm() {
     if (!userInfo.email) {
       setError("Please input an email address");
     }
-    if (userInfo.pwd.length < 6) {
+    if (!userInfo.pwd || userInfo.pwd.length < 6) {
       setError("Password should not less than 6 characters");
       return;
     }
@@ -34,10 +34,10 @@ function RegisterForm() {
     });
     if (rawData.status === 200) {
       navigate("/login");
-    } else if (rawData.status === 409) {
-      setError(rawData.msg);
     } else {
-      setError("Something's went wrong, please try again");
+      const res = await rawData.json();
+      console.log("rawdata msg:", res.msg)
+      setError(res.msg || "Something's went wrong, please try again");
     }
   }
 
