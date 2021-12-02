@@ -8,6 +8,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
 
+//What is the prop type of user and setUser?
 function Navbar({ user, setUser }) {
   let navigate = useNavigate();
 
