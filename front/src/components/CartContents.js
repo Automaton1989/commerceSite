@@ -7,7 +7,7 @@ PAGE BUILT BY: JENNIFER
 import React, { useEffect, useState } from "react";
 
 export default function CartContents({ carts, setCarts }) {
-  const [sum, setSum] = useState({ subtotal: 0, tax: 0, total: 0 });
+  const [sum, setSum] = useState({ subtotal: 0, tax: 0, total: 0 }); //Nice, I really like it
 
   useEffect(() => {
     const calculatePrice = () => {
