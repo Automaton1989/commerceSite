@@ -76,6 +76,7 @@ function Navbar({ user, setUser }) {
               ></i>
             </>
           )}
+          //This search bar doesn't do anything
           <form className="d-flex">
             <input
               className="form-control me-2"
