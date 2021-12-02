@@ -136,7 +136,7 @@ function RegisterForm() {
     </form>
   );
 }
-
+//Maybe this is a page, not a component 
 function Register() {
   return (
     <div className="container-fluid">
