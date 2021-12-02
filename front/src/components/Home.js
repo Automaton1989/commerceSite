@@ -40,7 +40,7 @@ function Home() {
       <div className="col align-self-center carts">
         <h1 className="title">Welcome to the Store!</h1>
         <p>You can find everything you need here for your pets!</p>
-        <Link to="/login">
+        <Link to="/login"> //This will always direct to the login page, even when the user is login.
           <button type="button" className="btn btn-color btn-primary btn-lg">
             Start Shooping
           </button>
