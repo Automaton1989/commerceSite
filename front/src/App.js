@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
-import Footer from "./components/Footer";
+import Footer from "./page/Footer";
 
 /* 
 USE THIS FOR NAVIGATION BASICS 
