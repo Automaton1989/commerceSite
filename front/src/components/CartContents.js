@@ -39,6 +39,18 @@ export default function CartContents({ carts, setCarts }) {
     }
   }
 
+  async function changeAmount({item}, val) {
+    const rawData = await (
+      await fetch(`/api/user/cart/${item._id}/${val}`)).json();
+    if (rawData.delete === "success") {
+      const fetchUserData = await fetch("/api/user/cart");
+      const userData = await fetchUserData.json();
+      setCarts(userData.userCart);
+    } else {
+      alert("Something's wrong, please try again!");
+    }
+  }
+
   return (
     <>
       <div className="container">
@@ -78,7 +90,9 @@ export default function CartContents({ carts, setCarts }) {
                 {item.price}
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
+                <span className="btn"><i className="fas fa-minus" onClick={() => changeAmount({ item, }, -1)}></i></span>
                 {item.number}
+                <span className="btn"><i className="fas fa-plus" onClick={() => changeAmount({ item }, 1)}></i></span>
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
                 <i

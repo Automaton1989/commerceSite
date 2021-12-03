@@ -148,6 +148,18 @@ router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   }
 });
 
+router.get("/user/cart/:id/:val", async (req, res) => {
+  const id = req.params.id;
+  const val = req.params.val;
+  try {
+    const changeQuantity = await myDB.changeQuantity(id, val);
+    res.send({ change: "success" });
+  } catch (e) {
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+});
+
 /*                */
 /* END GET ROUTES */
 /*                */
