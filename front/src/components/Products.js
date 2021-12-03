@@ -7,6 +7,21 @@ PAGE WORKED ON BY MATTHEW VARGAS
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
+let debouncing = null;
+
+function debounce(callback) {
+  if (debouncing) {
+    console.log("too fast canceling");
+    clearTimeout(debouncing);
+  }
+
+  debouncing = setTimeout(() => {
+    console.log("enough time, running it");
+    debouncing = null;
+    callback();
+  }, 300);
+}
+
 function Products() {
   const [query, setQuery] = useState("");
   const [products, setState] = useState([]);
@@ -16,6 +31,7 @@ function Products() {
 
   const onChangeQuery = (evt) => {
     console.log("query: ", evt.target.value);
+    // if (evt.keyPressed ==="enter")
     setQuery(evt.target.value);
   };
   /*
@@ -38,31 +54,25 @@ function Products() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (throttling.current) {
-        return;
-      }
-      throttling.current = true;
+      // if (throttling.current) {
+      //   console.log("throttling not doing anything");
+      //   return;
+      // }
       try {
-        if (query === "") {
-          setTimeout(async () => {
-            throttling.current = false;
-            const response = await fetch(`/api/products`);
-            const json = await response.json();
-            setState(json.data);
-          }, 300);
-        } else {
-          setTimeout(async () => {
-            throttling.current = false;
-            const response = await fetch(`/api/products/${query}`);
-            const json = await response.json();
-            setState(json.data);
-          }, 300);
-        }
+        console.log("fetching data");
+        // throttling.current = true;
+        const queryUrl = `/api/products${query === "" ? "" : "/" + query}`;
+        const response = await fetch(queryUrl);
+        const json = await response.json();
+        // throttling.current = false;
+        setState(json.data);
+        // console.log("ending throttling");
       } catch (e) {
         console.log("Error: ", e);
       }
     };
-    fetchData();
+
+    debounce(fetchData);
   }, [query]);
 
   return (

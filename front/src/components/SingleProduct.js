@@ -35,15 +35,28 @@ function SingleProduct() {
 		fetchData();
 	}, []);
 
-	function LineBreak() {
-		return (
-			<hr className = "my-4"/>
-		)
-	}
-
 	const Add = addRatingType.map(Add => Add)
 	const handleRatingChange = (e) => {
 		console.log((addRatingType[e.target.value]))
+	}
+
+	async function addToCart(event) {
+		event.preventDefault();
+
+		const data = {
+			id: product._id,
+		};
+
+		const options = {
+			method: "POST",
+			credentials: "include",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		};
+
+		const cartData = await fetch("/api/product/cart", options);
+		const cartJson = await cartData.json();
+		alert("Successful add to the cart" || cartJson.msg);
 	}
 
 	async function addComment(event) {
@@ -107,23 +120,10 @@ function SingleProduct() {
 		)
 	}
 
-	async function addToCart(event) {
-		event.preventDefault();
-
-		const data = {
-			id: product._id,
-		};
-
-		const options = {
-			method: "POST",
-			credentials: "include",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(data),
-		};
-
-		const cartData = await fetch("/api/product/cart", options);
-		const cartJson = await cartData.json();
-		alert("Successful add to the cart" || cartJson.msg);
+	function LineBreak() {
+		return (
+			<hr className = "my-4"/>
+		)
 	}
 
 	return (
