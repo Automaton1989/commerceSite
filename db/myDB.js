@@ -217,6 +217,17 @@ async function deleteProduct(id) {
   }
 }
 
+async function changeQuantity(id, val) {
+  await client.connect();
+  try {
+    await carts.updateOne({_id: ObjectId(id)}, {$inc:{number:val}});
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
 module.exports = {
   getUser,
   userLogin,
@@ -227,4 +238,5 @@ module.exports = {
   userCart,
   deleteProduct,
   addProductToCart,
+  changeQuantity
 };

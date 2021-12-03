@@ -177,6 +177,13 @@ code {
   margin-top: 1rem;
 }
 
+.btn-yellow {
+  background: transparent;
+  color: #ffa62b;
+  border-radius: 0;
+  border: 0.1rem solid;
+}
+
 /* footer setting  */
 footer {
   text-align: center;
