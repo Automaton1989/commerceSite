@@ -16,6 +16,10 @@ function SingleProduct() {
 	};
 
 	const [product, setState] = useState([]);
+	const [productReview, setProductReview] = useState({})
+	const [addRatingType, setRatingType] = useState(["Choose Rating", "1", "2", "3", "4", "5"])
+	const [addContent, setContent] = useState({content: ""});
+	const [error, setError] = useState("")
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -29,8 +33,79 @@ function SingleProduct() {
 			}
 		};
 		fetchData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	function LineBreak() {
+		return (
+			<hr className = "my-4"/>
+		)
+	}
+
+	const Add = addRatingType.map(Add => Add)
+	const handleRatingChange = (e) => {
+		console.log((addRatingType[e.target.value]))
+	}
+
+	async function addComment(event) {
+		event.preventDefault();
+		let review = document.getElementById("Input-Select");
+		if(review.value === "0") {
+			setError("Please give this product a rating!")
+			return;
+		}
+		if(!addContent.content) {
+			setError("Please write your review content!");
+			return;
+		}
+		console.log("REVIEW REQUIREMENTS MET!");
+		console.log(review.value);
+		console.log(addContent.content)
+	}
+
+	function Review() {
+		return (
+			<div className = "row">
+				<div className = "col-12">
+					<h3>Product Reviews</h3>
+				</div>
+				<div className = "col-12">
+					<h3>Add Review</h3>
+					<div className = "form-group register-margin headup">
+						<div className = "mb-3">{error}</div>
+					</div>
+					<form onSubmit={addComment}>
+						<div className = "form-group">
+							<select 
+								className = "form-select mb-3"
+								id = "Input-Select"
+								name = "select"
+				            	onChange={e => handleRatingChange(e)}
+							>
+							{
+								Add.map((address, key) => <option value = {key} key = {key}>{address}</option>)
+							}
+							</select>
+						</div>
+						<div className = "form-group">
+							<label htmlFor="content">Content</label>
+							<textarea 
+								className = "form-control" 
+								name = "content"
+								id = "Input-Content"
+								rows = "3"
+								type="text"
+	            				onChange={(e) => setContent({...addContent, content: e.target.value})}
+	            				value = {addContent.content}
+							/>
+						</div>
+						<button type = "submit" className = "btn btn-color btn-block mt-2">
+							Add Review
+						</button>
+					</form>
+				</div>
+			</div>
+		)
+	}
 
 	async function addToCart(event) {
 		event.preventDefault();
@@ -64,18 +139,22 @@ function SingleProduct() {
 						<strong>Description: </strong>
 						{product.description}
 					</p>
-					<form onSubmit={addToCart}>
-						<button className="btn btn-color">Add To Cart</button>
-					</form>
-					<button
-						type="button"
-						className="btn btn-color go-back"
-						onClick={goBack}
-					>
-						Go Back
-					</button>
+					<div>
+						<form onSubmit={addToCart}>
+							<button className="btn btn-color btn-block">Add To Cart</button>
+						</form>
+						<button
+							type="button"
+							className="btn btn-color btn-block go-back"
+							onClick={goBack}
+						>
+							Go Back
+						</button>
+					</div>
 				</div>
 			</div>
+			< LineBreak /> 
+			< Review />
 		</div>
 	);
 }
