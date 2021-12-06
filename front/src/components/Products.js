@@ -27,8 +27,6 @@ function Products() {
   const [products, setState] = useState([]);
   const inputRef = useRef();
 
-  const throttling = useRef(false);
-
   const onChangeQuery = (evt) => {
     console.log("query: ", evt.target.value);
     // if (evt.keyPressed ==="enter")

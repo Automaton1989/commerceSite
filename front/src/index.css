@@ -184,6 +184,12 @@ code {
   border: 0.1rem solid;
 }
 
+#cart-message {
+  margin: 1rem;
+  color: #ff9686;
+  font-size: 30px;
+}
+
 /* footer setting  */
 footer {
   text-align: center;

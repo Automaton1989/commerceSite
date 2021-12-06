@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function SingleProduct() {
+
 	const { id } = useParams();
 
 	const navigate = useNavigate();
@@ -35,8 +36,20 @@ function SingleProduct() {
 		fetchData();
 	}, []);
 
+	useEffect(() => {
+  		window.scrollTo(0, 0)
+	}, [])
+
 	async function addToCart(event) {
 		event.preventDefault();
+
+		const quantity = document.getElementById("Input-Quantity-Product");
+		if(quantity.value < 1 || quantity.value > 100) {
+			displayMessage({msg: "Enter a valid quantity!"});
+			return;
+		} else {
+			console.log("quantity valid!");
+		}
 
 		const data = {
 			id: product._id,
@@ -51,7 +64,18 @@ function SingleProduct() {
 
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
-		alert("Successful add to the cart" || cartJson.msg);
+		displayMessage({msg: "Successful add to the cart" || cartJson.msg})
+	}
+
+	function displayMessage(newMessage) {
+		const message = document.getElementById("cart-message");
+		if(message.style.display === "none") {
+			message.style.display = "block";
+		}
+		message.innerHTML = newMessage.msg;
+		setTimeout(() => {
+			message.style.display = "none";
+		}, 3000)
 	}
 
 	/* FOR PROFESSOR */
@@ -171,6 +195,11 @@ function SingleProduct() {
 	return (
 		<div className="font-setting single-product">
 			<h1 className="title">{product.name}</h1>
+			<div className = "row">
+				<div className = "col-12">
+					<span id = "cart-message"></span>
+				</div>
+			</div>
 			<div className="row">
 				<div className="product-img col-6">
 					<img src={product.src} alt={`${product.name}`} />
@@ -183,6 +212,19 @@ function SingleProduct() {
 					</p>
 					<div>
 						<form onSubmit={addToCart}>
+							<div className = "form-group">
+								<div className = "mb-3">
+								<label htmlFor="Input-Quantity-Product" className = "form-label">
+								Add Quantity
+								</label>
+								<input
+									type = "number"
+									className = "form-control"
+									id = "Input-Quantity-Product"
+									name = "quantity"
+								/>
+								</div>
+							</div>
 							<button className="btn btn-color btn-block">Add To Cart</button>
 						</form>
 						<button
