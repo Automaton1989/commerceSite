@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -35,6 +35,16 @@ function GoHome() {
 
 function App() {
   const [user, setUser] = useState("");
+
+  useEffect(() => {
+    async function checkUser() {
+      const fetchData = await fetch("/api/user/data");
+      const res = await fetchData.json();
+      setUser(res.username);
+    }
+
+    checkUser();
+  }, [])
 
   return (
     <Router>

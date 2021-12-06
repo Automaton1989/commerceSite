@@ -40,12 +40,14 @@ export default function CartContents({ carts, setCarts }) {
   }
 
   async function changeAmount({item}, val) {
+    console.log("start val:", val);
     const rawData = await (
       await fetch(`/api/user/cart/${item._id}/${val}`)).json();
-    if (rawData.delete === "success") {
+    if (rawData.change === "success") {
       const fetchUserData = await fetch("/api/user/cart");
       const userData = await fetchUserData.json();
       setCarts(userData.userCart);
+      console.log("end");
     } else {
       alert("Something's wrong, please try again!");
     }
@@ -79,7 +81,7 @@ export default function CartContents({ carts, setCarts }) {
               <p>Total</p>
             </div>
           </div>
-        </div>
+        </div> 
         {carts.map(function (item) {
           return (
             <div key={item._id} className="row text-center cart-item">
