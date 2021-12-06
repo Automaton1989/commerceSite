@@ -35,11 +35,6 @@ function SingleProduct() {
 		fetchData();
 	}, []);
 
-	const Add = addRatingType.map(Add => Add)
-	const handleRatingChange = (e) => {
-		console.log((addRatingType[e.target.value]))
-	}
-
 	async function addToCart(event) {
 		event.preventDefault();
 
@@ -59,6 +54,48 @@ function SingleProduct() {
 		alert("Successful add to the cart" || cartJson.msg);
 	}
 
+	/* FOR PROFESSOR */
+
+	/*
+
+	How to replicate:
+	-> Project is using Mongodb, Node, Express, React obviously.  our dependencies are:
+	"bcrypt": "^5.0.1",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "eslint": "7.11.0",
+    "express": "~4.16.1",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.1.4",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.15"
+
+    React Dependencies are:
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "bootstrap": "^5.1.3",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^6.0.2",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+
+    Currently, I'm just working on the front end side of the form, and the issues im having is getting the textarea to not lose
+    focus when adding a subsequent character.
+
+    All relevant functions and front end rendering is below.  The section which I need help on is rendering into the main component for this 
+    page.  This currently is not processing data to the server, it's just a front end issue right now.
+
+    Thank you! If you need any other notes, please let me know.  This review section is not dependent on the main product being rendered in this page
+    and could be seperated without problems.
+
+	*/
+
 	async function addComment(event) {
 		event.preventDefault();
 		let review = document.getElementById("Input-Select");
@@ -73,6 +110,11 @@ function SingleProduct() {
 		console.log("REVIEW REQUIREMENTS MET!");
 		console.log(review.value);
 		console.log(addContent.content)
+	}
+
+	const Add = addRatingType.map(Add => Add)
+	const handleRatingChange = (e) => {
+		console.log((addRatingType[e.target.value]))
 	}
 
 	function Review() {
