@@ -47,18 +47,18 @@ function Navbar({ user, setUser }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-md-0">
             <li className="nav-item">
-              <Link to="/" className="nav-link" aria-current="page">
+              <Link to="/" className="nav-link" aria-current="true" style={{color: "#F2F2F2"}}>
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/products" className="nav-link">
+              <Link to="/products" className="nav-link" style={{color: "#F2F2F2"}}>
                 All Products
               </Link>
             </li>
             {!user && (
               <li className="nav-item">
-                <Link to="/login" className="nav-link">
+                <Link to="/login" className="nav-link" style={{color: "#F2F2F2"}}>
                   Sign in
                 </Link>
               </li>
@@ -76,14 +76,6 @@ function Navbar({ user, setUser }) {
               ></i>
             </>
           )}
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
           <Link to="/cart" className="ml-auto">
             <button type="button" className="btn btn-light">
               <i className="fas fa-cart-plus" />

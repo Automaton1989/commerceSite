@@ -21,12 +21,8 @@ export default function Carts() {
     fetchCartData();
   }, []);
 
-  return (
-    <div>
-      {carts.length === 0 && <EmptyCart />}
-      {carts.length !== 0 && <CartContents carts={carts} setCarts={setCarts} />}
-    </div>
-  );
+  if (carts.length !== 0) return <CartContents carts={carts} setCarts={setCarts} />;
+  return <EmptyCart />;
 }
 
 function EmptyCart() {

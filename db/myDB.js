@@ -220,10 +220,8 @@ async function deleteProduct(id) {
 async function changeQuantity(id, val) {
   await client.connect();
   try {
-    console.log("id in db: ", id);
-    console.log("val in db: ", val);
-    await carts.updateOne({_id: ObjectId(id)}, {$inc:{number:val}});
-    console.log(carts.findOne({_id: ObjectId(id)}).toArray());
+    let value = parseInt(val);
+    await carts.updateOne({_id: ObjectId(id)}, {$inc:{number:value}});
   } catch (e) {
     console.log(e);
   } finally {
