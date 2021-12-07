@@ -41,9 +41,9 @@ export default function CartContents({ carts, setCarts }) {
 
   async function changeAmount({item}, val) {
     console.log("start val:", val);
-    const rawData = await (
-      await fetch(`/api/user/cart/${item._id}/${val}`)).json();
-    if (rawData.change === "success") {
+    const rawData = await fetch(`/api/user/cart/${item._id}/${val}`);
+    const res = await rawData.json();
+    if (res.change === "success") {
       const fetchUserData = await fetch("/api/user/cart");
       const userData = await fetchUserData.json();
       setCarts(userData.userCart);

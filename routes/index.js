@@ -151,8 +151,6 @@ router.get("/user/cart/deleteProduct/:id", async (req, res) => {
 router.get("/user/cart/:id/:val", async (req, res) => {
   const id = req.params.id;
   const val = req.params.val;
-  console.log("id in index:", id);
-  console.log("val in index:", val);
   try {
     const changeQuantity = await myDB.changeQuantity(id, val);
     res.send({ change: "success" });

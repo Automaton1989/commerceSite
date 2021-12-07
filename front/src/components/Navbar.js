@@ -76,14 +76,6 @@ function Navbar({ user, setUser }) {
               ></i>
             </>
           )}
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
           <Link to="/cart" className="ml-auto">
             <button type="button" className="btn btn-light">
               <i className="fas fa-cart-plus" />
