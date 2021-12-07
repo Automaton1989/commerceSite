@@ -195,6 +195,10 @@ code {
   font-size: 30px;
 }
 
+.form-check {
+  text-align: left;
+}
+
 /* footer setting  */
 footer {
   text-align: center;

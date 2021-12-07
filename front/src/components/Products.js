@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 let debouncing = null;
 
+
 function debounce(callback) {
   if (debouncing) {
     console.log("too fast canceling");
@@ -22,16 +23,21 @@ function debounce(callback) {
   }, 300);
 }
 
-function Products() {
-  const [query, setQuery] = useState("");
-  const [products, setState] = useState([]);
-  const inputRef = useRef();
 
+function Products() {
+  //const [query, setQuery] = useState("");
+  const [products, setState] = useState([]);
+  const [filter, setFilter] = useState("");
+  //const inputRef = useRef();
+
+  /*
   const onChangeQuery = (evt) => {
     console.log("query: ", evt.target.value);
     // if (evt.keyPressed ==="enter")
     setQuery(evt.target.value);
   };
+  */
+
   /*
   useEffect(() => {
     const fetchData = async() => {
@@ -52,30 +58,37 @@ function Products() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // if (throttling.current) {
-      //   console.log("throttling not doing anything");
-      //   return;
-      // }
       try {
         console.log("fetching data");
-        // throttling.current = true;
-        const queryUrl = `/api/products${query === "" ? "" : "/" + query}`;
+        const queryUrl = `/api/products${filter === "" ? "" : "/" + filter}`;
         const response = await fetch(queryUrl);
         const json = await response.json();
-        // throttling.current = false;
         setState(json.data);
-        // console.log("ending throttling");
       } catch (e) {
         console.log("Error: ", e);
       }
     };
 
     debounce(fetchData);
-  }, [query]);
+  }, [filter]);
 
-  return (
-    <div>
-      <h1 className="title">Our Products</h1>
+  function handleFilter(event) {
+    event.preventDefault();
+    const dog = document.getElementById("Input-Check-Dog");
+    const cat = document.getElementById("Input-Check-Cat");
+
+    if(!dog.checked && !cat.checked) {
+      setFilter("")
+    } else if(dog.checked && !cat.checked) {
+      setFilter("dog");
+    } else if(!dog.checked && cat.checked) {
+      setFilter("cat")
+    } else {
+      setFilter("");
+    }
+  }
+
+  /*
       <div className="search-products row">
         <div className="col-12">
           <label htmlFor="search">Search Products by Name: </label>
@@ -87,20 +100,58 @@ function Products() {
             ref={inputRef}
             onChange={onChangeQuery}
             value={query}
+            readOnly
           />
         </div>
       </div>
+  */
+
+  return (
+    <div>
+      <h1 className="title">Our Products</h1>
       <div className = "filter-products row">
         <div className = "col-12">
-          <form>
-            <div className = "col-3">
-              <div className = "form-check">
-                <input 
-                  className = "form-check-input"
-                  type = "checkbox"
-                  value = "dog"
-                  id = "Input-Check-Dog"
-                />
+          <form onSubmit={handleFilter}>
+            <div className = "row">
+              <div className = "offset-3 col-1">
+                <div className = "form-check">
+                  <input 
+                    className = "form-check-input"
+                    type = "checkbox"
+                    value = "dog"
+                    id = "Input-Check-Dog"
+                  />
+                  <label 
+                    className = "form-check-label"
+                    htmlFor = "Input-Check-Dog"
+                  >
+                  Dogs
+                  </label>
+                </div>
+              </div>
+              <div className = "col-1">
+                <div className = "form-check">
+                  <input 
+                    className = "form-check-input"
+                    type = "checkbox"
+                    value = "cat"
+                    id = "Input-Check-Cat"
+                  />
+                  <label 
+                    className = "form-check-label"
+                    htmlFor = "Input-Check-Cat"
+                  >
+                  Cats
+                  </label>
+                </div>
+              </div>
+              <div className = "col-2">
+                <button 
+                  type = "submit" 
+                  className = "btn btn-color btn-sm"
+                >
+                  Filter
+                </button>
               </div>
             </div>
           </form>

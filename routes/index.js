@@ -91,8 +91,9 @@ PURPOSE -> GRAB QUERY FROM REACT AND ADJUST PRODUCTS
 */
 router.get("/products/:query", async function (req, res) {
   try {
-    const newQuery = req.params.query;
-    const products = await myDB.getProductsQuery(newQuery);
+    const newFilter = req.params.query;
+    const products = await myDB.getProductsQuery(newFilter);
+    console.log("SENDING DATA BACK");
     res.send({ data: products });
   } catch (e) {
     console.log("Error", e);
