@@ -238,7 +238,7 @@ function SingleProduct() {
 				</div>
 			</div>
 			< LineBreak /> 
-			< Review />
+			{Review()}
 		</div>
 	);
 }

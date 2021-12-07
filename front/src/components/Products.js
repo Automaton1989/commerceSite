@@ -90,6 +90,22 @@ function Products() {
           />
         </div>
       </div>
+      <div className = "filter-products row">
+        <div className = "col-12">
+          <form>
+            <div className = "col-3">
+              <div className = "form-check">
+                <input 
+                  className = "form-check-input"
+                  type = "checkbox"
+                  value = "dog"
+                  id = "Input-Check-Dog"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
       <div className="row">
         {products.map(function (product, index) {
           return (
