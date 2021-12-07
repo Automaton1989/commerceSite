@@ -164,14 +164,15 @@ async function addProductToCart(productInfo, user) {
           userName: newUser.userName,
           price: product.price,
           name: product.name,
-          number: 1
-        }
+          number: 1,
+          image: product.src
+        };
         await carts.insertOne(newData);
       } else {
-        newVal = checkCart.number + 1;
+        let newVal = checkCart.number + 1;
         await carts.updateOne({"_id": checkCart._id}, {$set: {"number": newVal}});
       }
-      return {msg : "success"}
+      return {msg : "success"};
     }
   } catch (e) {
     console.log(e);
