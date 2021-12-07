@@ -27,7 +27,7 @@ function debounce(callback) {
 function Products() {
   //const [query, setQuery] = useState("");
   const [products, setState] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState([]);
   //const inputRef = useRef();
 
   /*
@@ -60,7 +60,7 @@ function Products() {
     const fetchData = async () => {
       try {
         console.log("fetching data");
-        const queryUrl = `/api/products${filter === "" ? "" : "/" + filter}`;
+        const queryUrl = `/api/products/filter${filter === "" ? "" : "?filter=" + filter}`;
         const response = await fetch(queryUrl);
         const json = await response.json();
         setState(json.data);
@@ -76,16 +76,31 @@ function Products() {
     event.preventDefault();
     const dog = document.getElementById("Input-Check-Dog");
     const cat = document.getElementById("Input-Check-Cat");
+    const inputFilters = [dog, cat];
+    let filterOptions = []
+    for(let i = 0; i < inputFilters.length; i++) {
+      if (inputFilters[i].checked) {
+        filterOptions.push(inputFilters[i].value);
+      }
+    }
+
+    if(filterOptions.length === 0) {
+      filterOptions = [""];
+    }
+
+    setFilter(filterOptions);
+    /*
 
     if(!dog.checked && !cat.checked) {
-      setFilter("")
+      setFilter([""])
     } else if(dog.checked && !cat.checked) {
-      setFilter("dog");
+      setFilter(["dog"]);
     } else if(!dog.checked && cat.checked) {
-      setFilter("cat")
+      setFilter(["cat"])
     } else {
-      setFilter("");
+      setFilter(["dog", "cat"]);
     }
+    */
   }
 
   /*

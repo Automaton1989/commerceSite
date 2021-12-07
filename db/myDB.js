@@ -114,7 +114,7 @@ FUNCTION BUILT BY: MATTHEW
 
 async function getProductsQuery(filter) {
   await client.connect();
-  const res = await products.find({category: {$regex: filter, $options: "$i"}}).toArray();
+  const res = await products.find({category: {$in : filter}}).toArray();
   try {
     return res;
   } catch(e) {

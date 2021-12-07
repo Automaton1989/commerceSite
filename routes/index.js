@@ -89,10 +89,16 @@ router.get("/products", async function (req, res) {
 FUNCTION MADE BY: MATTHEW
 PURPOSE -> GRAB QUERY FROM REACT AND ADJUST PRODUCTS
 */
-router.get("/products/:query", async function (req, res) {
+router.get("/products/filter", async function (req, res) {
   try {
-    const newFilter = req.params.query;
-    const products = await myDB.getProductsQuery(newFilter);
+    let newFilter = req.query.filter;
+    let products = null;
+    if(newFilter === "") {
+      products = await myDB.getProducts();
+    } else {
+      newFilter = newFilter.split(",")
+      products = await myDB.getProductsQuery(newFilter);
+    }
     console.log("SENDING DATA BACK");
     res.send({ data: products });
   } catch (e) {
