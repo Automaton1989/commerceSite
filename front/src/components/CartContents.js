@@ -66,6 +66,9 @@ export default function CartContents({ carts, setCarts }) {
         <div className="text-center d-none d-lg-block carts">
           <div className="row">
             <div className="col-10 mx-auto col-lg-2">
+              <p>Product</p>
+            </div>
+            <div className="col-10 mx-auto col-lg-2">
               <p>Product Name</p>
             </div>
             <div className="col-10 mx-auto col-lg-2">
@@ -85,6 +88,9 @@ export default function CartContents({ carts, setCarts }) {
         {carts.map(function (item) {
           return (
             <div key={item._id} className="row text-center cart-item">
+              <div className="col-10 mx-auto col-lg-2 cart-item">
+                <img src={item.image} style={{width:"5rem", height:"5rem"}} className="img-fluid" alt={item.name} />
+              </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
                 {item.name}
               </div>

@@ -30,6 +30,6 @@ app.use("/api", indexRouter);
 
 app.get("/*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
-})
+});
 
 module.exports = app;
