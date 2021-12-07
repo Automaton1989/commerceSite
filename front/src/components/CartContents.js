@@ -109,13 +109,13 @@ export default function CartContents({ carts, setCarts }) {
           );
         })}
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
-          <strong>Subtotal: {sum.subtotal}</strong>
+          <strong>Subtotal: ${sum.subtotal}</strong>
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
-          <strong>Tax: {sum.tax}</strong>
+          <strong>Tax: ${sum.tax}</strong>
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
-          <strong>Total: {sum.total}</strong>
+          <strong>Total: ${sum.total}</strong>
         </div>
       </div>
     </>

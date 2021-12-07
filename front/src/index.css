@@ -17,6 +17,10 @@ code {
   background-color: #6c119c;
 }
 
+.color-white {
+  color: #F2F2F2;
+}
+
 .row {
   margin: 0px;
   padding: 0px;
@@ -147,7 +151,7 @@ code {
 .carts p {
   font-family: "Ubuntu", sans-serif;
   font-size: 25px;
-  color: #ff9686;
+  color: #BD45BF;
 }
 
 .cart-item {
@@ -156,7 +160,7 @@ code {
 }
 
 .remove {
-  color: #ffa62b;
+  color: #F29F05;
 }
 
 .remove:hover {
@@ -166,8 +170,9 @@ code {
 .total {
   font-family: "Ubuntu", sans-serif;
   text-align: right;
-  font-size: 20px;
-  color: #0089bb;
+  font-size: 22px;
+  color: #BD45BF;
+  word-spacing: 5px;
 }
 .carts-bottom {
   padding-bottom: 80px;
