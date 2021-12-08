@@ -4,10 +4,10 @@ import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Products from "./components/Products";
-import Home from "./components/Home";
-import Register from "./components/Register";
+import Home from "./page/Home";
+import Register from "./page/Register";
 import SingleProduct from "./components/SingleProduct";
-import Cart from "./components/Cart";
+import Cart from "./page/Cart";
 import Footer from "./page/Footer";
 
 /* 

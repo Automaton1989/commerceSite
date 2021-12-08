@@ -6,7 +6,7 @@ PAGE BUILT BY: JENNIFER
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import CartContents from "./CartContents";
+import CartContents from "../components/CartContents";
 
 export default function Carts() {
   const [carts, setCarts] = useState([]);
