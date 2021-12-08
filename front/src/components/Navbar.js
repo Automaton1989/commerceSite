@@ -10,7 +10,7 @@ import logo from "../images/pet-food.png";
 
 function Navbar({ user, setUser }) {
   let navigate = useNavigate();
-
+  
   const handleLogout = async () => {
     const resRaw = await fetch("api/userLogout");
     const res = await resRaw.json();
@@ -19,7 +19,7 @@ function Navbar({ user, setUser }) {
       alert("You've successfully logged out");
       navigate("/");
     }
-  };
+  };  
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
@@ -77,8 +77,8 @@ function Navbar({ user, setUser }) {
             </>
           )}
           <Link to="/cart" className="ml-auto">
-            <button type="button" className="btn btn-light">
-              <i className="fas fa-cart-plus" />
+            <button type="button" className="btn btn-light" tabIndex="-1">
+              <i className="fas fa-cart-plus"/>
               cart
             </button>
           </Link>
