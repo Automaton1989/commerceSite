@@ -172,34 +172,31 @@ function Products() {
           </form>
         </div>
       </div>
+      <div className="py-4 container">
       <div className="row">
         {products.map(function (product, index) {
           return (
             <div
               key={index}
-              className="products col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12"
+              className="products col-9 col-md-6 col-lg-3 col-xs-12"
             >
               <div className="card">
+                <Link to={`/product/${product._id}`} aria-current="page">
                 <img
                   className="card-img-top"
                   src={product.src}
                   alt={`${product.name}`}
                 />
+                </Link>
                 <div className="card-body">
                   <h2 className="card-title">{product.name}</h2>
                 </div>
-                <p className="card-text">{product.price}</p>
-                <Link
-                  to={`/product/${product._id}`}
-                  className="nav-link btn text-light"
-                  aria-current="page"
-                >
-                  View Product
-                </Link>
+                <p className="card-text">${product.price}</p>
               </div>
             </div>
           );
         })}
+      </div>
       </div>
     </div>
   );

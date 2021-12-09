@@ -27,7 +27,7 @@ export default function Carts() {
 
 function EmptyCart() {
   return (
-    <div className="container">
+    <div className="container" role="main">
       <div className="row">
         <div className="col-10 mx-auto text-center carts">
           <h1>Your cart is currently empty</h1>

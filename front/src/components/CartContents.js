@@ -55,14 +55,14 @@ export default function CartContents({ carts, setCarts }) {
 
   return (
     <>
-      <div className="container">
+      <div className="container" role="banner">
         <div className="row">
           <div className="col-10 mx-auto text-center carts">
             <h1>Your Cart</h1>
           </div>
         </div>
       </div>
-      <div className="container-fluid carts-bottom">
+      <div className="container-fluid carts-bottom" role="main">
         <div className="text-center d-none d-lg-block carts">
           <div className="row">
             <div className="col-10 mx-auto col-lg-2">

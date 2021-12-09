@@ -13,6 +13,32 @@ code {
     monospace;
 }
 
+/*Sign in and register*/
+.section-breaker {
+  overflow: hidden;
+  text-align: center;
+}
+
+.section-breaker:before, .section-breaker:after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.section-breaker:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.section-breaker:after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+
 /* Navbar  */
 .navbar {
   background-color: #6c119c;
@@ -55,12 +81,12 @@ code {
 }
 
 .products {
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .card img {
-  width: 100%;
-  height: 350px;
+  width: 250px;
+  height: 270px;
 }
 
 .card h2 {
@@ -79,25 +105,25 @@ code {
 }
 
 .card .btn {
-  background-color: #ff9686;
-  border-color: #ff9686;
+  background-color: #6c119c;
+  border-color: #6c119c;
   border-radius: 0px;
   color: #fcf0e5;
 }
 
 .card .btn:hover {
-  background-color: #cd7568;
-  border-color: #cd7568;
+  background-color: #35044F;
+  border-color: #35044F;
   color: #fcf0e5;
 }
 .btn-color {
-  background-color: #ff9686;
-  border-color: #ff9686;
+  background-color: #6c119c;
+  border-color: #6c119c;
   color: #fcf0e5;
 }
 .btn-color:hover {
-  background-color: #cd7568;
-  border-color: #cd7568;
+  background-color: #35044F;
+  border-color: #35044F;
   color: #fcf0e5;
 }
 .btn-block {
@@ -105,11 +131,13 @@ code {
 }
 .link {
   text-decoration: none;
-  color: #ff9686;
+  color: #6B119C;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .link:hover {
-  color: #cd7568;
+  color: #35044F;
 }
 
 .title {
