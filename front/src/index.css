@@ -39,6 +39,25 @@ code {
   margin-right: -50%;
 }
 
+.link {
+  text-decoration: none;
+  color: #6B119C;
+}
+
+.link:hover {
+  color: #35044F;
+}
+
+.link-big {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.title {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* Navbar  */
 .navbar {
   background-color: #6c119c;
@@ -128,21 +147,6 @@ code {
 }
 .btn-block {
   width: 100%;
-}
-.link {
-  text-decoration: none;
-  color: #6B119C;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.link:hover {
-  color: #35044F;
-}
-
-.title {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 .search-products {

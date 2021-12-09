@@ -12,7 +12,7 @@ function Login({ setUser }) {
             <div className="py-4">
               <span className="section-breaker">or</span>
               <p>Not Register?</p>
-              <Link className="link" to="/register">
+              <Link className="link link-big" to="/register">
                 Create an account here
               </Link>
             </div>
