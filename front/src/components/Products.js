@@ -76,7 +76,9 @@ function Products() {
     event.preventDefault();
     const dog = document.getElementById("Input-Check-Dog");
     const cat = document.getElementById("Input-Check-Cat");
-    const inputFilters = [dog, cat];
+    const food = document.getElementById("Input-Check-Food");
+    const toy = document.getElementById("Input-Check-Toy");
+    const inputFilters = [dog, cat, food, toy];
     let filterOptions = []
     for(let i = 0; i < inputFilters.length; i++) {
       if (inputFilters[i].checked) {
@@ -84,23 +86,11 @@ function Products() {
       }
     }
 
-    if(filterOptions.length === 0) {
+    if(filterOptions.length === 0 || filterOptions.length === inputFilters.length) {
       filterOptions = [""];
     }
 
     setFilter(filterOptions);
-    /*
-
-    if(!dog.checked && !cat.checked) {
-      setFilter([""])
-    } else if(dog.checked && !cat.checked) {
-      setFilter(["dog"]);
-    } else if(!dog.checked && cat.checked) {
-      setFilter(["cat"])
-    } else {
-      setFilter(["dog", "cat"]);
-    }
-    */
   }
 
   /*
@@ -127,37 +117,79 @@ function Products() {
       <div className = "filter-products row">
         <div className = "col-12">
           <form onSubmit={handleFilter}>
-            <div className = "row">
-              <div className = "offset-3 col-1">
-                <div className = "form-check">
-                  <input 
-                    className = "form-check-input"
-                    type = "checkbox"
-                    value = "dog"
-                    id = "Input-Check-Dog"
-                  />
-                  <label 
-                    className = "form-check-label"
-                    htmlFor = "Input-Check-Dog"
-                  >
-                  Dogs
-                  </label>
+            <div className = "col-6 filter-boxes filter-boxes-left">
+              <div className = "row">
+                <div className = "col-1">
+                  <div className = "form-check">
+                    <input 
+                      className = "form-check-input"
+                      type = "checkbox"
+                      value = "dog"
+                      id = "Input-Check-Dog"
+                    />
+                    <label 
+                      className = "form-check-label"
+                      htmlFor = "Input-Check-Dog"
+                    >
+                    Dogs
+                    </label>
+                  </div>
                 </div>
               </div>
-              <div className = "col-1">
-                <div className = "form-check">
-                  <input 
-                    className = "form-check-input"
-                    type = "checkbox"
-                    value = "cat"
-                    id = "Input-Check-Cat"
-                  />
-                  <label 
-                    className = "form-check-label"
-                    htmlFor = "Input-Check-Cat"
-                  >
-                  Cats
-                  </label>
+              <div className = "row">
+                <div className = "col-1">
+                  <div className = "form-check">
+                    <input 
+                      className = "form-check-input"
+                      type = "checkbox"
+                      value = "cat"
+                      id = "Input-Check-Cat"
+                    />
+                    <label 
+                      className = "form-check-label"
+                      htmlFor = "Input-Check-Cat"
+                    >
+                    Cats
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className = "col-6 filter-boxes">
+              <div className = "row">
+                <div className = "col-1">
+                  <div className = "form-check">
+                    <input 
+                      className = "form-check-input"
+                      type = "checkbox"
+                      value = "food"
+                      id = "Input-Check-Food"
+                    />
+                    <label 
+                      className = "form-check-label"
+                      htmlFor = "Input-Check-Food"
+                    >
+                    Food
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className = "row">
+                <div className = "col-1">
+                  <div className = "form-check">
+                    <input 
+                      className = "form-check-input"
+                      type = "checkbox"
+                      value = "toy"
+                      id = "Input-Check-Toy"
+                    />
+                    <label 
+                      className = "form-check-label"
+                      htmlFor = "Input-Check-Toy"
+                    >
+                    Toys
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className = "col-2">

@@ -17,9 +17,7 @@ function SingleProduct() {
 	};
 
 	const [product, setState] = useState([]);
-	const [productReview, setProductReview] = useState({})
-	const [addRatingType, setRatingType] = useState(["Choose Rating", "1", "2", "3", "4", "5"])
-	const [addContent, setContent] = useState({content: ""});
+	const [productReviews, setProductReview] = useState([])
 	const [error, setError] = useState("")
 
 	useEffect(() => {
@@ -27,8 +25,10 @@ function SingleProduct() {
 			try {
 				const response = await fetch(`/api/product/data/${id}`);
 				const json = await response.json();
-				console.log("PRODUCT: ", json);
+				console.log("PRODUCT: ", json.data);
+				console.log("REVIEWS: ", json.reviews)
 				setState(json.data);
+				setProductReview(json.reviews);
 			} catch (e) {
 				console.log("Error", e);
 			}
@@ -78,111 +78,29 @@ function SingleProduct() {
 		}, 3000)
 	}
 
-	/* FOR PROFESSOR */
-
-	/*
-
-	How to replicate:
-	-> Project is using Mongodb, Node, Express, React obviously.  our dependencies are:
-	"bcrypt": "^5.0.1",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "dotenv": "^10.0.0",
-    "eslint": "7.11.0",
-    "express": "~4.16.1",
-    "express-session": "^1.17.2",
-    "mongodb": "^4.1.4",
-    "morgan": "~1.9.1",
-    "nodemon": "^2.0.15"
-
-    React Dependencies are:
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "bootstrap": "^5.1.3",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.0.2",
-    "react-dom": "^17.0.2",
-    "react-router": "^6.0.2",
-    "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
-
-    Currently, I'm just working on the front end side of the form, and the issues im having is getting the textarea to not lose
-    focus when adding a subsequent character.
-
-    All relevant functions and front end rendering is below.  The section which I need help on is rendering into the main component for this 
-    page.  This currently is not processing data to the server, it's just a front end issue right now.
-
-    Thank you! If you need any other notes, please let me know.  This review section is not dependent on the main product being rendered in this page
-    and could be seperated without problems.
-
-	*/
-
-	async function addComment(event) {
-		event.preventDefault();
-		let review = document.getElementById("Input-Select");
-		if(review.value === "0") {
-			setError("Please give this product a rating!")
-			return;
-		}
-		if(!addContent.content) {
-			setError("Please write your review content!");
-			return;
-		}
-		console.log("REVIEW REQUIREMENTS MET!");
-		console.log(review.value);
-		console.log(addContent.content)
-	}
-
-	const Add = addRatingType.map(Add => Add)
-	const handleRatingChange = (e) => {
-		console.log((addRatingType[e.target.value]))
-	}
-
 	function Review() {
 		return (
-			<div className = "row">
-				<div className = "col-12">
-					<h3>Product Reviews</h3>
-				</div>
-				<div className = "col-12">
-					<h3>Add Review</h3>
-					<div className = "form-group register-margin headup">
-						<div className = "mb-3">{error}</div>
+				<div className = "py-4 container">
+					<div className = "row">
+						<div className = "col-12">
+							<h3>Product Reviews</h3>
+						</div>
 					</div>
-					<form onSubmit={addComment}>
-						<div className = "form-group">
-							<select 
-								className = "form-select mb-3"
-								id = "Input-Select"
-								name = "select"
-				            	onChange={e => handleRatingChange(e)}
+					{productReviews.map(function (review, index) {
+						return (
+							<div
+								key = {"review: ", index}
+								className = "row"
 							>
-							{
-								Add.map((address, key) => <option value = {key} key = {key}>{address}</option>)
-							}
-							</select>
-						</div>
-						<div className = "form-group">
-							<label htmlFor="content">Content</label>
-							<textarea 
-								className = "form-control" 
-								name = "content"
-								id = "Input-Content"
-								rows = "3"
-								type="text"
-	            				onChange={(e) => setContent({...addContent, content: e.target.value})}
-	            				value = {addContent.content}
-							/>
-						</div>
-						<button type = "submit" className = "btn btn-color btn-block mt-2">
-							Add Review
-						</button>
-					</form>
-				</div>
-			</div>
+								<div className = "col-12">
+									<h3> {review.username} </h3>
+									<h5> {review.rating} </h5>
+									<p> {review.content} </p>
+								</div>
+							</div>
+						);
+					})}
+					</div>
 		)
 	}
 
@@ -205,7 +123,7 @@ function SingleProduct() {
 					<img src={product.src} alt={`${product.name}`} />
 				</div>
 				<div className="col-6">
-					<h3>Price: ${product.price}</h3>
+					<h2>Price: ${product.price}</h2>
 					<p>
 						<strong>Description: </strong>
 						{product.description}

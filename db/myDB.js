@@ -11,6 +11,7 @@ const db = client.db("commercialSite");
 const users = db.collection("users");
 const products = db.collection("products");
 const carts = db.collection("carts");
+const reviews = db.collection("comments");
 
 /* 
 
@@ -114,7 +115,7 @@ FUNCTION BUILT BY: MATTHEW
 
 async function getProductsQuery(filter) {
   await client.connect();
-  const res = await products.find({category: {$in : filter}}).toArray();
+  const res = await products.find({category: {$all : filter}}).toArray();
   try {
     return res;
   } catch(e) {
@@ -132,17 +133,30 @@ FUNCTION BUILT BY: MATTHEW
 
 async function getProduct(id) {
   await client.connect();
+  let product;
+  let product_reviews;
   try {
-    const product = await products.findOne({"_id": new ObjectId(id)});
-    return {product: product, msg: "success"};
+    product = await products.findOne({"_id": new ObjectId(id)});
   } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    product_reviews = await reviews.find({product: product.name}).toArray();
+  } catch(e) {
+    console.log(e);
+  }
+
+  try {
+    return {product: product, reviews: product_reviews, msg: "success"};
+  } catch(e) {
     console.log(e);
   } finally {
     client.close();
   }
 }
 
-/* 
+/*
 
 FUNCTION BUILT BY: MATTHEW
 
@@ -240,5 +254,5 @@ module.exports = {
   userCart,
   deleteProduct,
   addProductToCart,
-  changeQuantity
+  changeQuantity,
 };

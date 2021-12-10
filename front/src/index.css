@@ -244,6 +244,20 @@ code {
   text-align: left;
 }
 
+.filter-products {
+  border: 0.5px black solid;
+  background-color: white;
+  padding: 1rem;
+}
+
+.filter-boxes {
+  display: inline-block;
+}
+
+.filter-boxes-left {
+  vertical-align: top;
+}
+
 /* footer setting  */
 footer {
   text-align: center;

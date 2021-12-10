@@ -117,12 +117,13 @@ router.get("/product/data/:id", async (req, res) => {
     const productId = req.params.id;
     const myProduct = await myDB.getProduct(productId);
     if (myProduct.msg === "success") {
-      res.send({ data: myProduct.product });
+      res.send({ data: myProduct.product, reviews: myProduct.reviews });
     }
   } catch (e) {
     res.status(400).send({ err: e });
   }
 });
+
 
 /* 
 
