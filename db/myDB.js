@@ -178,12 +178,12 @@ async function addProductToCart(productInfo, user) {
           userName: newUser.userName,
           price: product.price,
           name: product.name,
-          number: 1,
+          number: productInfo.quantity,
           image: product.src
         };
         await carts.insertOne(newData);
       } else {
-        let newVal = checkCart.number + 1;
+        let newVal = checkCart.number + productInfo.quantity;
         await carts.updateOne({"_id": checkCart._id}, {$set: {"number": newVal}});
       }
       return {msg : "success"};
