@@ -47,7 +47,7 @@ function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleRegister} className="font-setting">
+    <form onSubmit={handleRegister} className="font-setting" title="register form">
       <div className="form-group">
         <div className="mb-3">
           <label htmlFor="Input-FirstName"> First Name </label>
@@ -55,7 +55,7 @@ function RegisterForm() {
             type="firstName"
             className="form-control"
             id="Input-FirstName"
-            aria-describedby="firstName"
+            aria-describedby="Input-FirstName"
             name="firstName"
             onChange={(e) => {
               setUserInfo({ ...userInfo, firstName: e.target.value });
@@ -70,7 +70,7 @@ function RegisterForm() {
             type="lastName"
             className="form-control"
             id="Input-LastName"
-            aria-describedby="lastName"
+            aria-describedby="Input-LastName"
             name="lastName"
             onChange={(e) => {
               setUserInfo({ ...userInfo, lastName: e.target.value });
@@ -85,7 +85,7 @@ function RegisterForm() {
             type="userName"
             className="form-control"
             id="Input-UserName"
-            aria-describedby="userName"
+            aria-describedby="Input-UserName"
             name="userName"
             onChange={(e) => {
               setUserInfo({ ...userInfo, userName: e.target.value });
@@ -100,7 +100,7 @@ function RegisterForm() {
             type="email"
             className="form-control"
             id="Input-Email"
-            aria-describedby="emailHelp"
+            aria-describedby="Input-Email"
             name="email"
             onChange={(e) => {
               setUserInfo({ ...userInfo, email: e.target.value });
@@ -117,6 +117,7 @@ function RegisterForm() {
             type="password"
             className="form-control"
             id="Input-Password"
+            aria-describedby="Input-Password"
             name="pwd"
             onChange={(e) => {
               setUserInfo({ ...userInfo, pwd: e.target.value });

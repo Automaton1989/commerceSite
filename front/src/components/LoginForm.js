@@ -6,7 +6,7 @@ PAGE BUILT BY: MATTHEW
 
 import "../App.css";
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ setUser }) {
   let navigate = useNavigate();

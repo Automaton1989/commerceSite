@@ -54,12 +54,12 @@ function App() {
       setCarts(res.userCart);
     };
     fetchCartData();
-  }, []);
+  }, [user]);
 
   return (
     <Router>
       <React.Fragment>
-        <Navbar user={user} setUser={setUser} carts={carts}/>
+        <Navbar user={user} setUser={setUser} carts={carts} />
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>

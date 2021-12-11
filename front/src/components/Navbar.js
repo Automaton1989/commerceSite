@@ -83,13 +83,12 @@ function Navbar({ user, setUser, carts }) {
                 className="fa fa-sign-out logout"
                 aria-hidden="true"
                 onClick={handleLogout}
-              ></i>
+              >Sign out</i>
             </>
           )}
           <Link to="/cart" className="ml-auto">
-            <button type="button" className="btn cart-btn" tabIndex="-1">
-              <i className="fas fa-cart-plus"/>
-              cart {number}
+            <button title="Shopping cart button" type="button" className="btn cart-btn" tabIndex="-1">
+              <i className="fas fa-cart-plus" > cart {number}</i>
             </button>
           </Link>
         </div>

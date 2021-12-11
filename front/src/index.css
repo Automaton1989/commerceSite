@@ -75,11 +75,11 @@ code {
 
 .logout {
   padding-right: 15px;
-  color: #dddddd;
+  color: #ffe484;
   align-self: center;
 }
 .logout:hover {
-  color: #cd7568;
+  color: #F29F05;
 }
 
 .cart-btn {

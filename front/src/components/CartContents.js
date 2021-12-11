@@ -27,7 +27,7 @@ export default function CartContents({ carts, setCarts }) {
     calculatePrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carts]);
-
+/*
   async function deleteCart() {
       try {
         await (
@@ -37,7 +37,7 @@ export default function CartContents({ carts, setCarts }) {
         console.log(e);
       }
   }
-
+*/
   async function deleteProduct({ item }) {
     const rawData = await (
       await fetch(`/api/user/cart/deleteProduct/${item._id}`)
