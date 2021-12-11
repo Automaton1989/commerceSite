@@ -44,7 +44,7 @@ function SingleProduct() {
 		event.preventDefault();
 
 		const quantity = document.getElementById("Input-Quantity-Product");
-		if(quantity.value < 1 || quantity.value > 100) {
+		if(quantity.value > 100) {
 			displayMessage({msg: "Enter a valid quantity!"});
 			return;
 		} else {
@@ -53,6 +53,7 @@ function SingleProduct() {
 
 		const data = {
 			id: product._id,
+			quantity: quantity.value
 		};
 
 		const options = {
@@ -64,7 +65,7 @@ function SingleProduct() {
 
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
-		displayMessage({msg: "Successful add to the cart" || cartJson.msg})
+		displayMessage({msg: "Congratulations! You've successfully added " + product.name + " to the cart!" || cartJson.msg})
 	}
 
 	function displayMessage(newMessage) {
@@ -140,6 +141,7 @@ function SingleProduct() {
 									className = "form-control"
 									id = "Input-Quantity-Product"
 									name = "quantity"
+									min="0"
 								/>
 								</div>
 							</div>
