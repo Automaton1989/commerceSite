@@ -15,7 +15,7 @@ function Navbar({ user, setUser, carts }) {
   useEffect(() => {
     const calculateNum = () => {
       let num = 0;
-      carts.map((item) => (num += item.number));
+      carts.map((item) => (num += parseInt(item.number)));
       setNumber(num);
     };
     calculateNum();
