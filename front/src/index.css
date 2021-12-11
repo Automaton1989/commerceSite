@@ -82,6 +82,20 @@ code {
   color: #cd7568;
 }
 
+.cart-btn {
+  color: #ffe484;
+  background-color: #6c119c;
+  border-color: #ffe484;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid;
+}
+
+.cart-btn:hover{
+  color: #6c119c;
+  background-color: #ffe484;
+}
+
 /* Home  */
 .carousal-text {
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
@@ -216,7 +230,6 @@ code {
   font-family: "Ubuntu", sans-serif;
   text-align: right;
   font-size: 22px;
-  color: #BD45BF;
   word-spacing: 5px;
 }
 .carts-bottom {
@@ -256,6 +269,20 @@ code {
 
 .filter-boxes-left {
   vertical-align: top;
+}
+
+.btn-cart {
+  color: #6c119c;
+  background-color: #f5f5f5;
+  border-color: #6c119c;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 2px solid;
+}
+
+.btn-cart:hover {
+  color: #f5f5f5;
+  background-color: #6c119c;
 }
 
 /* footer setting  */

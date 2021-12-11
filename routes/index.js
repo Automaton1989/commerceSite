@@ -96,7 +96,7 @@ router.get("/products/filter", async function (req, res) {
     if(newFilter === "") {
       products = await myDB.getProducts();
     } else {
-      newFilter = newFilter.split(",")
+      newFilter = newFilter.split(",");
       products = await myDB.getProductsQuery(newFilter);
     }
     console.log("SENDING DATA BACK");
@@ -163,6 +163,18 @@ router.get("/user/cart/:id/:val", async (req, res) => {
     const changeQuantity = await myDB.changeQuantity(id, val);
     res.send({ change: "success" });
   } catch (e) {
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+});
+
+router.get("/user/cart/deleteCart", async (req, res) => {
+  const user = req.session.username;
+  console.log("user in index:", user);
+  try {
+    const deleteCart = await myDB.deleteCart(user);
+    res.send({delete: "success"});
+  }catch (e) {
     console.error("Error", e);
     res.status(400).send({ err: e });
   }

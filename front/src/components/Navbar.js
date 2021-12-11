@@ -4,12 +4,22 @@ PAGE BUILT BY: JENNIFER
 
 */
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
 
-function Navbar({ user, setUser }) {
+function Navbar({ user, setUser, carts }) {
   let navigate = useNavigate();
+  let [number, setNumber] = useState(0);
+
+  useEffect(() => {
+    const calculateNum = () => {
+      let num = 0;
+      carts.map((item) => num+=item.number);
+      setNumber(num);
+    };
+    calculateNum();
+  }, [carts]);
   
   const handleLogout = async () => {
     const resRaw = await fetch("api/userLogout");
@@ -77,9 +87,9 @@ function Navbar({ user, setUser }) {
             </>
           )}
           <Link to="/cart" className="ml-auto">
-            <button type="button" className="btn btn-light" tabIndex="-1">
+            <button type="button" className="btn cart-btn" tabIndex="-1">
               <i className="fas fa-cart-plus"/>
-              cart
+              cart {number}
             </button>
           </Link>
         </div>

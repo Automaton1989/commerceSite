@@ -237,6 +237,23 @@ async function changeQuantity(id, val) {
   try {
     let value = parseInt(val);
     await carts.updateOne({_id: ObjectId(id)}, {$inc:{number:value}});
+    const newCart = await carts.findOne({_id: ObjectId(id)});
+    console.log("new car:",newCart);
+    if (newCart.number === 0) {
+      await carts.remove({_id: ObjectId(id)}, true);
+    }
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
+async function deleteCart(user) {
+  await client.connect();
+  try {
+    console.log("delete user cart:", user);
+    await carts.remove({username: user}, false);
   } catch (e) {
     console.log(e);
   } finally {
@@ -255,4 +272,5 @@ module.exports = {
   deleteProduct,
   addProductToCart,
   changeQuantity,
+  deleteCart
 };

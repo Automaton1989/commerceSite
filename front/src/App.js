@@ -35,6 +35,7 @@ function GoHome() {
 
 function App() {
   const [user, setUser] = useState("");
+  const [carts, setCarts] = useState([]);
 
   useEffect(() => {
     async function checkUser() {
@@ -42,14 +43,23 @@ function App() {
       const res = await fetchData.json();
       setUser(res.username);
     }
-
     checkUser();
   }, [])
+
+  /* GET THIS USER'S CART INFO */
+  useEffect(() => {
+    const fetchCartData = async () => {
+      const rawData = await fetch("/api/user/cart");
+      const res = await rawData.json();
+      setCarts(res.userCart);
+    };
+    fetchCartData();
+  }, []);
 
   return (
     <Router>
       <React.Fragment>
-        <Navbar user={user} setUser={setUser} />
+        <Navbar user={user} setUser={setUser} carts={carts}/>
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
@@ -61,7 +71,7 @@ function App() {
               exact
               element={<SingleProduct />}
             ></Route>
-            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/cart" element={<Cart carts={carts} setCarts={setCarts}/>}></Route>
           </Routes>
           <Footer />
         </div>

@@ -4,24 +4,12 @@ PAGE BUILT BY: JENNIFER
 
 */
 
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CartContents from "../components/CartContents";
 
-export default function Carts() {
-  const [carts, setCarts] = useState([]);
+export default function Carts({carts, setCarts}) {
 
-  /* GET THIS USER'S CART INFO */
-  useEffect(() => {
-    const fetchCartData = async () => {
-      const rawData = await fetch("/api/user/cart");
-      const res = await rawData.json();
-      setCarts(res.userCart);
-    };
-    fetchCartData();
-  }, []);
-
-  if (carts.length !== 0) return <CartContents carts={carts} setCarts={setCarts} />;
+  if (carts.length !== 0) return <CartContents carts={carts} setCarts={setCarts}/>;
   return <EmptyCart />;
 }
 

@@ -5,6 +5,8 @@ PAGE BUILT BY: JENNIFER
 */
 
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Payment from "./Payment";
 
 export default function CartContents({ carts, setCarts }) {
   const [sum, setSum] = useState({ subtotal: 0, tax: 0, total: 0 });
@@ -26,6 +28,16 @@ export default function CartContents({ carts, setCarts }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carts]);
 
+  async function deleteCart() {
+      try {
+        await (
+          await fetch("/api/user/cart/deleteCart")
+        ).json();
+      } catch (e) {
+        console.log(e);
+      }
+  }
+
   async function deleteProduct({ item }) {
     const rawData = await (
       await fetch(`/api/user/cart/deleteProduct/${item._id}`)
@@ -39,7 +51,7 @@ export default function CartContents({ carts, setCarts }) {
     }
   }
 
-  async function changeAmount({item}, val) {
+  async function changeAmount({ item }, val) {
     console.log("start val:", val);
     const rawData = await fetch(`/api/user/cart/${item._id}/${val}`);
     const res = await rawData.json();
@@ -84,12 +96,17 @@ export default function CartContents({ carts, setCarts }) {
               <p>Total</p>
             </div>
           </div>
-        </div> 
+        </div>
         {carts.map(function (item) {
           return (
             <div key={item._id} className="row text-center cart-item">
               <div className="col-10 mx-auto col-lg-2 cart-item">
-                <img src={item.image} style={{width:"5rem", height:"5rem"}} className="img-fluid" alt={item.name} />
+                <img
+                  src={item.image}
+                  style={{ width: "5rem", height: "5rem" }}
+                  className="img-fluid"
+                  alt={item.name}
+                />
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
                 {item.name}
@@ -98,9 +115,19 @@ export default function CartContents({ carts, setCarts }) {
                 {item.price}
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
-                <span className="btn"><i className="fas fa-minus" onClick={() => changeAmount({ item, }, -1)}></i></span>
+                <span className="btn">
+                  <i
+                    className="fas fa-minus"
+                    onClick={() => changeAmount({ item }, -1)}
+                  ></i>
+                </span>
                 {item.number}
-                <span className="btn"><i className="fas fa-plus" onClick={() => changeAmount({ item }, 1)}></i></span>
+                <span className="btn">
+                  <i
+                    className="fas fa-plus"
+                    onClick={() => changeAmount({ item }, 1)}
+                  ></i>
+                </span>
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
                 <i
@@ -114,6 +141,11 @@ export default function CartContents({ carts, setCarts }) {
             </div>
           );
         })}
+        <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto pb-3 total">
+          <Link to="/products">
+            <button className="btn btn-lg btn-cart">Continue Shopping</button>
+          </Link>
+        </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Subtotal: ${sum.subtotal}</strong>
         </div>
@@ -122,6 +154,9 @@ export default function CartContents({ carts, setCarts }) {
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
           <strong>Total: ${sum.total}</strong>
+        </div>
+        <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
+          <Payment total={sum.total} />
         </div>
       </div>
     </>
