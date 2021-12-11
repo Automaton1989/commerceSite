@@ -26,7 +26,6 @@ function Navbar({ user, setUser, carts }) {
     const res = await resRaw.json();
     if (res.logout === "success") {
       setUser("");
-      alert("You've successfully logged out");
       navigate("/");
     }
   };  

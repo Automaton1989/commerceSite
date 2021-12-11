@@ -51,7 +51,7 @@ function App() {
     const fetchCartData = async () => {
       const rawData = await fetch("/api/user/cart");
       const res = await rawData.json();
-      setCarts(res.userCart);
+      res.userCart ? setCarts(res.userCart) : setCarts([]);
     };
     fetchCartData();
   }, [user]);

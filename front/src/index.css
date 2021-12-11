@@ -285,6 +285,20 @@ code {
   background-color: #6c119c;
 }
 
+.checkout {
+  background-color: #ffe484;
+  color: #6c119c;
+  border-radius: 15px;
+  border: 2px solid #ffe484;
+  box-shadow: 6px 4px 1px 0px rgba(0, 0, 255, .2);
+}
+
+.checkout:hover {
+  background-color: #6c119c;
+  color: #ffe484;
+  border: 2px solid #6c119c;
+}
+
 /* footer setting  */
 footer {
   text-align: center;

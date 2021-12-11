@@ -6,10 +6,11 @@ PAGE BUILT BY: JENNIFER
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Payment from "./Payment";
+import { Toast } from 'react-bootstrap';
 
 export default function CartContents({ carts, setCarts }) {
   const [sum, setSum] = useState({ subtotal: 0, tax: 0, total: 0 });
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const calculatePrice = () => {
@@ -27,17 +28,7 @@ export default function CartContents({ carts, setCarts }) {
     calculatePrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [carts]);
-/*
-  async function deleteCart() {
-      try {
-        await (
-          await fetch("/api/user/cart/deleteCart")
-        ).json();
-      } catch (e) {
-        console.log(e);
-      }
-  }
-*/
+
   async function deleteProduct({ item }) {
     const rawData = await (
       await fetch(`/api/user/cart/deleteProduct/${item._id}`)
@@ -156,8 +147,13 @@ export default function CartContents({ carts, setCarts }) {
           <strong>Total: ${sum.total}</strong>
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
-          <Payment total={sum.total} />
+          <button className="btn btn-lg checkout" onClick={() => setShow(true)}>Check out</button>
         </div>
+      </div>
+      <div className="container">
+        <Toast onClose={() => setShow(false)} show={show} delay={4000} autohide>
+          <Toast.Body>Congratulation! You've successfully checked out!</Toast.Body>
+        </Toast>
       </div>
     </>
   );
