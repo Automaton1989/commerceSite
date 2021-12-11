@@ -6,7 +6,7 @@ PAGE BUILT BY: JENNIFER
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Toast } from 'react-bootstrap';
+import { Toast } from "react-bootstrap";
 
 export default function CartContents({ carts, setCarts }) {
   const [sum, setSum] = useState({ subtotal: 0, tax: 0, total: 0 });
@@ -106,14 +106,14 @@ export default function CartContents({ carts, setCarts }) {
                 {item.price}
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
-                <span className="btn">
+                <span className="btn" tabIndex="0">
                   <i
                     className="fas fa-minus"
                     onClick={() => changeAmount({ item }, -1)}
                   ></i>
                 </span>
                 {item.number}
-                <span className="btn">
+                <span className="btn" tabIndex="0">
                   <i
                     className="fas fa-plus"
                     onClick={() => changeAmount({ item }, 1)}
@@ -121,10 +121,12 @@ export default function CartContents({ carts, setCarts }) {
                 </span>
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
-                <i
-                  className="fas fa-trash remove"
-                  onClick={() => deleteProduct({ item })}
-                ></i>
+                <span className="btn" tabIndex="0">
+                  <i
+                    className="fas fa-trash remove"
+                    onClick={() => deleteProduct({ item })}
+                  ></i>
+                </span>
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
                 {(item.price * item.number).toFixed(2)}
@@ -147,12 +149,16 @@ export default function CartContents({ carts, setCarts }) {
           <strong>Total: ${sum.total}</strong>
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
-          <button className="btn btn-lg checkout" onClick={() => setShow(true)}>Check out</button>
+          <button className="btn btn-lg checkout" onClick={() => setShow(true)}>
+            Check out
+          </button>
         </div>
       </div>
       <div className="container">
         <Toast onClose={() => setShow(false)} show={show} delay={4000} autohide>
-          <Toast.Body>Congratulation! You've successfully checked out!</Toast.Body>
+          <Toast.Body>
+            Congratulation! You've successfully checked out!
+          </Toast.Body>
         </Toast>
       </div>
     </>

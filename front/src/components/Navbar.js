@@ -4,7 +4,7 @@ PAGE BUILT BY: JENNIFER
 
 */
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
 
@@ -15,12 +15,12 @@ function Navbar({ user, setUser, carts }) {
   useEffect(() => {
     const calculateNum = () => {
       let num = 0;
-      carts.map((item) => num+=item.number);
+      carts.map((item) => (num += item.number));
       setNumber(num);
     };
     calculateNum();
   }, [carts]);
-  
+
   const handleLogout = async () => {
     const resRaw = await fetch("api/userLogout");
     const res = await resRaw.json();
@@ -28,7 +28,7 @@ function Navbar({ user, setUser, carts }) {
       setUser("");
       navigate("/");
     }
-  };  
+  };
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
@@ -56,18 +56,31 @@ function Navbar({ user, setUser, carts }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-md-0">
             <li className="nav-item">
-              <Link to="/" className="nav-link" aria-current="true" style={{color: "#F2F2F2"}}>
+              <Link
+                to="/"
+                className="nav-link"
+                aria-current="true"
+                style={{ color: "#F2F2F2" }}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/products" className="nav-link" style={{color: "#F2F2F2"}}>
+              <Link
+                to="/products"
+                className="nav-link"
+                style={{ color: "#F2F2F2" }}
+              >
                 All Products
               </Link>
             </li>
             {!user && (
               <li className="nav-item">
-                <Link to="/login" className="nav-link" style={{color: "#F2F2F2"}}>
+                <Link
+                  to="/login"
+                  className="nav-link"
+                  style={{ color: "#F2F2F2" }}
+                >
                   Sign in
                 </Link>
               </li>
@@ -78,16 +91,25 @@ function Navbar({ user, setUser, carts }) {
               <span className="text-white">
                 Hello, <strong>{user}</strong>
               </span>
-              <i
-                className="fa fa-sign-out logout"
-                aria-hidden="true"
-                onClick={handleLogout}
-              >Sign out</i>
+              <span className="btn" tabIndex="0">
+                <i
+                  className="fa fa-sign-out logout"
+                  aria-hidden="true"
+                  onClick={handleLogout}
+                >
+                  Sign out
+                </i>
+              </span>
             </>
           )}
           <Link to="/cart" className="ml-auto">
-            <button title="Shopping cart button" type="button" className="btn cart-btn" tabIndex="-1">
-              <i className="fas fa-cart-plus" > cart {number}</i>
+            <button
+              title="Shopping cart button"
+              type="button"
+              className="btn cart-btn"
+              tabIndex="-1"
+            >
+              <i className="fas fa-cart-plus"> cart {number}</i>
             </button>
           </Link>
         </div>
