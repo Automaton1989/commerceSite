@@ -6,7 +6,7 @@ PAGE BUILT BY: MATTHEW
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-function SingleProduct() {
+function SingleProduct({setCarts}) {
 
 	const { id } = useParams();
 
@@ -65,6 +65,10 @@ function SingleProduct() {
 
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
+		const rawData = await fetch("/api/user/cart");
+    const res = await rawData.json();
+    setCarts(res.userCart);
+
 		displayMessage({msg: "Congratulations! You've successfully added " + product.name + " to the cart!" || cartJson.msg})
 	}
 
