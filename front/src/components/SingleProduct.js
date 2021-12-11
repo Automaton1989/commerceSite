@@ -36,6 +36,61 @@ function SingleProduct({setCarts}) {
 		fetchData();
 	}, []);
 
+	function displayStars(rating) {
+		switch(rating) {
+			case 5:
+				return (
+					<div className = "review">
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+					</div>
+				)
+			case 4:
+				return (
+					<div className = "review">
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star unchecked"></span>
+					</div>
+				)
+			case 3:
+				return (
+					<div className = "review">
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star unchecked"></span>
+						<span className="fa fa-star unchecked"></span>
+					</div>
+				)
+			case 2:	
+				return (
+					<div className = "review">
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star unchecked"></span>
+						<span className="fa fa-star unchecked"></span>
+						<span className="fa fa-star unchecked"></span>
+					</div>
+				)		
+			default:
+				return (
+					<div className = "review">
+						<span className="fa fa-star checked"></span>
+						<span className="fa fa-star unchecked"></span>
+						<span className="fa fa-star unchecked"></span>
+						<span className="fa fa-star unchecked"></span>
+						<span className="fa fa-star unchecked"></span>
+					</div>
+				)	
+		}
+	}
+
 	useEffect(() => {
   		window.scrollTo(0, 0)
 	}, [])
@@ -66,8 +121,8 @@ function SingleProduct({setCarts}) {
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
 		const rawData = await fetch("/api/user/cart");
-    const res = await rawData.json();
-    setCarts(res.userCart);
+    	const res = await rawData.json();
+    	setCarts(res.userCart);
 
 		displayMessage({msg: "Congratulations! You've successfully added " + product.name + " to the cart!" || cartJson.msg})
 	}
@@ -88,7 +143,7 @@ function SingleProduct({setCarts}) {
 				<div className = "py-4 container">
 					<div className = "row">
 						<div className = "col-12">
-							<h3>Product Reviews</h3>
+							<h3 className = "review">Product Reviews</h3>
 						</div>
 					</div>
 					{productReviews.map(function (review, index) {
@@ -98,9 +153,9 @@ function SingleProduct({setCarts}) {
 								className = "row"
 							>
 								<div className = "col-12">
-									<h3> {review.username} </h3>
-									<h5> {review.rating} </h5>
-									<p> {review.content} </p>
+									<h3 className = "review"> {review.username} </h3>
+									{displayStars(review.rating)}
+									<p className = "review"> {review.content} </p>
 								</div>
 							</div>
 						);

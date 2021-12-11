@@ -271,6 +271,19 @@ code {
   vertical-align: top;
 }
 
+.filter-header {
+  text-align: left;
+  margin-left: 0.8rem;
+}
+
+.checked {
+  color: #6c119c;
+}
+
+.review {
+  text-align: left;
+}
+
 .btn-cart {
   color: #6c119c;
   background-color: #f5f5f5;

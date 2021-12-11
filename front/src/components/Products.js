@@ -78,7 +78,8 @@ function Products() {
     const cat = document.getElementById("Input-Check-Cat");
     const food = document.getElementById("Input-Check-Food");
     const toy = document.getElementById("Input-Check-Toy");
-    const inputFilters = [dog, cat, food, toy];
+    const groom = document.getElementById("Input-Check-Grooming");
+    const inputFilters = [dog, cat, food, toy, groom];
     let filterOptions = []
     for(let i = 0; i < inputFilters.length; i++) {
       if (inputFilters[i].checked) {
@@ -119,6 +120,7 @@ function Products() {
           <form onSubmit={handleFilter}>
             <div className = "col-6 filter-boxes filter-boxes-left">
               <div className = "row">
+                <h3 className = "filter-header">Animal</h3>
                 <div className = "col-1">
                   <div className = "form-check">
                     <input 
@@ -156,6 +158,7 @@ function Products() {
               </div>
             </div>
             <div className = "col-6 filter-boxes">
+              <h3 className = "filter-header">Type</h3>
               <div className = "row">
                 <div className = "col-1">
                   <div className = "form-check">
@@ -192,14 +195,32 @@ function Products() {
                   </div>
                 </div>
               </div>
-              <div className = "col-2">
-                <button 
-                  type = "submit" 
-                  className = "btn btn-color btn-sm"
-                >
-                  Filter
-                </button>
+              <div className = "row">
+                <div className = "col-1">
+                  <div className = "form-check">
+                    <input 
+                      className = "form-check-input"
+                      type = "checkbox"
+                      value = "grooming"
+                      id = "Input-Check-Grooming"
+                    />
+                    <label 
+                      className = "form-check-label"
+                      htmlFor = "Input-Check-Toy"
+                    >
+                    Grooming
+                    </label>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div className = "col-2">
+              <button 
+                type = "submit" 
+                className = "btn btn-color btn-sm"
+              >
+                Filter
+              </button>
             </div>
           </form>
         </div>
@@ -210,7 +231,7 @@ function Products() {
             return (
               <div
                 key={index}
-                className="products col-9 col-md-6 col-lg-3 col-xs-12"
+                className="products col-md-6 col-lg-4 col-xl-3 col-xs-12"
               >
                 <div className="card">
                   <Link to={`/product/${product._id}`} aria-current="page">
