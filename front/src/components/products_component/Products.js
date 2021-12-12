@@ -6,6 +6,7 @@ PAGE WORKED ON BY MATTHEW VARGAS
 
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import "./products.css";
 
 let debouncing = null;
 
@@ -184,7 +185,7 @@ function Products() {
                 </div>
               </div>
             </div>
-            <div className = "col-2">
+            <div className = "filter-button col-2">
               <button 
                 type = "submit" 
                 className = "btn btn-color btn-sm"

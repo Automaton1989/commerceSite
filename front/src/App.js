@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./page/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Products from "./components/Products";
+import Products from "./components/products_component/Products";
 import Home from "./page/Home";
 import Register from "./page/Register";
 import SingleProduct from "./components/SingleProduct";

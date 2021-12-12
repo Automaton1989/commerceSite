@@ -1,0 +1,93 @@
+/* Products  */
+.row {
+  margin: 0px;
+  padding: 0px;
+}
+
+.products {
+  margin-bottom: 2.5rem;
+}
+
+.card img {
+  width: 250px;
+  height: 270px;
+}
+
+.card h2 {
+  font-size: 18px;
+}
+
+.card .card-body {
+  height: 80px;
+  text-align: left;
+}
+
+.card .card-text {
+  text-align: left;
+  padding: 1rem;
+  margin-bottom: 0px;
+}
+
+.card .btn {
+  background-color: #6c119c;
+  border-color: #6c119c;
+  border-radius: 0px;
+  color: #fcf0e5;
+}
+
+.card .btn:hover {
+  background-color: #35044F;
+  border-color: #35044F;
+  color: #fcf0e5;
+}
+.btn-color {
+  background-color: #6c119c;
+  border-color: #6c119c;
+  color: #fcf0e5;
+}
+.btn-color:hover {
+  background-color: #35044F;
+  border-color: #35044F;
+  color: #fcf0e5;
+}
+.btn-block {
+  width: 100%;
+}
+
+.search-products {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.product-img img {
+  width: 75%;
+  height: 375px;
+}
+
+.filter-products {
+  border: 0.5px black solid;
+  background-color: white;
+  padding: 1rem;
+}
+
+.filter-boxes {
+  display: inline-block;
+}
+
+.filter-boxes-left {
+  vertical-align: top;
+}
+
+.filter-header {
+  text-align: left;
+  margin-left: 0.8rem;
+}
+
+.filter-button {
+  text-align: left;
+  margin-left: 0.8rem;
+}
+
+.form-check {
+  text-align: left;
+}
