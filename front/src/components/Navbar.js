@@ -7,10 +7,13 @@ PAGE BUILT BY: JENNIFER
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
+import { Toast } from "react-bootstrap";
+import ToastContainer from 'react-bootstrap/ToastContainer'
 
 function Navbar({ user, setUser, carts }) {
   let navigate = useNavigate();
   let [number, setNumber] = useState(0);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const calculateNum = () => {
@@ -26,11 +29,13 @@ function Navbar({ user, setUser, carts }) {
     const res = await resRaw.json();
     if (res.logout === "success") {
       setUser("");
+      await new Promise(resolve => setTimeout(resolve, 2000));
       navigate("/");
     }
   };
 
   return (
+    <div>
     <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
       <div className="container-fluid">
         <Link to="/">
@@ -95,7 +100,7 @@ function Navbar({ user, setUser, carts }) {
                 <i
                   className="fa fa-sign-out logout"
                   aria-hidden="true"
-                  onClick={handleLogout}
+                  onClick={() => {handleLogout(); setShow(true)}}
                 >
                   Sign out
                 </i>
@@ -115,6 +120,16 @@ function Navbar({ user, setUser, carts }) {
         </div>
       </div>
     </nav>
+    <div className="container">
+    <ToastContainer position="top-center">
+        <Toast onClose={() => setShow(false)} show={show} delay={2000} autohide>
+          <Toast.Body>
+            You've successfully signed out! Directing you to the home page.
+          </Toast.Body>
+        </Toast>
+        </ToastContainer>
+      </div>
+      </div>
   );
 }
 
