@@ -129,7 +129,7 @@ function RegisterForm() {
         <div className="mb-3">{error}</div>
       </div>
       <button type="submit" className="btn btn-color btn-block">
-        Submit
+        Register
       </button>
       <Link to="/login" className="link">
         Already have an account?

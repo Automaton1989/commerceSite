@@ -82,7 +82,7 @@ function LoginForm({ setUser }) {
         <div className="mb-3">{error}</div>
       </div>
       <button type="submit" className="btn btn-color btn-block">
-        Submit
+        Sign In
       </button>
     </form>
   );

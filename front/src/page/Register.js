@@ -5,7 +5,7 @@ function Register() {
     <div className="container-fluid">
       <div className="row">
         <div className="text-center col-12 carts">
-          <h1>Register</h1>
+          <h1>Create an account</h1>
           <div className="col-md-4 offset-md-4">
             <RegisterForm />
           </div>
