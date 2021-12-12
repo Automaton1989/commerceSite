@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/pet-food.png";
 import { Toast } from "react-bootstrap";
-import ToastContainer from 'react-bootstrap/ToastContainer'
+import ToastContainer from "react-bootstrap/ToastContainer";
 
 function Navbar({ user, setUser, carts }) {
   let navigate = useNavigate();
@@ -29,107 +29,115 @@ function Navbar({ user, setUser, carts }) {
     const res = await resRaw.json();
     if (res.logout === "success") {
       setUser("");
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       navigate("/");
     }
   };
 
   return (
     <div>
-    <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
-      <div className="container-fluid">
-        <Link to="/">
-          <img
-            src={logo}
-            alt="A can of dog food"
-            width="25"
-            height="25"
-            className="d-inline-block align-text-top"
-          />
-        </Link>
-        <button
-          className="navbar-toggler collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-md-0">
-            <li className="nav-item">
-              <Link
-                to="/"
-                className="nav-link"
-                aria-current="true"
-                style={{ color: "#F2F2F2" }}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/products"
-                className="nav-link"
-                style={{ color: "#F2F2F2" }}
-              >
-                All Products
-              </Link>
-            </li>
-            {!user && (
+      <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
+        <div className="container-fluid">
+          <Link to="/">
+            <img
+              src={logo}
+              alt="A can of dog food"
+              width="25"
+              height="25"
+              className="d-inline-block align-text-top"
+            />
+          </Link>
+          <button
+            className="navbar-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav me-auto mb-2 mb-md-0">
               <li className="nav-item">
                 <Link
-                  to="/login"
+                  to="/"
+                  className="nav-link"
+                  aria-current="true"
+                  style={{ color: "#F2F2F2" }}
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/products"
                   className="nav-link"
                   style={{ color: "#F2F2F2" }}
                 >
-                  Sign in
+                  All Products
                 </Link>
               </li>
+              {!user && (
+                <li className="nav-item">
+                  <Link
+                    to="/login"
+                    className="nav-link"
+                    style={{ color: "#F2F2F2" }}
+                  >
+                    Sign in
+                  </Link>
+                </li>
+              )}
+            </ul>
+            {user && (
+              <>
+                <span className="text-white">
+                  Hello, <strong>{user}</strong>
+                </span>
+                <span className="btn" tabIndex="0">
+                  <i
+                    className="fa fa-sign-out logout"
+                    aria-hidden="true"
+                    onClick={() => {
+                      handleLogout();
+                      setShow(true);
+                    }}
+                  >
+                    Sign out
+                  </i>
+                </span>
+              </>
             )}
-          </ul>
-          {user && (
-            <>
-              <span className="text-white">
-                Hello, <strong>{user}</strong>
-              </span>
-              <span className="btn" tabIndex="0">
-                <i
-                  className="fa fa-sign-out logout"
-                  aria-hidden="true"
-                  onClick={() => {handleLogout(); setShow(true)}}
-                >
-                  Sign out
-                </i>
-              </span>
-            </>
-          )}
-          <Link to="/cart" className="ml-auto">
-            <button
-              title="Shopping cart button"
-              type="button"
-              className="btn cart-btn"
-              tabIndex="-1"
-            >
-              <i className="fas fa-cart-plus"> cart {number}</i>
-            </button>
-          </Link>
+            <Link to="/cart" className="ml-auto">
+              <button
+                title="Shopping cart button"
+                type="button"
+                className="btn cart-btn"
+                tabIndex="-1"
+              >
+                <i className="fas fa-cart-plus"> cart {number}</i>
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
-    </nav>
-    <div className="container">
-    <ToastContainer position="top-center">
-        <Toast onClose={() => setShow(false)} show={show} delay={2000} autohide>
-          <Toast.Body>
-            You've successfully signed out! Directing you to the home page.
-          </Toast.Body>
-        </Toast>
+      </nav>
+      <div className="container">
+        <ToastContainer position="top-center">
+          <Toast
+            onClose={() => setShow(false)}
+            show={show}
+            delay={2000}
+            autohide
+          >
+            <Toast.Body>
+              You've successfully signed out! Directing you to the home page.
+            </Toast.Body>
+          </Toast>
         </ToastContainer>
       </div>
-      </div>
+    </div>
   );
 }
 

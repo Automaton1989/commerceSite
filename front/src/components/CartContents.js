@@ -7,6 +7,7 @@ PAGE BUILT BY: JENNIFER
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Toast } from "react-bootstrap";
+import ToastContainer from "react-bootstrap/ToastContainer";
 
 export default function CartContents({ carts, setCarts }) {
   const navigate = useNavigate();
@@ -58,16 +59,14 @@ export default function CartContents({ carts, setCarts }) {
   }
 
   async function deleteCart() {
-      try {
-        await (
-          await fetch("/api/user/cart/deleteCart")
-        ).json();
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setCarts([]);
-        navigate("/products");
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      await (await fetch("/api/user/cart/deleteCart")).json();
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setCarts([]);
+      navigate("/products");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -163,17 +162,30 @@ export default function CartContents({ carts, setCarts }) {
           <strong>Total: ${sum.total}</strong>
         </div>
         <div className="col-10 mt-2 ml-sm-5 ml-sm-5 ml-md-auto total">
-          <button className="btn btn-lg checkout" onClick={() => {deleteCart(); setShow(true)}}>
+          <button
+            className="btn btn-lg checkout"
+            onClick={() => {
+              deleteCart();
+              setShow(true);
+            }}
+          >
             Check out
           </button>
         </div>
       </div>
       <div className="container">
-        <Toast onClose={() => setShow(false)} show={show} delay={2000} autohide>
-          <Toast.Body>
-            Congratulation! You've successfully checked out!
-          </Toast.Body>
-        </Toast>
+        <ToastContainer position="middle-center">
+          <Toast
+            onClose={() => setShow(false)}
+            show={show}
+            delay={2000}
+            autohide
+          >
+            <Toast.Body>
+              Congratulation! You've successfully checked out!
+            </Toast.Body>
+          </Toast>
+        </ToastContainer>
       </div>
     </>
   );
