@@ -108,7 +108,7 @@ function SingleProduct({setCarts}) {
 
 		const data = {
 			id: product._id,
-			quantity: quantity.value
+			quantity: parseInt(quantity.value)
 		};
 
 		const options = {
