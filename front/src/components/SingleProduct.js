@@ -149,7 +149,7 @@ function SingleProduct({setCarts}) {
 					{productReviews.map(function (review, index) {
 						return (
 							<div
-								key = {"review: ", index}
+								key = {"review: " + index}
 								className = "row"
 							>
 								<div className = "col-12">
@@ -179,10 +179,10 @@ function SingleProduct({setCarts}) {
 				</div>
 			</div>
 			<div className="row">
-				<div className="product-img col-6">
+				<div className="product-img col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 					<img src={product.src} alt={`${product.name}`} />
 				</div>
-				<div className="col-6">
+				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 					<h2>Price: ${product.price}</h2>
 					<p>
 						<strong>Description: </strong>

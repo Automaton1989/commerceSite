@@ -101,7 +101,7 @@ async function getProducts() {
   try {
     return res;
   } catch(e) {
-    console.log(e)
+    console.log(e);
   } finally {
     client.close();
   }

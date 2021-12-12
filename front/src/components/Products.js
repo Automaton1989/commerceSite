@@ -25,36 +25,10 @@ function debounce(callback) {
 
 
 function Products() {
-  //const [query, setQuery] = useState("");
   const [products, setState] = useState([]);
   const [filter, setFilter] = useState([]);
-  //const inputRef = useRef();
 
-  /*
-  const onChangeQuery = (evt) => {
-    console.log("query: ", evt.target.value);
-    // if (evt.keyPressed ==="enter")
-    setQuery(evt.target.value);
-  };
-  */
-
-  /*
-  useEffect(() => {
-    const fetchData = async() => {
-      try {
-        const response = await fetch(`/api/products`);
-        const json = await response.json();
-        console.log(json);
-        setState(json.data)
-      } catch (e) {
-        console.log("Error: ", e);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-*/
+  const [checkedItems, setCheckedItems] = useState({"dog": false, "cat": false, "toy": false, "food": false, "grooming": false});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,45 +46,36 @@ function Products() {
     debounce(fetchData);
   }, [filter]);
 
+  const onChange = (e) => {
+    if(checkedItems[e.target.value] === false) {
+      setCheckedItems({
+        ...checkedItems,
+        [e.target.value]: true
+      })
+    } else {
+      console.log("true")
+      setCheckedItems({
+        ...checkedItems,
+        [e.target.value]: false
+      })
+    }
+  } 
+
   function handleFilter(event) {
     event.preventDefault();
-    const dog = document.getElementById("Input-Check-Dog");
-    const cat = document.getElementById("Input-Check-Cat");
-    const food = document.getElementById("Input-Check-Food");
-    const toy = document.getElementById("Input-Check-Toy");
-    const groom = document.getElementById("Input-Check-Grooming");
-    const inputFilters = [dog, cat, food, toy, groom];
     let filterOptions = []
-    for(let i = 0; i < inputFilters.length; i++) {
-      if (inputFilters[i].checked) {
-        filterOptions.push(inputFilters[i].value);
+    for (const key in checkedItems){
+      if(checkedItems[key] === true) {
+        filterOptions.push(key)
       }
     }
 
-    if(filterOptions.length === 0 || filterOptions.length === inputFilters.length) {
+    if(filterOptions.length === 0 || filterOptions.length === checkedItems.length) {
       filterOptions = [""];
     }
 
     setFilter(filterOptions);
   }
-
-  /*
-      <div className="search-products row">
-        <div className="col-12">
-          <label htmlFor="search">Search Products by Name: </label>
-          <input
-            type="text"
-            className="form-control"
-            id="search"
-            placeholder="search..."
-            ref={inputRef}
-            onChange={onChangeQuery}
-            value={query}
-            readOnly
-          />
-        </div>
-      </div>
-  */
 
   return (
     <div>
@@ -128,6 +93,7 @@ function Products() {
                       type = "checkbox"
                       value = "dog"
                       id = "Input-Check-Dog"
+                      onChange = {onChange}
                     />
                     <label 
                       className = "form-check-label"
@@ -146,6 +112,7 @@ function Products() {
                       type = "checkbox"
                       value = "cat"
                       id = "Input-Check-Cat"
+                      onChange = {onChange}
                     />
                     <label 
                       className = "form-check-label"
@@ -167,6 +134,7 @@ function Products() {
                       type = "checkbox"
                       value = "food"
                       id = "Input-Check-Food"
+                      onChange = {onChange}
                     />
                     <label 
                       className = "form-check-label"
@@ -185,6 +153,7 @@ function Products() {
                       type = "checkbox"
                       value = "toy"
                       id = "Input-Check-Toy"
+                      onChange = {onChange}
                     />
                     <label 
                       className = "form-check-label"
@@ -203,6 +172,7 @@ function Products() {
                       type = "checkbox"
                       value = "grooming"
                       id = "Input-Check-Grooming"
+                      onChange = {onChange}
                     />
                     <label 
                       className = "form-check-label"
@@ -231,7 +201,7 @@ function Products() {
             return (
               <div
                 key={index}
-                className="products col-md-6 col-lg-4 col-xl-3 col-xs-12"
+                className="products col-9 col-md-6 col-lg-4 col-xl-3 col-xs-12"
               >
                 <div className="card">
                   <Link to={`/product/${product._id}`} aria-current="page">
