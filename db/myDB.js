@@ -253,7 +253,8 @@ async function deleteCart(user) {
   await client.connect();
   try {
     console.log("delete user cart:", user);
-    await carts.remove({username: user}, false);
+    const deleteResult = await carts.deleteMany({userName: user});
+    console.log("result:", deleteResult);
   } catch (e) {
     console.log(e);
   } finally {
