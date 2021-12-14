@@ -3,12 +3,13 @@
 PAGE BUILT BY: JENNIFER
 
 */
-
+import "./navbar.css";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../images/pet-food.png";
+import logo from "../../images/pet-food.png";
 import { Toast } from "react-bootstrap";
 import ToastContainer from "react-bootstrap/ToastContainer";
+import PropTypes from "prop-types";
 
 function Navbar({ user, setUser, carts }) {
   let navigate = useNavigate();
@@ -146,5 +147,19 @@ function Navbar({ user, setUser, carts }) {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  carts: PropTypes.arrayOf(
+    PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ),
+  user: PropTypes.string.isRequired,
+
+};
 
 export default Navbar;

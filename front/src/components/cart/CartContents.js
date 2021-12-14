@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Toast } from "react-bootstrap";
 import ToastContainer from "react-bootstrap/ToastContainer";
+import "./cart.css";
 
 export default function CartContents({ carts, setCarts }) {
   const navigate = useNavigate();

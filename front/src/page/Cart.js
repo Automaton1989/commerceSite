@@ -5,11 +5,12 @@ PAGE BUILT BY: JENNIFER
 */
 
 import { Link } from "react-router-dom";
-import CartContents from "../components/CartContents";
+import CartContents from "../components/cart/CartContents";
+import PropTypes from "prop-types";
 
-export default function Carts({carts, setCarts}) {
-
-  if (carts.length !== 0) return <CartContents carts={carts} setCarts={setCarts}/>;
+export default function Carts({ carts, setCarts }) {
+  if (carts.length !== 0)
+    return <CartContents carts={carts} setCarts={setCarts} />;
   return <EmptyCart />;
 }
 
@@ -29,3 +30,15 @@ function EmptyCart() {
     </div>
   );
 }
+
+Carts.propTypes = {
+  carts: PropTypes.arrayOf(
+    PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ),
+};
