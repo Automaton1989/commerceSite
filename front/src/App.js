@@ -10,33 +10,11 @@ import SingleProduct from "./components/SingleProduct";
 import Cart from "./page/Cart";
 import Footer from "./page/Footer";
 
-/* 
-USE THIS FOR NAVIGATION BASICS 
-CAN BE USED FOR ASYNC FUNCTIONS BTW
-
-EX: 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    await submitForm(event.target);
-    navigate("../success", { replace: true });
-  }
-
-  return <button onSubmit={handleSubmit}>...</button>
-*/
-/*
-function GoHome() {
-  let navigate = useNavigate();
-  function handleLink() {
-    navigate("/");
-  }
-  return <button onClick={handleLink}> Go Home </button>;
-}
-*/
-
 function App() {
   const [user, setUser] = useState("");
   const [carts, setCarts] = useState([]);
 
+  /* GET USERNAME */ 
   useEffect(() => {
     async function checkUser() {
       const fetchData = await fetch("/api/user/data");
@@ -44,7 +22,7 @@ function App() {
       setUser(res.username);
     }
     checkUser();
-  }, [])
+  }, []);
 
   /* GET THIS USER'S CART INFO */
   useEffect(() => {
@@ -71,7 +49,10 @@ function App() {
               exact
               element={<SingleProduct setCarts={setCarts} user={user} />}
             ></Route>
-            <Route path="/cart" element={<Cart carts={carts} setCarts={setCarts}/>}></Route>
+            <Route
+              path="/cart"
+              element={<Cart carts={carts} setCarts={setCarts} />}
+            ></Route>
           </Routes>
           <Footer />
         </div>

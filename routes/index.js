@@ -94,7 +94,7 @@ router.get("/products/filter", async function (req, res) {
   try {
     let newFilter = req.query.filter;
     let products = null;
-    if(newFilter === "") {
+    if (newFilter === "") {
       products = await myDB.getProducts();
     } else {
       newFilter = newFilter.split(",");
@@ -125,7 +125,6 @@ router.get("/product/data/:id", async (req, res) => {
   }
 });
 
-
 /* 
 
 FUNCTION MADE BY: JENNIFER
@@ -144,7 +143,7 @@ router.get("/user/cart", async function (req, res) {
 /* 
 
 FUNCTION MADE BY: JENNIFER
-PURPOSE -> DELETE PRODUCT FROM CART
+PURPOSE -> DELETE ONE PRODUCT FROM CART
 */
 router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   const id = req.params.id;
@@ -157,6 +156,11 @@ router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   }
 });
 
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> CHANGE QUANTITY OF PRODUCT IN CART
+*/
 router.get("/user/cart/:id/:val", async (req, res) => {
   const id = req.params.id;
   const val = req.params.val;
@@ -169,13 +173,18 @@ router.get("/user/cart/:id/:val", async (req, res) => {
   }
 });
 
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> DELETE ALL PRODUCTS IN CART
+*/
 router.get("/user/cart/deleteCart", async (req, res) => {
   const user = req.session.username;
   console.log("user in index:", user);
   try {
     const deleteCart = await myDB.deleteCart(user);
-    res.send({delete: "success"});
-  }catch (e) {
+    res.send({ delete: "success" });
+  } catch (e) {
     console.error("Error", e);
     res.status(400).send({ err: e });
   }
