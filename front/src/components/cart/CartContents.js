@@ -70,17 +70,16 @@ export default function CartContents({ carts, setCarts }) {
     }
   }
 
-  function handleKeypress({e, item }) {
-      if (e.keyCode === 13) {
-        deleteProduct({item});
-      }
+  function handleKeypress({ e, item }) {
+    if (e.keyCode === 13) {
+      deleteProduct({ item });
+    }
   }
 
-  
-  function handleChangeAmount({e, item }, value) {
-      if (e.keyCode === 13) {
-        changeAmount({ item }, value);
-      }
+  function handleChangeAmount({ e, item }, value) {
+    if (e.keyCode === 13) {
+      changeAmount({ item }, value);
+    }
   }
 
   return (
@@ -133,21 +132,32 @@ export default function CartContents({ carts, setCarts }) {
                 {item.price}
               </div>
               <div className="col-10 mx-auto col-lg-2 cart-item">
-                <span className="btn" tabIndex="0" onKeyDown={(e) => handleChangeAmount({ e, item }, -1)}>
+                <span
+                  className="btn"
+                  tabIndex="0"
+                  onKeyDown={(e) => handleChangeAmount({ e, item }, -1)}
+                >
                   <i
                     className="fas fa-minus"
                     onClick={() => changeAmount({ item }, -1)}
                   ></i>
                 </span>
                 {item.number}
-                <span className="btn" tabIndex="0" onKeyDown={(e) => handleChangeAmount({ e, item }, 1)}>
+                <span
+                  className="btn"
+                  tabIndex="0"
+                  onKeyDown={(e) => handleChangeAmount({ e, item }, 1)}
+                >
                   <i
                     className="fas fa-plus"
                     onClick={() => changeAmount({ item }, 1)}
                   ></i>
                 </span>
               </div>
-              <div className="col-10 mx-auto col-lg-2 cart-item" onKeyDown={(e) => handleKeypress({ e, item })}>
+              <div
+                className="col-10 mx-auto col-lg-2 cart-item"
+                onKeyDown={(e) => handleKeypress({ e, item })}
+              >
                 <span className="btn" tabIndex="0">
                   <i
                     className="fas fa-trash remove"
