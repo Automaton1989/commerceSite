@@ -53,11 +53,6 @@ code {
   font-weight: bold;
 }
 
-.title {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 /* Register page  */
 .register-margin {
   padding-bottom: 10px;
@@ -81,17 +76,6 @@ code {
 
 .carousal-text a {
   color: #F2F2F2;
-}
-
-/* Single product page */
-.single-product h3 {
-  color: #0089bb;
-}
-
-.single-product p {
-  text-align: left;
-  word-spacing: 10px;
-  line-height: 30px;
 }
 
 /* footer setting  */

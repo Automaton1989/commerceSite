@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import { Toast } from "react-bootstrap";
+import "./SingleProduct.css";
 
 function SingleProduct({setCarts, user}) {
 
@@ -21,15 +22,12 @@ function SingleProduct({setCarts, user}) {
 	const [product, setState] = useState([]);
 	const [productReviews, setProductReview] = useState([])
 	const [show, setShow] = useState(false);
-	const [error, setError] = useState("")
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(`/api/product/data/${id}`);
 				const json = await response.json();
-				console.log("PRODUCT: ", json.data);
-				console.log("REVIEWS: ", json.reviews)
 				setState(json.data);
 				setProductReview(json.reviews);
 			} catch (e) {
@@ -127,8 +125,8 @@ function SingleProduct({setCarts, user}) {
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
 		const rawData = await fetch("/api/user/cart");
-    	const res = await rawData.json();
-    	setCarts(res.userCart);
+    const res = await rawData.json();
+    setCarts(res.userCart);
 
 		displayMessage({msg: "Congratulations! You've successfully added " + product.name + " to the cart!" || cartJson.msg})
 	}
@@ -206,7 +204,8 @@ function SingleProduct({setCarts, user}) {
 									className = "form-control"
 									id = "Input-Quantity-Product"
 									name = "quantity"
-									min="0"
+									min="1"
+									defaultValue = "1"
 								/>
 								</div>
 							</div>
