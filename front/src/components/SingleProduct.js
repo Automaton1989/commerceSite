@@ -5,8 +5,10 @@ PAGE BUILT BY: MATTHEW
 */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import ToastContainer from "react-bootstrap/ToastContainer";
+import { Toast } from "react-bootstrap";
 
-function SingleProduct({setCarts}) {
+function SingleProduct({setCarts, user}) {
 
 	const { id } = useParams();
 
@@ -18,6 +20,7 @@ function SingleProduct({setCarts}) {
 
 	const [product, setState] = useState([]);
 	const [productReviews, setProductReview] = useState([])
+	const [show, setShow] = useState(false);
 	const [error, setError] = useState("")
 
 	useEffect(() => {
@@ -97,7 +100,10 @@ function SingleProduct({setCarts}) {
 
 	async function addToCart(event) {
 		event.preventDefault();
-
+		if (!user) {
+			setShow(true);
+			return;
+		}
 		const quantity = document.getElementById("Input-Quantity-Product");
 		if(quantity.value > 100) {
 			displayMessage({msg: "Enter a valid quantity!"});
@@ -213,6 +219,18 @@ function SingleProduct({setCarts}) {
 						>
 							Go Back
 						</button>
+						<ToastContainer position="middle-center">
+          <Toast
+            onClose={() => setShow(false)}
+            show={show}
+            delay={3000}
+            autohide
+          >
+            <Toast.Body>
+              Please sign in first
+            </Toast.Body>
+          </Toast>
+        </ToastContainer>
 					</div>
 				</div>
 			</div>

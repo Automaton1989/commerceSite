@@ -58,6 +58,7 @@ router.get("/user/data/info", async function (req, res) {
   try {
     let user = null;
     if (req.session.username) {
+      console.log(req.session.username);
       user = await myDB.getUser(req.session.username);
       res.send({ data: user });
     } else {

@@ -34,6 +34,12 @@ function Navbar({ user, setUser, carts }) {
     }
   };
 
+  function handleKeyLogout({e}) {
+    if (e.keyCode === 13) {
+        handleLogout();
+      }
+  }
+
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark px-sm-3 font-setting">
@@ -96,7 +102,7 @@ function Navbar({ user, setUser, carts }) {
                 <span className="text-white">
                   Hello, <strong>{user}</strong>
                 </span>
-                <span className="btn" tabIndex="0">
+                <span className="btn" tabIndex="0" onKeyDown={(e) => handleKeyLogout({ e })}>
                   <i
                     className="fa fa-sign-out logout"
                     aria-hidden="true"

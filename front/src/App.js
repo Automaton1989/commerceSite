@@ -69,7 +69,7 @@ function App() {
             <Route
               path="/product/:id"
               exact
-              element={<SingleProduct setCarts={setCarts} />}
+              element={<SingleProduct setCarts={setCarts} user={user} />}
             ></Route>
             <Route path="/cart" element={<Cart carts={carts} setCarts={setCarts}/>}></Route>
           </Routes>
