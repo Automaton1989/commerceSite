@@ -181,15 +181,13 @@ function Products() {
                       id="Input-Check-Grooming"
                       onChange={onChange}
                     />
-<<<<<<< HEAD
                     <label 
                       className = "form-check-label"
                       htmlFor = "Input-Check-Grooming"
-=======
+                      />
                     <label
                       className="form-check-label"
                       htmlFor="Input-Check-Toy"
->>>>>>> 41861fb24a276ade98c86ed778f22bf72384ea20
                     >
                       Grooming
                     </label>
