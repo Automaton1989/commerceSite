@@ -46,7 +46,7 @@ function LoginForm({ setUser }) {
   }
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleLogin} title="sign in form">
       <div className="form-group">
         <div className="mb-3">
           <label htmlFor="Input-Email-Login"> Email Address </label>
@@ -54,7 +54,7 @@ function LoginForm({ setUser }) {
             type="email"
             className="form-control"
             id="Input-Email-Login"
-            aria-describedby="emailHelp"
+            aria-describedby="Input-Email-Login"
             name="email"
             onChange={(e) => {
               setUserInfo({ ...userInfo, email: e.target.value });

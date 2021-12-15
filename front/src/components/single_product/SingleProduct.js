@@ -9,8 +9,7 @@ import ToastContainer from "react-bootstrap/ToastContainer";
 import { Toast } from "react-bootstrap";
 import "./SingleProduct.css";
 
-function SingleProduct({setCarts, user}) {
-
+function SingleProduct({ setCarts, user }) {
 	const { id } = useParams();
 
 	const navigate = useNavigate();
@@ -20,7 +19,7 @@ function SingleProduct({setCarts, user}) {
 	};
 
 	const [product, setState] = useState([]);
-	const [productReviews, setProductReview] = useState([])
+	const [productReviews, setProductReview] = useState([]);
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
@@ -39,63 +38,63 @@ function SingleProduct({setCarts, user}) {
 	}, []);
 
 	function displayStars(rating) {
-		switch(rating) {
+		switch (rating) {
 			case 5:
 				return (
-					<div className = "review">
+					<div className="review">
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 					</div>
-				)
+				);
 			case 4:
 				return (
-					<div className = "review">
+					<div className="review">
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star unchecked"></span>
 					</div>
-				)
+				);
 			case 3:
 				return (
-					<div className = "review">
+					<div className="review">
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star unchecked"></span>
 						<span className="fa fa-star unchecked"></span>
 					</div>
-				)
-			case 2:	
+				);
+			case 2:
 				return (
-					<div className = "review">
+					<div className="review">
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star unchecked"></span>
 						<span className="fa fa-star unchecked"></span>
 						<span className="fa fa-star unchecked"></span>
 					</div>
-				)		
+				);
 			default:
 				return (
-					<div className = "review">
+					<div className="review">
 						<span className="fa fa-star checked"></span>
 						<span className="fa fa-star unchecked"></span>
 						<span className="fa fa-star unchecked"></span>
 						<span className="fa fa-star unchecked"></span>
 						<span className="fa fa-star unchecked"></span>
 					</div>
-				)	
+				);
 		}
 	}
 
 	useEffect(() => {
-  		window.scrollTo(0, 0)
-	}, [])
+		window.scrollTo(0, 0);
+	}, []);
 
 	async function addToCart(event) {
 		event.preventDefault();
@@ -104,8 +103,8 @@ function SingleProduct({setCarts, user}) {
 			return;
 		}
 		const quantity = document.getElementById("Input-Quantity-Product");
-		if(quantity.value > 100) {
-			displayMessage({msg: "Enter a valid quantity!"});
+		if (quantity.value > 100) {
+			displayMessage({ msg: "Enter a valid quantity!" });
 			return;
 		} else {
 			console.log("quantity valid!");
@@ -113,7 +112,7 @@ function SingleProduct({setCarts, user}) {
 
 		const data = {
 			id: product._id,
-			quantity: parseInt(quantity.value)
+			quantity: parseInt(quantity.value),
 		};
 
 		const options = {
@@ -126,61 +125,61 @@ function SingleProduct({setCarts, user}) {
 		const cartData = await fetch("/api/product/cart", options);
 		const cartJson = await cartData.json();
 		const rawData = await fetch("/api/user/cart");
-    const res = await rawData.json();
-    setCarts(res.userCart);
+		const res = await rawData.json();
+		setCarts(res.userCart);
 
-		displayMessage({msg: "Congratulations! You've successfully added " + product.name + " to the cart!" || cartJson.msg})
+		displayMessage({
+			msg:
+				"Congratulations! You've successfully added " +
+					product.name +
+					" to the cart!" || cartJson.msg,
+		});
 	}
 
 	function displayMessage(newMessage) {
 		const message = document.getElementById("cart-message");
-		if(message.style.display === "none") {
+		if (message.style.display === "none") {
 			message.style.display = "block";
 		}
 		message.innerHTML = newMessage.msg;
 		setTimeout(() => {
 			message.style.display = "none";
-		}, 3000)
+		}, 3000);
 	}
 
 	function Review() {
 		return (
-				<div className = "py-4 container">
-					<div className = "row">
-						<div className = "col-12">
-							<h3 className = "review">Product Reviews</h3>
-						</div>
+			<div className="py-4 container">
+				<div className="row">
+					<div className="col-12">
+						<h3 className="review">Product Reviews</h3>
 					</div>
-					{productReviews.map(function (review, index) {
-						return (
-							<div
-								key = {"review: " + index}
-								className = "row"
-							>
-								<div className = "col-12">
-									<h3 className = "review"> {review.username} </h3>
-									{displayStars(review.rating)}
-									<p className = "review"> {review.content} </p>
-								</div>
+				</div>
+				{productReviews.map(function (review, index) {
+					return (
+						<div key={"review: " + index} className="row">
+							<div className="col-12">
+								<h3 className="review"> {review.username} </h3>
+								{displayStars(review.rating)}
+								<p className="review"> {review.content} </p>
 							</div>
-						);
-					})}
-					</div>
-		)
+						</div>
+					);
+				})}
+			</div>
+		);
 	}
 
 	function LineBreak() {
-		return (
-			<hr className = "my-4"/>
-		)
+		return <hr className="my-4" />;
 	}
 
 	return (
-		<div className="font-setting single-product">
+		<div className="font-setting single-product" role="main">
 			<h1 className="title">{product.name}</h1>
-			<div className = "row">
-				<div className = "col-12">
-					<span id = "cart-message"></span>
+			<div className="row">
+				<div className="col-12">
+					<span id="cart-message"></span>
 				</div>
 			</div>
 			<div className="row">
@@ -195,19 +194,22 @@ function SingleProduct({setCarts, user}) {
 					</p>
 					<div>
 						<form onSubmit={addToCart}>
-							<div className = "form-group">
-								<div className = "mb-3">
-								<label htmlFor="Input-Quantity-Product" className = "form-label">
-								Add Quantity
-								</label>
-								<input
-									type = "number"
-									className = "form-control"
-									id = "Input-Quantity-Product"
-									name = "quantity"
-									min="1"
-									defaultValue = "1"
-								/>
+							<div className="form-group">
+								<div className="mb-3">
+									<label
+										htmlFor="Input-Quantity-Product"
+										className="form-label"
+									>
+										Add Quantity
+									</label>
+									<input
+										type="number"
+										className="form-control"
+										id="Input-Quantity-Product"
+										name="quantity"
+										min="1"
+										defaultValue="1"
+									/>
 								</div>
 							</div>
 							<button className="btn btn-color btn-block">Add To Cart</button>
@@ -220,25 +222,22 @@ function SingleProduct({setCarts, user}) {
 							Go Back
 						</button>
 						<ToastContainer position="middle-center">
-          <Toast
-            onClose={() => setShow(false)}
-            show={show}
-            delay={3000}
-            autohide
-          >
-            <Toast.Body>
-              Please sign in first
-            </Toast.Body>
-          </Toast>
-        </ToastContainer>
+							<Toast
+								onClose={() => setShow(false)}
+								show={show}
+								delay={3000}
+								autohide
+							>
+								<Toast.Body>Please sign in first</Toast.Body>
+							</Toast>
+						</ToastContainer>
 					</div>
 				</div>
 			</div>
-			< LineBreak /> 
+			<LineBreak />
 			{Review()}
 		</div>
 	);
 }
-
 
 export default SingleProduct;
