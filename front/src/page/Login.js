@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Login({ setUser }) {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" role="main">
       <div className="row">
         <div className="text-center col-12">
           <h1 className="title">Sign in or create an account here</h1>
