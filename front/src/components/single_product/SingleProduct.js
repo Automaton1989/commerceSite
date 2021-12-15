@@ -35,6 +35,7 @@ function SingleProduct({setCarts, user}) {
 			}
 		};
 		fetchData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	function displayStars(rating) {

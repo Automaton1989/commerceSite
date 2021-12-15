@@ -4,7 +4,7 @@ PAGE WORKED ON BY MATTHEW VARGAS
 
 */
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "./products.css";
 
@@ -13,12 +13,10 @@ let debouncing = null;
 
 function debounce(callback) {
   if (debouncing) {
-    console.log("too fast canceling");
     clearTimeout(debouncing);
   }
 
   debouncing = setTimeout(() => {
-    console.log("enough time, running it");
     debouncing = null;
     callback();
   }, 300);
@@ -34,7 +32,6 @@ function Products() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("fetching data");
         const queryUrl = `/api/products/filter${filter === "" ? "" : "?filter=" + filter}`;
         const response = await fetch(queryUrl);
         const json = await response.json();
