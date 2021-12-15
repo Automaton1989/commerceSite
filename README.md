@@ -21,9 +21,19 @@ Jennifer: Setup the database. Home page, registration page and the cart page imp
 
 https://docs.google.com/presentation/d/1Xj6eKbUKuoPs6Z-CNxIGH7STk7Xn2vQCm99b4J9ZlVg/edit?usp=sharing
 
-## Project Video: 
+## Project Video Demonstration: 
 
 https://www.youtube.com/watch?v=0O-qrk50R1k
+
+## Project Usability Recordings:
+
+Matthew:
+* [Link to videos](https://www.youtube.com/watch?v=ETTWdiSrfuw)
+
+Jennifer:
+* [Report 1](https://www.youtube.com/watch?v=jpnkGqMyndA)
+* [Report 2](https://www.youtube.com/watch?v=PQRZDAj3Uf4)
+* [Report 3](https://www.youtube.com/watch?v=HG0n1FBx_Ig)
 
 ## Project Images:
 
