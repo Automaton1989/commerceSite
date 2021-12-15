@@ -4,6 +4,10 @@
   padding: 0px;
 }
 
+h2 {
+  font-size: 25px;
+}
+
 .products {
   margin-bottom: 2.5rem;
 }
@@ -13,8 +17,8 @@
   height: 270px;
 }
 
-.card h2 {
-  font-size: 18px;
+.card h3 {
+  font-size: 17px;
 }
 
 .card .card-body {

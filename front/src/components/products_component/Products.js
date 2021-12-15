@@ -85,14 +85,14 @@ function Products() {
   }
 
   return (
-    <div>
+    <div role="main">
       <h1 className="title">Our Products</h1>
       <div className="filter-products row">
         <div className="col-12">
           <form onSubmit={handleFilter}>
             <div className="col-6 filter-boxes filter-boxes-left">
               <div className="row">
-                <h3 className="filter-header">Animal</h3>
+                <h2 className="filter-header">Animal</h2>
                 <div className="col-1">
                   <div className="form-check">
                     <input
@@ -132,7 +132,7 @@ function Products() {
               </div>
             </div>
             <div className="col-6 filter-boxes">
-              <h3 className="filter-header">Type</h3>
+              <h2 className="filter-header">Type</h2>
               <div className="row">
                 <div className="col-1">
                   <div className="form-check">
@@ -181,10 +181,10 @@ function Products() {
                       id="Input-Check-Grooming"
                       onChange={onChange}
                     />
-                    <label 
-                      className = "form-check-label"
-                      htmlFor = "Input-Check-Grooming"
-                      />
+                    <label
+                      className="form-check-label"
+                      htmlFor="Input-Check-Grooming"
+                    >
                       Grooming
                     </label>
                   </div>
@@ -216,7 +216,7 @@ function Products() {
                     />
                   </Link>
                   <div className="card-body">
-                    <h2 className="card-title">{product.name}</h2>
+                    <h3 className="card-title">{product.name}</h3>
                   </div>
                   <p className="card-text">${product.price}</p>
                 </div>
