@@ -35,10 +35,10 @@ function Navbar({ user, setUser, carts }) {
     }
   };
 
-  function handleKeyLogout({e}) {
+  function handleKeyLogout({ e }) {
     if (e.keyCode === 13) {
-        handleLogout();
-      }
+      handleLogout();
+    }
   }
 
   return (
@@ -103,7 +103,11 @@ function Navbar({ user, setUser, carts }) {
                 <span className="text-white">
                   Hello, <strong>{user}</strong>
                 </span>
-                <span className="btn" tabIndex="0" onKeyDown={(e) => handleKeyLogout({ e })}>
+                <span
+                  className="btn"
+                  tabIndex="0"
+                  onKeyDown={(e) => handleKeyLogout({ e })}
+                >
                   <i
                     className="fa fa-sign-out logout"
                     aria-hidden="true"
@@ -158,8 +162,7 @@ Navbar.propTypes = {
       image: PropTypes.string.isRequired,
     })
   ),
-  user: PropTypes.string.isRequired,
-
+  user: PropTypes.string,
 };
 
 export default Navbar;

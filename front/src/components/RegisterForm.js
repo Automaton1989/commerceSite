@@ -47,7 +47,11 @@ function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleRegister} className="font-setting" title="register form">
+    <form
+      onSubmit={handleRegister}
+      className="font-setting"
+      title="register form"
+    >
       <div className="form-group">
         <div className="mb-3">
           <label htmlFor="Input-FirstName"> First Name </label>
