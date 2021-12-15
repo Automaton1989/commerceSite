@@ -44,7 +44,12 @@ function Home() {
               <Carousel.Caption>
                 <p className="carousal-text">
                   Picture Source Link{" "}
-                  <a href={item.src} target="_blank" rel="noopener noreferrer" aria-label="Source of the picture">
+                  <a
+                    href={item.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Source of the picture"
+                  >
                     <i className="fas fa-external-link-alt"></i>
                   </a>
                 </p>
@@ -57,7 +62,7 @@ function Home() {
         <h1 className="title">Welcome to the Store!</h1>
         <p>You can find everything you need here for your pets!</p>
         <Link to="/products">
-          <button type="button" className="btn btn-color btn-lg text-light" >
+          <button type="button" className="btn btn-color btn-lg text-light">
             Start Shopping
           </button>
         </Link>

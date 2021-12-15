@@ -9,7 +9,7 @@
 .carts p {
   font-family: "Ubuntu", sans-serif;
   font-size: 25px;
-  color: #BD45BF;
+  color: #bd45bf;
 }
 
 .cart-item {
@@ -18,7 +18,7 @@
 }
 
 .remove {
-  color: #F29F05;
+  color: #f29f05;
 }
 
 .remove:hover {
@@ -80,7 +80,7 @@
   color: #6c119c;
   border-radius: 15px;
   border: 2px solid #ffe484;
-  box-shadow: 6px 4px 1px 0px rgba(0, 0, 255, .2);
+  box-shadow: 6px 4px 1px 0px rgba(0, 0, 255, 0.2);
 }
 
 .checkout:hover {

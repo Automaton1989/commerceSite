@@ -4,7 +4,7 @@
 }
 
 .color-white {
-  color: #F2F2F2;
+  color: #f2f2f2;
 }
 
 .text-white {
@@ -19,7 +19,7 @@
   align-self: center;
 }
 .logout:hover {
-  color: #F29F05;
+  color: #f29f05;
 }
 
 .cart-btn {
@@ -31,7 +31,7 @@
   border: 2px solid;
 }
 
-.cart-btn:hover{
+.cart-btn:hover {
   color: #6c119c;
   background-color: #ffe484;
 }
