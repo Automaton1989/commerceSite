@@ -9,8 +9,7 @@ Authors: Shujun Xiao (Jennifer) and Matthew Vargas
 
 ## Project Objective: 
 
-The objective of this project was to integrate React in addition to using Node.js, Express.js, and MongoDB, creating a complete, full stack, application.  
-We decided to build a commerce website, where users can find products to purchase, add them to their cart, and checkout.
+The objective of this project was to gather feedback from usability studies (six of them total), and implement a priority list of features and updates for our website.  In addition, to complete any features we had backlogged during Project 3
 
 ## Project Work Distribution:
 
@@ -20,13 +19,15 @@ Jennifer: Setup the database. Home page, registration page and the cart page imp
 
 ## Project Slides:
 
-https://docs.google.com/presentation/d/1laU7D9sQL5PTo2f-28m8OLZW-JyDFms_SpUIWAIev78/edit?usp=sharing
+https://docs.google.com/presentation/d/1Xj6eKbUKuoPs6Z-CNxIGH7STk7Xn2vQCm99b4J9ZlVg/edit?usp=sharing
 
 ## Project Video: 
 
+https://www.youtube.com/watch?v=0O-qrk50R1k
+
 ## Project Images:
 
-[Google Drive to Screenshots](https://drive.google.com/drive/folders/1UIXPuGQu_cVtf6Wzg47tmHkTapqhFsZL?usp=sharing)
+[Google Drive to Screenshots For Project 4](https://drive.google.com/drive/folders/128VV1sdo1mm03VVG87LQP4B_sv7VmPF1?usp=sharing)
 
 ## Build Dependencies and Instructions
 
