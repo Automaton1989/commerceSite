@@ -174,7 +174,7 @@ function Products() {
                     />
                     <label 
                       className = "form-check-label"
-                      htmlFor = "Input-Check-Toy"
+                      htmlFor = "Input-Check-Grooming"
                     >
                     Grooming
                     </label>
