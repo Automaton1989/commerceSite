@@ -42,3 +42,9 @@ Other images sources are as followed:
 * [pet-stuff](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pet18.com%2FUploadFiles%2F[…]0n&fmt=jpeg?sec=1639959896&t=0d7894769492fd9e5df1b7c6f347c9b1)
 * [pet-stuff2](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639964254&t=856f11c764c16ae1bfef3965f5efcd9f)
 * [pet-stuff3](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639968713&t=4162b0dd9136e2fd2db18d98dda6afee)
+
+
+## Code Review Comments by Kennedy Ezumah for Shujun:
+1. Nice project. I found your codebase easy to navigate and clean. I appreciate how you clearly identified the functions and snippets you were responsible for and their purpose. 
+2. Your session management implementation looks great. One change I would recommend is to consider allowing users to add items to their cart before signing in or creating an account. Usually e-commerce platforms allow users to either complete purchases as guests or as registered users.
+3. Regarding usability, I found your pages legible and easy to understand. I appreciate how you allow users to search for ites based on the "cats" and "dogs" groupings.
