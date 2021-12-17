@@ -6,7 +6,7 @@ PAGE BUILT BY: MATTHEW
 
 import "../App.css";
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ setUser }) {
   let navigate = useNavigate();
@@ -46,7 +46,7 @@ function LoginForm({ setUser }) {
   }
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handleLogin} title="sign in form">
       <div className="form-group">
         <div className="mb-3">
           <label htmlFor="Input-Email-Login"> Email Address </label>
@@ -54,7 +54,7 @@ function LoginForm({ setUser }) {
             type="email"
             className="form-control"
             id="Input-Email-Login"
-            aria-describedby="emailHelp"
+            aria-describedby="Input-Email-Login"
             name="email"
             onChange={(e) => {
               setUserInfo({ ...userInfo, email: e.target.value });
@@ -82,28 +82,10 @@ function LoginForm({ setUser }) {
         <div className="mb-3">{error}</div>
       </div>
       <button type="submit" className="btn btn-color btn-block">
-        Submit
+        Sign In
       </button>
-      <Link className="link" to="/register">
-        Don't have an account?
-      </Link>
     </form>
   );
 }
 
-function Login({ setUser }) {
-  return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="text-center col-12">
-          <h1 className="title">Login</h1>
-          <div className="col-md-4 offset-md-4">
-            <LoginForm setUser={setUser} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default Login;
+export default LoginForm;

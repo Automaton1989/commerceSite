@@ -58,6 +58,7 @@ router.get("/user/data/info", async function (req, res) {
   try {
     let user = null;
     if (req.session.username) {
+      console.log(req.session.username);
       user = await myDB.getUser(req.session.username);
       res.send({ data: user });
     } else {
@@ -89,10 +90,17 @@ router.get("/products", async function (req, res) {
 FUNCTION MADE BY: MATTHEW
 PURPOSE -> GRAB QUERY FROM REACT AND ADJUST PRODUCTS
 */
-router.get("/products/:query", async function (req, res) {
+router.get("/products/filter", async function (req, res) {
   try {
-    const newQuery = req.params.query;
-    const products = await myDB.getProductsQuery(newQuery);
+    let newFilter = req.query.filter;
+    let products = null;
+    if (newFilter === "") {
+      products = await myDB.getProducts();
+    } else {
+      newFilter = newFilter.split(",");
+      products = await myDB.getProductsQuery(newFilter);
+    }
+    console.log("SENDING DATA BACK");
     res.send({ data: products });
   } catch (e) {
     console.log("Error", e);
@@ -110,7 +118,7 @@ router.get("/product/data/:id", async (req, res) => {
     const productId = req.params.id;
     const myProduct = await myDB.getProduct(productId);
     if (myProduct.msg === "success") {
-      res.send({ data: myProduct.product });
+      res.send({ data: myProduct.product, reviews: myProduct.reviews });
     }
   } catch (e) {
     res.status(400).send({ err: e });
@@ -135,12 +143,46 @@ router.get("/user/cart", async function (req, res) {
 /* 
 
 FUNCTION MADE BY: JENNIFER
-PURPOSE -> DELETE PRODUCT FROM CART
+PURPOSE -> DELETE ONE PRODUCT FROM CART
 */
 router.get("/user/cart/deleteProduct/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const deleteProduct = await myDB.deleteProduct(id);
+    res.send({ delete: "success" });
+  } catch (e) {
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+});
+
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> CHANGE QUANTITY OF PRODUCT IN CART
+*/
+router.get("/user/cart/:id/:val", async (req, res) => {
+  const id = req.params.id;
+  const val = req.params.val;
+  try {
+    const changeQuantity = await myDB.changeQuantity(id, val);
+    res.send({ change: "success" });
+  } catch (e) {
+    console.error("Error", e);
+    res.status(400).send({ err: e });
+  }
+});
+
+/* 
+
+FUNCTION MADE BY: JENNIFER
+PURPOSE -> DELETE ALL PRODUCTS IN CART
+*/
+router.get("/user/cart/deleteCart", async (req, res) => {
+  const user = req.session.username;
+  console.log("user in index:", user);
+  try {
+    const deleteCart = await myDB.deleteCart(user);
     res.send({ delete: "success" });
   } catch (e) {
     console.error("Error", e);

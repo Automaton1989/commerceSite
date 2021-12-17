@@ -9,24 +9,35 @@ Authors: Shujun Xiao (Jennifer) and Matthew Vargas
 
 ## Project Objective: 
 
-The objective of this project was to integrate React in addition to using Node.js, Express.js, and MongoDB, creating a complete, full stack, application.  
-We decided to build a commerce website, where users can find products to purchase, add them to their cart, and checkout.
+The objective of this project was to gather feedback from usability studies (six of them total), and implement a priority list of features and updates for our website.  In addition, to complete any features we had backlogged during Project 3
 
 ## Project Work Distribution:
 
-Matthew: Setup the project. Login, all product, and product detail page and their related logic. Deploy the website to the heroku.
+Matthew: update everything related to product page and single product page
 
-Jennifer: Setup the database. Home page, registration page and the cart page implementation and their related logic.
+Jennifer: update everything related to home, sign in, cart pages.
 
 ## Project Slides:
 
-https://docs.google.com/presentation/d/1laU7D9sQL5PTo2f-28m8OLZW-JyDFms_SpUIWAIev78/edit?usp=sharing
+https://docs.google.com/presentation/d/1Xj6eKbUKuoPs6Z-CNxIGH7STk7Xn2vQCm99b4J9ZlVg/edit?usp=sharing
 
-## Project Video: 
+## Project Video Demonstration: 
+
+https://www.youtube.com/watch?v=0O-qrk50R1k
+
+## Project Usability Recordings:
+
+Matthew:
+* [Link to videos](https://www.youtube.com/watch?v=ETTWdiSrfuw)
+
+Jennifer:
+* [Report 1](https://www.youtube.com/watch?v=jpnkGqMyndA)
+* [Report 2](https://www.youtube.com/watch?v=PQRZDAj3Uf4)
+* [Report 3](https://www.youtube.com/watch?v=HG0n1FBx_Ig)
 
 ## Project Images:
 
-[Google Drive to Screenshots](https://drive.google.com/drive/folders/1UIXPuGQu_cVtf6Wzg47tmHkTapqhFsZL?usp=sharing)
+[Google Drive to Screenshots For Project 4](https://drive.google.com/drive/folders/128VV1sdo1mm03VVG87LQP4B_sv7VmPF1?usp=sharing)
 
 ## Build Dependencies and Instructions
 
@@ -39,6 +50,6 @@ https://docs.google.com/presentation/d/1laU7D9sQL5PTo2f-28m8OLZW-JyDFms_SpUIWAIe
 The images and product information used in the project are all from the commercial website: https://www.petsmart.ca/
 
 Other images sources are as followed:
-* [pet-stuff](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pet18.com%2FUploadFiles%2F[…]0n&fmt=jpeg?sec=1639959896&t=0d7894769492fd9e5df1b7c6f347c9b1)
-* [pet-stuff2](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639964254&t=856f11c764c16ae1bfef3965f5efcd9f)
-* [pet-stuff3](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05[…]0n&fmt=jpeg?sec=1639968713&t=4162b0dd9136e2fd2db18d98dda6afee)
+* [pet-stuff](ttps://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E5%AE%A0%E7%89%A9%E7%94%A8%E5%93%81&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&hd=undefined&latest=undefined&copyright=undefined&cs=1337506148,3836280766&os=813629518,2583929594&simid=4181721010,674743188&pn=35&rn=1&di=83930&ln=1922&fr=&fmq=1638916223620_R&fm=index&ic=0&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&is=0,0&istype=2&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%253A%252F%252Fwww.pet18.com%252FUploadFiles%252FFCK%252F2018-11%252F4%25287%2529.jpg%26refer%3Dhttp%253A%252F%252Fwww.pet18.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1641508225%26t%3D48590060915f3686d228f55e4eea6825&rpstart=0&rpnum=0&adpicid=0&nojc=undefined&ctd=1638917809622^3_1439X910%1)
+* [pet-stuff2](http://bpic.588ku.com/back_pic/05/56/59/935b1df7ac940e9.jpg)
+* [pet-stuff3](http://bpic.588ku.com/back_pic/05/61/34/495b486a717e682.jpg)

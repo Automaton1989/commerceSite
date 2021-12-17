@@ -1,45 +1,43 @@
 import "./App.css";
-import React, { useState } from "react";
-import Login from "./components/Login";
+import React, { useState, useEffect } from "react";
+import Login from "./page/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Products from "./components/Products";
-import Home from "./components/Home";
-import Register from "./components/Register";
-import SingleProduct from "./components/SingleProduct";
-import Cart from "./components/Cart";
-import Footer from "./components/Footer";
-
-/* 
-USE THIS FOR NAVIGATION BASICS 
-CAN BE USED FOR ASYNC FUNCTIONS BTW
-
-EX: 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    await submitForm(event.target);
-    navigate("../success", { replace: true });
-  }
-
-  return <button onSubmit={handleSubmit}>...</button>
-*/
-/*
-function GoHome() {
-  let navigate = useNavigate();
-  function handleLink() {
-    navigate("/");
-  }
-  return <button onClick={handleLink}> Go Home </button>;
-}
-*/
+import Navbar from "./components/navbar/Navbar";
+import Products from "./components/products_component/Products";
+import Home from "./page/Home";
+import Register from "./page/Register";
+import SingleProduct from "./components/single_product/SingleProduct";
+import Cart from "./page/Cart";
+import Footer from "./page/Footer";
 
 function App() {
   const [user, setUser] = useState("");
+  const [carts, setCarts] = useState([]);
+
+  /* GET USERNAME */ 
+  useEffect(() => {
+    async function checkUser() {
+      const fetchData = await fetch("/api/user/data");
+      const res = await fetchData.json();
+      setUser(res.username);
+    }
+    checkUser();
+  }, []);
+
+  /* GET THIS USER'S CART INFO */
+  useEffect(() => {
+    const fetchCartData = async () => {
+      const rawData = await fetch("/api/user/cart");
+      const res = await rawData.json();
+      res.userCart ? setCarts(res.userCart) : setCarts([]);
+    };
+    fetchCartData();
+  }, [user]);
 
   return (
     <Router>
       <React.Fragment>
-        <Navbar user={user} setUser={setUser} />
+        <Navbar user={user} setUser={setUser} carts={carts} />
         <div className="App">
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
@@ -49,9 +47,12 @@ function App() {
             <Route
               path="/product/:id"
               exact
-              element={<SingleProduct />}
+              element={<SingleProduct setCarts={setCarts} user={user} />}
             ></Route>
-            <Route path="/cart" element={<Cart />}></Route>
+            <Route
+              path="/cart"
+              element={<Cart carts={carts} setCarts={setCarts} />}
+            ></Route>
           </Routes>
           <Footer />
         </div>

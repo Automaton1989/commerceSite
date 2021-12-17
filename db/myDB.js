@@ -3,14 +3,14 @@ require("dotenv").config();
 const ObjectId = require("mongodb").ObjectId;
 const bcrypt = require("bcrypt");
 
-const url =
-  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@calendar.ancvz.mongodb.net/commercialSite?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@calendar.ancvz.mongodb.net/commercialSite?retryWrites=true&w=majority`;
 const client = new MongoClient(url, { useUnifiedTopology: true });
-const db = client.db("commercialSite"); 
+const db = client.db("commercialSite");
 /* If you want to test from our user collecion, change above to "calendar" db */
 const users = db.collection("users");
 const products = db.collection("products");
 const carts = db.collection("carts");
+const reviews = db.collection("comments");
 
 /* 
 
@@ -21,10 +21,10 @@ FUNCTION BUILT BY: MATTHEW
 async function getUser(username) {
   await client.connect();
   try {
-    const user = await users.findOne({ userName : username });
+    const user = await users.findOne({ userName: username });
     return user;
-  } catch(e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   } finally {
     client.close();
   }
@@ -66,7 +66,7 @@ async function registerUser(userInfo) {
   if (userEmail) {
     return "The email exists, please use another email address";
   }
-  const username = await users.findOne({userName: userInfo.userName});
+  const username = await users.findOne({ userName: userInfo.userName });
   if (username) {
     return "The user name exists, please use another user name";
   }
@@ -99,8 +99,8 @@ async function getProducts() {
   const res = await products.find().toArray();
   try {
     return res;
-  } catch(e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   } finally {
     client.close();
   }
@@ -112,12 +112,12 @@ FUNCTION BUILT BY: MATTHEW
 
 */
 
-async function getProductsQuery(query) {
+async function getProductsQuery(filter) {
   await client.connect();
-  const res = await products.find({name: {$regex: query, $options: "$i"}}).toArray();
+  const res = await products.find({ category: { $all: filter } }).toArray();
   try {
     return res;
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   } finally {
     client.close();
@@ -132,9 +132,22 @@ FUNCTION BUILT BY: MATTHEW
 
 async function getProduct(id) {
   await client.connect();
+  let product;
+  let product_reviews;
   try {
-    const product = await products.findOne({"_id": new ObjectId(id)});
-    return {product: product, msg: "success"};
+    product = await products.findOne({ _id: new ObjectId(id) });
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    product_reviews = await reviews.find({ product: product.name }).toArray();
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    return { product: product, reviews: product_reviews, msg: "success" };
   } catch (e) {
     console.log(e);
   } finally {
@@ -142,7 +155,7 @@ async function getProduct(id) {
   }
 }
 
-/* 
+/*
 
 FUNCTION BUILT BY: MATTHEW
 
@@ -151,27 +164,35 @@ FUNCTION BUILT BY: MATTHEW
 async function addProductToCart(productInfo, user) {
   await client.connect();
   try {
-    const product = await products.findOne({"_id": new ObjectId(productInfo.id)});
-    if(product === null) {
-      return {msg: "Fail"};
-    }
-    else {
-      let checkCart = await carts.findOne({"product": product._id, "userName": user});
-      if(checkCart === null) {
-        const newUser = await users.findOne({"userName": user});
+    const product = await products.findOne({
+      _id: new ObjectId(productInfo.id),
+    });
+    if (product === null) {
+      return { msg: "Fail" };
+    } else {
+      let checkCart = await carts.findOne({
+        product: product._id,
+        userName: user,
+      });
+      if (checkCart === null) {
+        const newUser = await users.findOne({ userName: user });
         const newData = {
           product: product._id,
           userName: newUser.userName,
           price: product.price,
           name: product.name,
-          number: 1
-        }
+          number: productInfo.quantity,
+          image: product.src,
+        };
         await carts.insertOne(newData);
       } else {
-        newVal = checkCart.number + 1;
-        await carts.updateOne({"_id": checkCart._id}, {$set: {"number": newVal}});
+        let newVal = checkCart.number + productInfo.quantity;
+        await carts.updateOne(
+          { _id: checkCart._id },
+          { $set: { number: newVal } }
+        );
       }
-      return {msg : "success"}
+      return { msg: "success" };
     }
   } catch (e) {
     console.log(e);
@@ -183,14 +204,16 @@ async function addProductToCart(productInfo, user) {
 /* 
 
 FUNCTION BUILT BY: JENNIFER
+GET USER CART INFO
 
 */
-
 async function userCart(username) {
-  if (!username) {return [];}
+  if (!username) {
+    return [];
+  }
   await client.connect();
   try {
-    const userCart = await carts.find({userName: username}).toArray();
+    const userCart = await carts.find({ userName: username }).toArray();
     return userCart;
   } catch (e) {
     console.log(e);
@@ -202,14 +225,52 @@ async function userCart(username) {
 /* 
 
 FUNCTION BUILT BY: JENNIFER
+DELETE ONE PRODUCT FROM THE CART
 
 */
-
-/* DELETE PRODUCT FROM THE CART */
 async function deleteProduct(id) {
   await client.connect();
   try {
-    const product = await carts.remove({_id: ObjectId(id)}, true); //set the justOne parameter to true
+    const product = await carts.remove({ _id: ObjectId(id) }, true); //set the justOne parameter to true
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
+/* 
+
+FUNCTION BUILT BY: JENNIFER
+CHANGE PRODUCT QUANTITY
+
+*/
+async function changeQuantity(id, val) {
+  await client.connect();
+  try {
+    let value = parseInt(val);
+    await carts.updateOne({ _id: ObjectId(id) }, { $inc: { number: value } });
+    const newCart = await carts.findOne({ _id: ObjectId(id) });
+    if (newCart.number === 0) {
+      await carts.remove({ _id: ObjectId(id) }, true);
+    }
+  } catch (e) {
+    console.log(e);
+  } finally {
+    client.close();
+  }
+}
+
+/* 
+
+FUNCTION BUILT BY: JENNIFER
+DELETE ALL PRODUCT IN CART
+
+*/
+async function deleteCart(user) {
+  await client.connect();
+  try {
+    const deleteResult = await carts.deleteMany({ userName: user });
   } catch (e) {
     console.log(e);
   } finally {
@@ -227,4 +288,6 @@ module.exports = {
   userCart,
   deleteProduct,
   addProductToCart,
+  changeQuantity,
+  deleteCart,
 };

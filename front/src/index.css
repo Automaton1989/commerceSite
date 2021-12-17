@@ -13,100 +13,44 @@ code {
     monospace;
 }
 
-.navbar {
-  background-color: #6c119c;
+/*Sign in and register*/
+.section-breaker {
+  overflow: hidden;
+  text-align: center;
 }
 
-.row {
-  margin: 0px;
-  padding: 0px;
+.section-breaker:before, .section-breaker:after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
 }
 
-.products {
-  margin-bottom: 1rem;
+.section-breaker:before {
+  right: 0.5em;
+  margin-left: -50%;
 }
 
-.card img {
-  width: 100%;
-  height: 350px;
+.section-breaker:after {
+  left: 0.5em;
+  margin-right: -50%;
 }
 
-.card h2 {
-  font-size: 18px;
-}
-
-.card .card-body {
-  height: 80px;
-  text-align: left;
-}
-
-.card .card-text {
-  text-align: left;
-  padding: 1rem;
-  margin-bottom: 0px;
-}
-
-.card .btn {
-  background-color: #ff9686;
-  border-color: #ff9686;
-  border-radius: 0px;
-  color: #fcf0e5;
-}
-
-.card .btn:hover {
-  background-color: #cd7568;
-  border-color: #cd7568;
-  color: #fcf0e5;
-}
-.btn-color {
-  background-color: #ff9686;
-  border-color: #ff9686;
-  color: #fcf0e5;
-}
-.btn-color:hover {
-  background-color: #cd7568;
-  border-color: #cd7568;
-  color: #fcf0e5;
-}
-.btn-block {
-  width: 100%;
-}
 .link {
   text-decoration: none;
-  color: #ff9686;
+  color: #6B119C;
 }
 
 .link:hover {
-  color: #cd7568;
+  color: #35044F;
 }
 
-.title {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.text-white {
-  padding-right: 10px;
-  color: #dddddd;
-  align-self: center;
-}
-
-.logout {
-  padding-right: 15px;
-  color: #dddddd;
-  align-self: center;
-}
-.logout:hover {
-  color: #cd7568;
-}
-
-.search-products {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.product-img img {
-  width: 100%;
+.link-big {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /* Register page  */
@@ -123,58 +67,15 @@ code {
   font-style: italic;
 }
 
-/* Single product page */
-.single-product h3 {
-  padding-bottom: 30px;
-  color: #0089bb;
+/* Home  */
+.carousal-text {
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  size: 20px;
+  font-weight: bold;
 }
 
-.single-product p {
-  text-align: left;
-  word-spacing: 10px;
-  line-height: 30px;
-  padding-bottom: 30px;
-}
-
-/* Carts page */
-.carts h1 {
-  font-family: "Ubuntu", sans-serif;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-style: italic;
-}
-
-.carts p {
-  font-family: "Ubuntu", sans-serif;
-  font-size: 25px;
-  color: #ff9686;
-}
-
-.cart-item {
-  font-family: "Ubuntu", sans-serif;
-  padding: 10px 0px;
-}
-
-.remove {
-  color: #ffa62b;
-}
-
-.remove:hover {
-  color: #e59368;
-}
-
-.total {
-  font-family: "Ubuntu", sans-serif;
-  text-align: right;
-  font-size: 20px;
-  color: #0089bb;
-}
-.carts-bottom {
-  padding-bottom: 80px;
-}
-
-.go-back {
-  margin: 1rem;
+.carousal-text a {
+  color: #F2F2F2;
 }
 
 /* footer setting  */

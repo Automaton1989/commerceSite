@@ -1,0 +1,37 @@
+/* Navbar  */
+.navbar {
+  background-color: #6c119c;
+}
+
+.color-white {
+  color: #f2f2f2;
+}
+
+.text-white {
+  padding-right: 10px;
+  color: #dddddd;
+  align-self: center;
+}
+
+.logout {
+  padding-right: 15px;
+  color: #ffe484;
+  align-self: center;
+}
+.logout:hover {
+  color: #f29f05;
+}
+
+.cart-btn {
+  color: #ffe484;
+  background-color: #6c119c;
+  border-color: #ffe484;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid;
+}
+
+.cart-btn:hover {
+  color: #6c119c;
+  background-color: #ffe484;
+}
